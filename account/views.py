@@ -18,7 +18,7 @@ def register(request):
     context = {
         "form" : form
     }
-    return render(request, "main/pages/register.html", context)
+    return render(request, "base/pages/register.html", context)
 
 @loggedUser
 def userLogin(request):
@@ -32,7 +32,7 @@ def userLogin(request):
             return redirect("dashboard")
         else:
             messages.error(request, "Le mot de passe ou le nom de l'utilisateur est incorrect")
-    return render(request, "main/pages/login.html")
+    return render(request, "base/pages/login.html")
 
 def userLogout(request):
     logout(request)
