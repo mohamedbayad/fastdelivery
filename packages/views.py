@@ -158,7 +158,7 @@ def refundRequest(request, id):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/parts/refund.html", contextform)
+    return render(request, "dashbord/parts-tool/refund.html", contextform)
 
 @login_required(login_url="login")
 @allowedUsers(allowedGroups=["customer"])
@@ -188,7 +188,7 @@ def exchangeRequest(request, id):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/parts/exchange.html", contextform)
+    return render(request, "dashbord/parts-tool/exchange.html", contextform)
 
 @login_required(login_url="login")
 @allowedUsers(allowedGroups=["customer"])
