@@ -111,7 +111,7 @@ def parcel_inv_packages(request, id):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, 'dashbord/pages/invoices/parts/packages.html', context)
+    return render(request, 'dashbord/pages/invoices/parts-inv/packages.html', context)
 
 
 @login_required(login_url="login")
