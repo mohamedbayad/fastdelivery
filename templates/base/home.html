@@ -67,7 +67,7 @@
                     <h1 class="title">Tarification par ville</h1>
                     <input type="text" name="" id="search" placeholder="Trouvez votre ville">
                     <div class="content">
-                        {% if citys %}
+                        {% if citys.count > 0 %}
                         {% for item in citys %}
                         <div class="pricing-thumb">
                             <div class="title">
