@@ -1,0 +1,18 @@
+{% load static %}
+<header>
+    <div class="nav-bar">
+        <div class="logo">
+            <a href="{% url 'dashboard-admin' %}"><h1>logo</h1></a>
+        </div>
+        <ul class="d-flex">
+            {% if "admins-delivery" in request.user.groups.all|safeseq %}
+            <li class="m-lg-2 p-2 text-capitalize"><a href="{% url 'add_delivery' request.user.id%}">add</a></li>
+            <li class="m-lg-2 p-2 text-capitalize"><a href="{% url 'add_packages' request.user.id%}">set packages</a></li>
+            <li class="m-lg-2 p-2 text-capitalize"><a href=" {% url 'logout' %} ">Logout</a></li>
+            {% else %}
+            {% comment %} <li class="m-lg-2 p-2 text-capitalize"><a href="{% url 'add_packages' %}">add</a></li> {% endcomment %}
+            <li class="m-lg-2 p-2 text-capitalize"><a href=" {% url 'logout' %} ">Logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</header>
