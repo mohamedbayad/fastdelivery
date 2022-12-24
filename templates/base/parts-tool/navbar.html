@@ -1,0 +1,28 @@
+{% load static %}
+<div class="top-header insc conn">
+    <div class="content">
+        <div class="logo">
+            <a href="/"><h2 id="logo">brigad delivery</h2></a>
+        </div>
+        <div class="nav-mobile">
+            <span></span>
+            <span class="center"></span>
+            <span></span>
+        </div>
+        <div class="nav-top">
+            <nav>
+                <a href="{% url "home" %}">home</a>
+                <a href="/#our-work" id="notre-travail">notre travail</a>
+                <a href="/#pricing" id="tarification">tarification</a>
+            </nav>
+        </div>
+        <div class="register">
+            <div class="i-c" id="inscription">
+                <a href="{% url 'register' %}" id="insc">inscription</a>
+            </div>
+            <div class="i-c" id="connexion">
+                <a href="{% url 'connexion' %}" id="con">connexion</a>
+            </div>
+        </div>
+    </div>
+</div>
