@@ -1,0 +1,46 @@
+{% extends 'dashbord/dashbord.html' %}
+{% load static %}
+
+
+
+<main>
+{% block content %}
+    {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
+    <div class="get-data">
+        <div class="content">
+            <h4>Tous Les Bons De Ramassages</h4>
+            <p>Total des résultats trouvés: <span style="color:green">{{receivCount}}</span></p>
+            <div class="table-content">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre total d'articles</th>
+                        <th scope="col">Nombre d'articles ramassés</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in receiv %}
+                        {% if item.receive == True %}
+                            <tr>
+                                <td>{{item.received_id}}</td>
+                                <td>{{item.packages.count}}</td>
+                                <td>{{item.packages.count}}</td>
+                                <td>{{item.date_received}}</td>
+                                <td class="actions" id="actions">
+                                    <a href="{% url 'pickedup_pdf' item.received_id %}"><button type="button" class="btn btn-success">Bons de ramassage</button></a>
+                                    <a href="{% url 'labels' item.received_id %}"><button type="button" class="btn btn-success">Étiquettes</button></a>
+                                    <a href="{% url 'invoices_packages' item.received_id %}"><button type="button" class="btn btn-primary">Colis</button></a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</main>

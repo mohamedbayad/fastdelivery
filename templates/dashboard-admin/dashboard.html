@@ -1,0 +1,445 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'scss/dashboard-admin/style.css' %}">
+
+	<!-- {% comment %} font awesome {% endcomment %} -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+	<!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+	{% comment %} select {% endcomment %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" /> 
+
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+	<title>{% block title %}Admin Brigad Style{% endblock title %}</title>
+</head>
+
+<body>
+	<div class="webpage">
+		<div class="container">
+			{% include "dashboard-admin/parts/navbar.html" %}
+			{% block content %}
+			<main>
+				<div class="dashboard">
+					<div class="content">
+						<div class="cards">
+							<div class="card">
+								<div class="content">
+									<div class="pric">
+										<h3>{{t_n_i_c}} DH</h3>
+										<p>REVENU NET TOTAL</p>
+									</div>
+									<i class="fa-solid fa-dollar-sign"></i>
+								</div>
+							</div>
+							<div class="card">
+								<div class="content">
+									<div class="pric">
+										<h3>{{total_fee}} DH</h3>
+										<p>TOTAL les frais</p>
+									</div>
+									<i class="fa-solid fa-cube"></i>
+								</div>
+							</div>
+							<div class="card">
+								<div class="content">
+									<div class="pric">
+										<h3>{{total_packages}}</h3>
+										<p>LES COLIES</p>
+									</div>
+									<i class="fa-solid fa-receipt"></i>
+								</div>
+							</div>
+							<div class="card">
+								<div class="content">
+									<div class="pric">
+										<h3>{{t_p_d}}</h3>
+										<p>colis livrés</p>
+									</div>
+									<i class="fa-solid fa-arrow-rotate-left"></i>
+								</div>
+							</div>
+						</div>
+						<div class="block container text-center mt-5 ">
+							<!-- custemers and admin-delivery  -->
+							<div class="row justify-content-between mb-5">
+								<div class="users show-data custemers col-5 mb-3">
+									<div class="top">
+										<h1>All users</h1>
+										<small class="ms-2 " style="color: #efcefa;">33</small>
+									</div>
+									<div class="body">
+										<div class="filter">
+											<form action="" method="GET">
+												<input type="search" name="search" id="search" placeholder="Search with username or company name">
+											</form>
+										</div>
+										<div class="content">
+											{% for user in users %}
+											<div class="user">
+												<div class="info">
+													<div class="logo">
+														<img src="{{user.image.url}}" alt="">
+													</div>
+													<div class="username">
+														<h4 class="name">{{user.user}}</h4>
+														<p class="company-name">{{user.business_name}}</p>
+													</div>
+												</div>
+												<div class="actions">
+													<a href="{% url 'view_user' user.user.id %}"><i class='bx bx-show'></i></a>
+												</div>
+											</div>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+								<div class="users show-data admin-men-delivery col-5">
+									<div class="top">
+										<h1>admins-men-delivery</h1>
+										<small class="ms-2 " style="color: #efcefa;">33</small>
+									</div>
+									<div class="body">
+										<div class="filter">
+											<form action="" method="GET">
+												<input type="search" name="search" id="search" placeholder="Search with username or company name">
+											</form>
+										</div>
+										<div class="content">
+											{% for adminDelivery in admins_delivery %}
+											<div class="user admin-delivery">
+												<div class="info">
+													<div class="logo">
+														<img src="{% static 'img/profile/default_profile.png' %}" alt="">
+													</div>
+													<div class="username">
+														<h4 class="name">{{adminDelivery.user}}</h4>
+														<p class="company-name">{{adminDelivery.city}}</p>
+													</div>
+												</div>
+												<div class="actions">
+													<a href="{% url 'view_admin' adminDelivery.user.id %}"><i class='bx bx-show'></i></a>
+												</div>
+											</div>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end -->
+							<!-- exchange and refund -->
+							<div class="row justify-content-between mb-5">
+								<div class="show-data refund col-5 mb-3">
+									<div class="top">
+										<h1>refunds</h1>
+									</div>
+									<div class="body">
+										<div class="filter">
+											<form action="" method="GET">
+												<input oninput="searchId(idSearch='search-refund', idClass='id-refund')" type="search" name="search-refund" id="search-refund" placeholder="search with id">
+											</form>
+										</div>
+										<div class="content">
+											<div class="refund">
+												<table class="table table-bordered table-hover">
+													<thead>
+														<tr>
+															<th scope="col">ID</th>
+															<th scope="col">Price</th>
+															<th scope="col">Actions</th>
+														</tr>
+													</thead>
+													<tbody >
+														{% for refund in refunds %}
+														<tr>
+															<th scope="row" data="{{refund.refund_id}}" class="id id-refund" id="ind">{{refund.refund_id}}</th>
+															<td>{{refund.refund_price}}</td>
+															<td>
+																<a href="{% url 'view_refund' refund.user.id refund.refund_id %}"><i class='bx bx-show'></i></a>
+															</td>
+														</tr>
+														{% endfor %}
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="show-data exchange col-5 m-1">
+									<div class="top">
+										<h1>exchanges</h1>
+									</div>
+									<div class="body">
+										<div class="filter">
+											<form action="" method="GET">
+												<input oninput="searchId(idSearch='search-exchange', idClass='id-exchange')" type="search" name="search-exchange" id="search-exchange" placeholder="search with id">
+											</form>
+										</div>
+										<div class="content">
+											<div class="exchange">
+												<table class="table table-bordered table-hover">
+													<thead>
+														<tr>
+															<th scope="col">ID</th>
+															<th scope="col">Client</th>
+															<th scope="col">Actions</th>
+														</tr>
+													</thead>
+													<tbody >
+														{% for exchange in exchanges %}
+														<tr>
+															<th scope="row" data="{{exchange.exchange_id}}" class="id id-exchange" id="ind">{{exchange.exchange_id}}</th>
+															<td>{{exchange.exchange_price}}</td>
+															<td>
+																<a href="{% url 'view_exchange' exchange.user.id exchange.exchange_id %}"><i class='bx bx-show'></i></a>
+															</td>
+														</tr>
+														{% endfor %}
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end -->
+							<!-- support -->
+							<div class="row justify-content-between mb-5">
+								<div class="show-data support col-12">
+									<div class="top">
+										<h1>support</h1>
+									</div>
+									<div class="body">
+										<div class="content">
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+											<a href="">
+												<div class="message">
+													<div class="head-email">
+														<div class="text-email">
+															<p>mohamedbayad@gmail.com</p>
+														</div>
+														<div class="subject">
+															<p>Pymount</p>
+														</div>
+													</div>
+													<div class="text-message">
+														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+													</div>
+												</div>
+											</a>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end -->
+						</div>
+					</div>
+				</div>
+			</main>
+			{% endblock content %}
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+    let idPackage = document.querySelectorAll(".id");
+    for (let i = 0; i<idPackage.length; i++){
+        let orId = idPackage[i].textContent
+        idPackage[i].onclick = () => {
+            orId.select;
+            navigator.clipboard.writeText(orId);
+            alert("Copiez ensuite le ID avec succès " + orId)
+        }
+        let newIdPackage = idPackage[i].textContent.slice(0, 10);
+        idPackage[i].textContent = newIdPackage + " ";
+        idPackage[i].innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2" viewBox="0 0 16 16"><path d="M3.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5H12a.5.5 0 0 1 0-1h.5A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1H4a.5.5 0 0 1 0 1h-.5Z"/><path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/></svg>';
+        idPackage[i].style.color = "#735d78";
+        idPackage[i].style.cursor = "pointer";
+    }
+
+	// script seach 
+	
+	function searchId(idSearch, idClass) {
+		let idPachage = document.querySelectorAll(`.${idClass}`);
+		let search = document.getElementById(`${idSearch}`);
+		// search.oninput = function() {
+		idPachage.forEach(t => {
+			if (t.getAttribute("data") != "") {
+				if (search.value !== "") {
+					if (! t.getAttribute("data").includes(search.value)) {
+						t.parentElement.style.display = "none"
+					} else {
+						t.parentElement.style.display = "revert"
+					}
+				} else {
+					search.value = "";
+					t.parentElement.style.display = "revert"
+				}
+			}
+		})
+		// }
+	}
+</script>
+
+<script>
+    const inputs = document.querySelectorAll("input");
+    const selects = document.querySelectorAll("select")
+    inputs.forEach(e => {
+        e.classList.add("form-select")
+    })
+    selects.forEach(e => {
+        e.classList.add("form-select")
+    })
+</script>
+
+</html>

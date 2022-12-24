@@ -1,0 +1,47 @@
+{% extends 'dashbord/dashbord.html' %}
+{% load static %}
+
+
+<main>
+    {% block content %}
+    {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
+    <div class="content-static">
+        <div class="static">
+            <h4 class="title">Statistiques Des Colis</h4>
+            <div class="content">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Ramassée', 'Annulée', 'Livrée', 'Pas de réponse', 'Retournée/Annulée'],
+            datasets: [{
+                label: 'Nombre de colis',
+                data: ["{{data.count_pick_up}}", "{{data.count_cancelled}}", "{{data.count_livery}}", "{{data.count_no_answer}}", "{{data.count_returned_cancelled}}", 3],
+                backgroundColor: [
+                'rgba(239, 206, 250)',
+                'rgba(212, 178, 216)',
+                'rgba(168, 143, 172)',
+                'rgba(130, 108, 127)',
+                'rgba(93, 78, 96)',
+                'rgba(208, 209, 255)',
+                ],
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            responsive : true
+        }
+    });
+</script>
+{% endblock %}
+</main>

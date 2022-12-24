@@ -1,0 +1,64 @@
+{% extends 'dashboard-admin/dashboard.html' %}
+{% load static %}
+
+
+{% block content %}
+<main>
+    <div class="dashboard">
+        <div class="content">
+            <div class="block container mt-5 ">
+                <div class="row justify-content-center add-man-delivery">
+                    <form class="row g-3 col-9" method="POST">
+                        {% csrf_token %}
+                        <!-- <input type="text" name="user" id="user" class="form-control" placeholder="Username" hidden> -->
+                        <div class="col-md-4 mb-4">
+                            <label for="inputArticle" class="form-label">Username</label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label for="inputId" class="form-label">First Name</label>
+                            <input type="text" name="first_name" class="form-control" placeholder="First name">
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <label for="inputArticle" class="form-label">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" placeholder="Last name">
+                        </div>
+                        <div class="col-12 mb-4">
+                            <label for="inputAddress" class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="inputCity" class="form-label">City</label>
+                            <input type="text" name="city" class="form-control" placeholder="City">
+                        </div>
+                        <div class="col-6 mb-4">
+                            <label for="inputnumber" class="form-label">Phone number</label>
+                            <input type="tel" name="phone_number" class="form-control" placeholder="Phone Number">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="inputCity" class="form-label">Password</label>
+                            <input type="password" name="password1" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="col-6 mb-4">
+                            <label for="inputnumber" class="form-label">Password Again</label>
+                            <input type="password" name="password2" class="form-control" placeholder="Password Again">
+                        </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-outline-success col-12">Add</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- <script>
+    const username = document.getElementById("username");
+    const user = document.getElementById("user");
+    username.addEventListener("input", _ => {
+        user.value = username.value
+    })
+
+</script> -->
+{% endblock content %}
+

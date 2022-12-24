@@ -1,0 +1,77 @@
+{% extends "main/home.html" %}
+{% load static %}
+
+{% block content %}
+<div class="form-register">
+    <div class="content">
+        <h2>inscription</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <span>Nom d'utilisateur</span><br>
+            {{form.username}}<br>
+            {% if form.errors.username %}
+            <p class="error_user">Ce nom existe</p>
+            {% endif %}
+            
+            <span>Adresse e-mail</span><br>
+            {{form.email}}<br>
+            
+            <span>Mot de passe</span><br>
+            {{form.password1}}<br>
+            <p class="error1">Il doit comporter au moins 8 caractères et (@- _ /)</p><br>
+            
+            <span>Confirmez le mot de passe</span><br>
+            {{form.password2}}<br>
+            <p class="error2">Incorrect, le mot de passe doit être confirmé</p><br>
+            
+            <button type="submit" class="btn btn-primary mb-3">submit</button>
+            <div class="login">
+                <p>Vous avez déjà un compte? <a style="color: #f8a726" id="login" href="{% url "connexion" %}"> S'identifier</a><p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    let charcters = /\W/g
+    let submit = document.querySelector(".btn");
+    let inputs = document.getElementsByTagName("input");
+    let pass1 = document.getElementById('id_password1');
+    let error1 = document.querySelector(".error1");
+    let pass2 = document.getElementById('id_password2');
+    let error2 = document.querySelector(".error2");
+    submit.addEventListener("click", function () {
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value == "") {
+                inputs[i].style.border = '1px solid #ff3636'
+            }
+        }
+    })
+    pass1.onblur = () => {
+        if (pass1.value.length <= 8 ) {
+            if (!pass1.value.match(charcters)) {
+                error1.style.display = 'block';
+            }
+        } else {
+            if (!pass1.value.match(charcters)) {
+                error1.style.display = 'block';
+            } else {
+                error1.style.display = 'none';
+            }
+        }
+    }
+    pass2.onblur = () => {
+        if (pass1.value !== pass2.value ) {
+            error2.style.display = 'block';
+        } else {
+            error2.style.display = 'none';
+        }
+    }
+
+    document.getElementById("id_username").placeholder = "Nom d'utilisateur";
+    document.getElementById("id_email").placeholder = "Entrer votre Email";
+    document.getElementById("id_password1").placeholder = "Entrer le mot de passe";
+    document.getElementById("id_password2").placeholder = "Entrez à nouveau le mot de passe";
+</script>
+
+{% endblock content %}

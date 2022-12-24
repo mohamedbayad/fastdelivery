@@ -1,0 +1,83 @@
+.content-package {
+    min-height: 100vh;
+    width: 100%;
+    padding: 10px;
+    .pack-filter {
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        input {
+            background-color: #0000000a;
+            border: none;
+            border-bottom: 2px solid $lightColor;
+            box-shadow: $shadow;
+            margin: 15px 5px;
+            width: 25%;
+        }
+        select {
+            background-color: #0000000a;
+            border: none;
+            border-bottom: 2px solid $lightColor;
+            box-shadow: 0 0 7px 0 $shadow;
+            margin: 15px 5px;
+            width: 25%;
+            outline: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+    }
+    .get-data {
+        margin: 20px 0;
+        .content {
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: $shadow;
+            max-height: 950px;
+            overflow-y: scroll;
+            h4 {
+                font-size: 30px;
+                margin: 10px auto 40px;
+                padding: 3px;
+                border-bottom: 2px solid #E8C2CA;
+                width: fit-content;
+                text-transform: uppercase;
+                color: $lightColor;
+            }
+            .table tbody td {
+                font-size: 14px;
+                min-height: 80px !important;
+            }
+            .td-actions {
+                display: flex;
+                flex-direction: column;
+                .actions {
+                    transition: all .3s ease-in-out;
+                    padding: 10px;
+                    background: $lightColor;
+                    border-radius: 10px;
+                    margin: 3px 0;
+                    color: $whiteColor !important;
+                    text-decoration: none;
+                    border: 1px solid $lightColor;
+                    font-weight: 600;
+                    width: 205px;
+                    &:hover {
+                        background-color: $whiteColor;
+                        color: $lightColor !important;
+                    }
+                }
+                .actions.tracking {
+                    border: 1px solid $decColor;
+                    background: $color;
+                    color: $lightColor !important;
+                    &:hover {
+                        border: 1px solid $decColor;
+                        background: $whiteColor;
+                        color: $lightColor !important;
+                    }
+                }
+            }
+        }
+    }
+}

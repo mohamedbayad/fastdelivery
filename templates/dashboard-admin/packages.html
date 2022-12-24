@@ -1,0 +1,79 @@
+{% extends 'dashboard-admin/dashboard.html' %}
+{% load static %}
+
+
+{% block content %}
+<main>
+    <div class="dashboard">
+        <div class="content">
+            <div class="block container mt-5 ">
+                <div class="row justify-content-center packages">
+                    <form class="row g-3 col-9" method="POST">
+                        {% csrf_token %}
+                        {% if "admin" in request.user.groups.all|safeseq %}
+                            <div class="col-md-6 mb-4">
+                                <label for="inputId" class="form-label">ID Package</label>
+                                {{formPackages.id_package}}
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="inputArticle" class="form-label">Article</label>
+                                {{formPackages.article_name}}
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label for="inputAddress" class="form-label">Address</label>
+                                {{formPackages.address}}
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="inputCity" class="form-label">City</label>
+                                {{formPackages.city}}
+                            </div>
+                            <div class="col-6 mb-4">
+                                <label for="inputnumber" class="form-label">Phone number</label>
+                                {{formPackages.phone_number}}
+                            </div>
+                            <div class="col-6 mb-4">
+                                <label for="inputClientname" class="form-label">Client name</label>
+                                {{formPackages.client_name}}
+                            </div>
+                            <div class="col-6 mb-4">
+                                <label for="inputDate" class="form-label">Date created</label>
+                                {{formPackages.date_created}}
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label for="inputEtat" class="form-label">Etat</label>
+                                {{formPackages.etat}}
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label for="inputPickedup" class="form-label">Received</label>
+                                {{formPackages.picked_up}}
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <label for="inputPrice" class="form-label">Price</label>
+                                {{formPackages.price}}
+                            </div>
+                        {% elif "delivery" in  request.user.groups.all|safeseq %}
+                            <div class="col-md-12 mb-4">
+                                <label for="inputEtat" class="form-label">Etat</label>
+                                {{formPackages.etat}}
+                            </div>
+                        {% else %}
+                            <div class="col-md-6 mb-4">
+                                <label for="inputEtat" class="form-label">Etat</label>
+                                {{formPackages.etat}}
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="inputPickedup" class="form-label">Received</label>
+                                {{formPackages.picked_up}}
+                            </div>
+                        {% endif %}
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-outline-success col-12">Edite</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
+

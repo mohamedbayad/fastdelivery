@@ -1,0 +1,59 @@
+.form-profile {
+    .content {
+        height: 100%;
+        padding: 20px;
+        .form-content {
+            padding: 20px;
+            background-color: $whiteColor;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.062);
+            height: 100%;
+            .title {
+                font-size: 30px;
+                margin: 10px auto 40px;
+                padding: 3px;
+                border-bottom: 2px solid $decColor;
+                width: fit-content;
+                text-transform: uppercase;
+                color: $lightColor;
+            }
+            .form {
+                width: 80%;
+                margin: auto;
+            }
+            .informations {
+                padding: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                .info {
+                    width: 45%;
+                    height: fit-content;
+                    margin: 10px;
+                    .content {
+                        background: #f9f9f9;
+                        border: 2px dashed #735d7857;
+                        height: 65px;
+                        text-transform: uppercase;
+                        color: #0000006b;
+                        font-weight: 600;
+                    }
+                }
+            }
+            .edit {
+                text-transform: uppercase;
+                width: 125px;
+                background: $lightColor;
+                border: 2px solid $decColor;
+                color: $whiteColor;
+                font-weight: 700;
+                transition: all .3s ease-in-out;
+                margin: 10px 30px;
+                &:hover {
+                    background: $whiteColor;
+                    color: $lightColor;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,1 @@
+web: gunicorn delivry.wsgi

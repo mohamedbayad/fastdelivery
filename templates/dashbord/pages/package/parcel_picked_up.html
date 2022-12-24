@@ -1,0 +1,106 @@
+{% extends 'dashbord/dashbord.html' %}
+{% load static %}
+
+<main>
+    {% block content %}
+    {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
+    <div class="content-package">
+        <div class="pack-filter">
+            <form method="GET">
+                {{filterPackage.form}}
+                <button type="submit" class="btn btn-primary">Chercher</button>
+            </form>
+        </div>
+        <div class="get-data">
+            <div class="content">
+
+                {% comment %} message if create a new package {% endcomment %}
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == "success" %}
+                <div class="alert alert-success" role="alert">
+                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                <h4>Tous Les Colis Ramassés</h4>
+                <p>Total des résultats trouvés: <span style="color:green">{{packageDataCount}}</span></p>
+                <div class="table-content">
+                    <table class="table table-bordered table-striped align-middle">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Article</th>
+                            <th scope="col">Ville</th>
+                            <th scope="col">CRBT</th>
+                            <th scope="col">Tél</th>
+                            <th scope="col">client</th>
+                            <th scope="col">Etat</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if packageDataCount > 0 %}
+                        {% for item in packageData %}
+                        <tr>
+                            <th scope="row" class="id"> {{item.id_package}} </th>
+                            <td> {{item.article_name}} </td>
+                            <td> {{item.city}} </td>
+                            <td> {{item.price}} DH </td>
+                            <td> {{item.phone_number}} </td>
+                            <td> {{item.client_name}} </td>
+                            {% if item.etat == "Ramassée" %}
+                                <td> <span class="badge text-bg-warning">{{item.etat}}</span> </td>
+                                {% elif item.etat == "Livrée"%}
+                                <td><span class="badge text-bg-success">{{item.etat}}</span></td>
+                                {% elif item.etat == "Pas de réponse"%}
+                                <td><span class="badge text-bg-info">{{item.etat}}</span></td>
+                                {% elif item.etat == "Refusée"%}
+                                <td><span class="badge text-bg-light">{{item.etat}}</span></td>
+                                {% elif item.etat == "Echange"%}
+                                <td><span class="badge text-bg-primary">{{item.etat}}</span></td>
+                                {% else %}
+                                <td><span class="badge text-bg-danger">{{item.etat}}</span></td>
+                            {% endif %}
+                            
+                            <td class="td-actions"> 
+                                <a href="{% url 'refund' item.id_package %}" class="text-info actions">Demande de remboursement</a>
+                                <a href="{% url 'exchange' item.id_package %}" class="text-info actions">Demande d'échange</a>
+                                {% comment %} <a href="#" class="text-secondary actions tracking" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suivi</a> {% endcomment %}
+                            </td>
+                        </tr>
+                        <!-- Modal -->
+                        {% comment %} <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title id" id="staticBackdropLabel">ID Coli {{item.id_package}}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <div class="modal-body">
+                                            <textarea name="refund"></textarea>
+                                            {{form_refund.refund}}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">None</button>
+                                            <button type='submit' name="submit" class="btn btn-primary" href="">Oui</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+                        {% endfor %}
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</main>
+

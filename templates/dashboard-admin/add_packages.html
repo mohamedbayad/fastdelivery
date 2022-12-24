@@ -1,0 +1,54 @@
+{% extends 'dashboard-admin/dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="dashboard">
+        <div class="content">
+            <div class="block container mt-5 ">
+                <div class="row justify-content-center received">
+                    <form class="row g-3 col-12" method="POST">
+                        {% csrf_token %}
+                        <div class="col-md-12 mb-4">
+                            <label for="inputPackages" class="form-label">Men-Delivery</label>
+                            <select name="man_delivery" class="form-select" id="id_man_delivery">
+                                {% for item in data_admin_delivery %}
+                                    {% for man in item.men_delivery.all %}
+                                        <option value="{{man.id}}">{{man}}</option>
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <label for="inputPackages" class="form-label">Packages</label>
+                            <select name="set_packages" class="form-select" multiple id="id_set_packages">
+                                {% for item in data_admin_delivery %}
+                                    {% for package in item.packages.all %}
+                                        <option value="{{package.id}}">{{package.id_package}} - {{package.address}} - {{package.city}}</option>
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-outline-success col-12">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    $(document).ready(function () {
+        $('#id_man_delivery').selectize({
+            sortField: 'text',
+            delimiter: " - ",
+        });
+        $('#id_set_packages').selectize({
+            sortField: 'text',
+        });
+    });
+</script>
+
+{% endblock content %}
