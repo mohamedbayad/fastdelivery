@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,8 +27,8 @@ SECRET_KEY = 'django-insecure-=ye1afvt^#mxy@kf*1qxx0t+a^#arg1l$l48)!hbcubq(#c4q!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
-ALLOWED_HOSTS = ["brigaddelivery.herokuapp.com", "127.0.0.1"]
+# ALLOWED_HOSTS = ["brigaddelivery.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -143,6 +144,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "delivry/static")
 ]
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # MEDIA
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -160,3 +163,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "hamodsimo1998@gmail.com"
 EMAIL_HOST_PASSWORD = "gvwdnjantiskuoox"
 
+django_heroku.settings(locals())
