@@ -74,8 +74,8 @@ def viewProfileUser(request, pk):
         user=pk, etat="Livrée").count()
     total_packages = NewPackage.objects.filter(user=pk).count()
 
-    # packages = NewPackage.objects.filter(user=pk)
-    packages = Received.objects.filter(user=pk, invoise=True)
+    packages = NewPackage.objects.filter(user=pk)
+    invoices = Received.objects.filter(user=pk, invoise=True)
 
     TOTAL_FEE = 0
     TOTAL_NET_INCOME = 0
@@ -83,10 +83,13 @@ def viewProfileUser(request, pk):
 
     for pack in packages:
         if pack.etat == "Annulée" or pack.etat == "Livrée" or pack.etat == "Refusée" or "Retournée" in pack.etat:
-            TOTAL_FEE += pack.withdrawn_canceled + \
-                pack.withdrawn_livery + pack.withdrawn_refused
+            # TOTAL_FEE += pack.withdrawn_canceled + \
+            #     pack.withdrawn_livery + pack.withdrawn_refused
             if pack.etat == "Livrée":
                 TOTAL_NET_INCOME += pack.price
+    for invoice in invoices:
+        TOTAL_FEE += invoice.total_withdrawn
+        
 
     FIN_TOTAL = TOTAL_NET_INCOME - TOTAL_FEE
     # --------------- end ---------------
