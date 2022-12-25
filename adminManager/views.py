@@ -34,17 +34,22 @@ def dashboardAdmin(request):
     # get count all packages delivered
     total_packages_deliveres = NewPackage.objects.filter(etat="Livrée").count()
     # get total fee by packages
+
     packages_fee = NewPackage.objects.all()
+    
     TOTAL_FEE = 0
-    for pack in packages_fee:
-        if pack.etat == "Annulée" or pack.etat == "Livrée" or pack.etat == "Refusée" or "Retournée" in pack.etat:
-            TOTAL_FEE += pack.withdrawn_canceled + \
-                pack.withdrawn_livery + pack.withdrawn_refused
+    
+    # for pack in packages_fee:
+    #     if pack.etat == "Annulée" or pack.etat == "Livrée" or pack.etat == "Refusée" or "Retournée" in pack.etat:
+    #         TOTAL_FEE += pack.withdrawn_canceled + \
+    #             pack.withdrawn_livery + pack.withdrawn_refused
+
     # get invoices
     package_invoices = Received.objects.filter(invoise=True)
     TOTAL_NET_INCOME = 0
     for pack_inv in package_invoices:
         TOTAL_NET_INCOME += pack_inv.total_amount
+        TOTAL_FEE += pack_inv.total_withdrawn
 
     context = {
         "t_n_i_c": TOTAL_NET_INCOME,
@@ -68,7 +73,9 @@ def viewProfileUser(request, pk):
     total_packages_deliveres = NewPackage.objects.filter(
         user=pk, etat="Livrée").count()
     total_packages = NewPackage.objects.filter(user=pk).count()
-    packages = NewPackage.objects.filter(user=pk)
+
+    # packages = NewPackage.objects.filter(user=pk)
+    packages = Received.objects.filter(iuser=pk, nvoise=True)
 
     TOTAL_FEE = 0
     TOTAL_NET_INCOME = 0
@@ -112,7 +119,6 @@ def viewProfileUser(request, pk):
 @allowedUsers(allowedGroups=["admin"])
 def veiwReceive(request, pk, npk):
     received_update = Received.objects.get(received_id=npk)
-    # user = Profile.objects.get(user=received_update.user)
     formReceived = FormReceived(instance=received_update)
     if request.method == "POST":
         formReceived = FormReceived(request.POST, instance=received_update)
@@ -122,7 +128,6 @@ def veiwReceive(request, pk, npk):
     context = {
         "formReceived": formReceived,
         "received_update": received_update,
-        # "user": user,
     }
 
     return render(request, "dashboard-admin/received.html", context)
