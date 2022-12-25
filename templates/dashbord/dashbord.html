@@ -85,7 +85,7 @@
 							<div class="content">
 								<div class="header-parcels">
 									<h1 class="title">Les 10 Dernières Colis</h1>
-									<p class="description">Résultats Totaux: {{latest_packages|length}} </p>
+									<p class="description">Résultats Totaux: <span class="text-danger">{{latest_packages|length}}</span></p>
 								</div>
 								<div class="tb">
 								<table class="table table-bordered table-striped">
@@ -135,7 +135,7 @@
 						<div class="content">
 							<div class="header-parcels">
 								<h1 class="title">Les 10 Dernières Factures</h1>
-								<p class="description">Résultats Totaux: {{parcel_inv.count}}</p>
+								<p class="description">Résultats Totaux: <span class="text-danger">{{parcel_inv.count}}</span></p>
 							</div>
 							<div class="tb">
 								<table class="table table-bordered table-striped table-hover">
