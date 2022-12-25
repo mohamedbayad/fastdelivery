@@ -13,6 +13,8 @@ def contact_us(request):
     if request.method == "POST":
         formContact = ContactForms(request.POST)
         if formContact.is_valid():
-            formContact.save()
+            obj = formContact.save()
+            obj.user = User.objects.get(id=request.user.id).id
+            obj.save()
             return redirect("dashboard")
     return render(request, "dashbord/pages/contact_us.html")
