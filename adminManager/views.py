@@ -75,7 +75,7 @@ def viewProfileUser(request, pk):
     total_packages = NewPackage.objects.filter(user=pk).count()
 
     # packages = NewPackage.objects.filter(user=pk)
-    packages = Received.objects.filter(iuser=pk, nvoise=True)
+    packages = Received.objects.filter(user=pk, nvoise=True)
 
     TOTAL_FEE = 0
     TOTAL_NET_INCOME = 0
