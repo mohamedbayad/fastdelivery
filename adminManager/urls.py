@@ -5,7 +5,9 @@ urlpatterns = [
     path("dashboard-admin/", views.dashboardAdmin, name="dashboard-admin"),
     # show users 
     path(r"dashboard-admin/user/?P<pk>\d+/", views.viewProfileUser, name="view_user"),
-    path(r"dashboard-admin/user/?P<pk>\d+?:/?P<npk>\d+?", views.pdfInvoicesAdmin, name="pdf_invoices"),
+    path(r"dashboard-admin/user/?P<pk>\d+?:/invoies-pdf/?P<npk>\d+?", views.pdfInvoicesAdmin, name="pdf_invoices"),
+    path(r"dashboard-admin/user/?P<pk>\d+?:/lables-pdf/?P<npk>\d+?", views.savePdfLb, name="pdf_lables"),
+    # path(r"dashboard-admin/user/?P<pk>\d+?:/invoies-pdf/?P<npk>\d+?", views.pdfInvoicesAdmin, name="pdf_invoices"),
     path(r"dashboard-admin/user/?P<pk>\d+?:/received/?P<npk>\d+?/", views.veiwReceive, name="view_received"),
     path(r"dashboard-admin/user/?P<pk>\d+?:/package/?P<npk>\d+?/", views.veiwPackages, name="view_package"),
     path(r"dashboard-admin/user/?P<pk>\d+?:/refund/?P<npk>\d+?/", views.viewRefund, name="view_refund"),

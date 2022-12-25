@@ -41,46 +41,12 @@
                             <button type="submit" class="btn btn-outline-success col-12">Edite</button>
                         </div>
                     </form>
-                    {% comment %} <form class="row g-3 col-9" method="POST">
-                        {% csrf_token %}
-                        <div class="col-md-6 mb-4">
-                            <label for="inputid" class="form-label">ID Received</label>
-                            {{formReceived.received_id}}
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <label for="inputarticle" class="form-label">Date Received</label>
-                            {{formReceived.date_received}}
-                        </div>
-                        <div class="col-md-12 mb-4">
-                            <label for="inputPackages" class="form-label">Packages</label>
-                            {{formReceived.packages}}
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <label for="inputTotalamount" class="form-label">Total amount</label>
-                            {{formReceived.total_amount}}
-                        </div>
-                        <div class="col-6 mb-4">
-                            <label for="inputTotalwithdrawn" class="form-label">Total withdrawn</label>
-                            {{formReceived.total_withdrawn}}
-                        </div>
-                        <div class="col-6 mb-4">
-                            <label for="inputReceived" class="form-label">Receive</label>
-                            {{formReceived.receive}}
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <label for="inputPickedup" class="form-label">Invoices</label>
-                            {{formReceived.invoise}}
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-outline-success col-12">Edite</button>
-                        </div>
-                    </form> {% endcomment %}
                     <div class="row g-3 col-9 mt-4">
                         <div class="col-6">
-                            <button type="submit" class="btn btn-outline-primary col-12">Labels</button>
+                            <a href="{% url 'pdf_lables' received_update.user.id received_update.received_id%}"<button type="submit" class="btn btn-outline-primary col-12">Labels</button></a>
                         </div>
                         <div class="col-6">
-                            <button type="submit" class="btn btn-outline-secondary col-12">Collection vouchers</button>
+                            <a href="#"><button type="submit" class="btn btn-outline-secondary col-12">Collection vouchers</button></a>
                         </div>
                     </div>
                 </div>

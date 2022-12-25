@@ -112,6 +112,7 @@ def viewProfileUser(request, pk):
 @allowedUsers(allowedGroups=["admin"])
 def veiwReceive(request, pk, npk):
     received_update = Received.objects.get(received_id=npk)
+    # user = Profile.objects.get(user=received_update.user)
     formReceived = FormReceived(instance=received_update)
     if request.method == "POST":
         formReceived = FormReceived(request.POST, instance=received_update)
@@ -121,6 +122,7 @@ def veiwReceive(request, pk, npk):
     context = {
         "formReceived": formReceived,
         "received_update": received_update,
+        # "user": user,
     }
 
     return render(request, "dashboard-admin/received.html", context)
@@ -150,6 +152,18 @@ def pdfInvoicesAdmin(request, pk, npk):
         "profile": profile,
     }
     return render(request, "dashbord/pdf/invoices.html", context)
+
+
+@login_required(login_url="login")
+@allowedUsers(allowedGroups=["admin", "admins-delivery", "delivery"])
+def savePdfLb(request, pk, npk):
+    dataPdf = Received.objects.filter(received_id=npk)
+    profile = Profile.objects.get(user=dataPdf[0].user)
+    context = {
+        "dataPdf": dataPdf,
+        "profile": profile,
+    }
+    return render(request, "dashbord/pdf/labels.html", context)
 
 
 @login_required(login_url="login")
