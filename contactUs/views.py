@@ -14,7 +14,7 @@ def contact_us(request):
         formContact = ContactForms(request.POST)
         if formContact.is_valid():
             obj = formContact.save()
-            obj.user = User.objects.get(id=request.user.id).id
+            obj.user = User.objects.get(id=request.user.id)
             obj.save()
             return redirect("dashboard")
     return render(request, "dashbord/pages/contact_us.html")
