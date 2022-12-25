@@ -28,6 +28,7 @@ urlpatterns = [
     path("factures/", include("invoices.urls")),
     path("livreurs/", include("delivery_men.urls")),
     path("", include("adminManager.urls")),
+    path("dashboard/nous-contacter/", include("contactUs.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

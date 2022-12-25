@@ -1,0 +1,70 @@
+.form-package {
+    min-height: 100vh;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    .title {
+        padding: 5px;
+        margin: 5px auto;
+        width: fit-content;
+        color: $lightColor;
+        text-transform: uppercase;
+        border-bottom: 2px solid $color;
+    }
+    .row {
+        width: 80%;
+        margin: auto;
+        .package {
+            position: relative;
+            text-align: left;
+            input,
+            textarea,
+            .form-select {
+                background-color: #0000000a;
+                border: none;
+                border-bottom: 2px solid #735d7842;
+                box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.055);
+                margin: 15px 0;
+                width: 100%;
+                &:focus {
+                    border-bottom: 2px solid $lightColor;
+                }
+                .selected {
+                    background: $lightColor;
+                    color: $whiteColor;
+                }
+            }
+            textarea {
+                height: 100px;
+            }
+            .btn {
+                text-transform: uppercase;
+                width: 125px;
+                background: $lightColor;
+                border: 2px solid $color;
+                color: $whiteColor;
+                font-weight: 700;
+                transition: all .3s ease-in-out;
+                &:hover {
+                    background: $whiteColor;
+                    color: $lightColor;
+                }
+            }
+        }
+        .dh::before {
+            content: "DH";
+            color: $whiteColor;
+            width: 36px;
+            height: 36px;
+            background: $lightColor;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            bottom: 15px;
+            right: 0;
+            border-bottom-right-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+    }
+}
