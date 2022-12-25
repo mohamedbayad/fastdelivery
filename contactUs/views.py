@@ -25,4 +25,4 @@ def contact_us(request):
         'settings':settings,
         'profileImage':profileImage,
     }
-    return render(request, "dashbord/pages/contact_us.html")
+    return render(request, "dashbord/pages/contact_us.html", context)
