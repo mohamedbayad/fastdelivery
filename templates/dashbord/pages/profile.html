@@ -2,111 +2,110 @@
 {% load static %}
 
 
-<main>
-    {% block content %}
-    <div class="form-profile">
-        <div class="content">
-            <div class="form-content">
-                <div class="title">
-                    <h4>Ajouter des informations de profil </h4>
-                </div>
-                {% if not data %}
-                <form class="row g-3" method="POST" enctype='multipart/form-data'>
-                    {% csrf_token %}
-                    <div class="col-md-6 f_input">
-                        <label class="form-label">Nom: </label></br>
-                        {{form.first_name}}
-                    </div>
-                    <div class="col-md-6 f_input">
-                        <label class="form-label">Prénom: </label></br>
-                        {{form.last_name}}
-                    </div>
-                    <div class="col-12 f_input">
-                        <label class="form-label">Adresse: </label></br>
-                        {{form.address}}
-                    </div>
-                    <div class="col-md-6 f_input">
-                        <label class="form-label">Nom de la boutique: </label></br>
-                        {{form.business_name}}
-                    </div>
-                    <div class="col-md-6 f_input">
-                        <label class="form-label">Tél: </label></br>
-                        {{form.phone}}
-                    </div>
-                    <div class="col-md-6 f_input">
-                        <label class="form-label">Banque: </label></br>
-                        {{form.bank}}
-                    </div>
-                    <div class="col-md-6 f_input">
-                        <label class="form-label">RIP: </label></br>
-                        {{form.rip}}
-                    </div>
-                    <div class="col-md-6 f_input">
-                        <label class="form-label">Profile: </label></br>
-                        {{form.image.clear}}
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Créer</button>
-                    </div>
-                </form>
-                {% else %}
-                <div class="informations">
-                    <div class="info" id="firstname">
-                        <div class="content">
-                            <p> {{data.firstname}} </p>
-                        </div>
-                    </div>
-                    <div class="info" id="lastname">
-                        <div class="content">
-                            <p> {{data.lastname}} </p>
-                        </div>
-                    </div>
-                    <div class="info" id="business_name">
-                        <div class="content">
-                            <p> {{data.business_name}} </p>
-                        </div>
-                    </div>
-                    <div class="info" id="phone">
-                        <div class="content">
-                            <p> {{data.phone}} </p>
-                        </div>
-                    </div>
-                    <div class="info" id="address">
-                        <div class="content">
-                            <p> {{data.address}} </p>
-                        </div>
-                    </div>
-                    <div class="info" id="bank">
-                        <div class="content">
-                            <p> {{data.bank}} </p>
-                        </div>
-                    </div>
-                    <div class="info" id="rip">
-                        <div class="content">
-                            <p> {{data.rip}} </p>
-                        </div>
-                    </div>
-                </div>
-                <a href="{% url 'update-profile' request.user.id %}"> <button class="edit btn btn-primary"> Éditer </button> </a>
-                {% endif %}
+{% block content %}
+<div class="form-profile">
+    <div class="content">
+        <div class="form-content">
+            <div class="title">
+                <h4>Ajouter des informations de profil </h4>
             </div>
+            {% if not data %}
+            <form class="row g-3" method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <div class="col-md-6 f_input">
+                    <label class="form-label">Nom: </label></br>
+                    {{form.first_name}}
+                </div>
+                <div class="col-md-6 f_input">
+                    <label class="form-label">Prénom: </label></br>
+                    {{form.last_name}}
+                </div>
+                <div class="col-12 f_input">
+                    <label class="form-label">Adresse: </label></br>
+                    {{form.address}}
+                </div>
+                <div class="col-md-6 f_input">
+                    <label class="form-label">Nom de la boutique: </label></br>
+                    {{form.business_name}}
+                </div>
+                <div class="col-md-6 f_input">
+                    <label class="form-label">Tél: </label></br>
+                    {{form.phone}}
+                </div>
+                <div class="col-md-6 f_input">
+                    <label class="form-label">Banque: </label></br>
+                    {{form.bank}}
+                </div>
+                <div class="col-md-6 f_input">
+                    <label class="form-label">RIP: </label></br>
+                    {{form.rip}}
+                </div>
+                <div class="col-md-6 f_input">
+                    <label class="form-label">Profile: </label></br>
+                    {{form.image.clear}}
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Créer</button>
+                </div>
+            </form>
+            {% else %}
+            <div class="informations">
+                <div class="info" id="firstname">
+                    <div class="content">
+                        <p> {{data.firstname}} </p>
+                    </div>
+                </div>
+                <div class="info" id="lastname">
+                    <div class="content">
+                        <p> {{data.lastname}} </p>
+                    </div>
+                </div>
+                <div class="info" id="business_name">
+                    <div class="content">
+                        <p> {{data.business_name}} </p>
+                    </div>
+                </div>
+                <div class="info" id="phone">
+                    <div class="content">
+                        <p> {{data.phone}} </p>
+                    </div>
+                </div>
+                <div class="info" id="address">
+                    <div class="content">
+                        <p> {{data.address}} </p>
+                    </div>
+                </div>
+                <div class="info" id="bank">
+                    <div class="content">
+                        <p> {{data.bank}} </p>
+                    </div>
+                </div>
+                <div class="info" id="rip">
+                    <div class="content">
+                        <p> {{data.rip}} </p>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'update-profile' request.user.id %}"> <button class="edit btn btn-primary"> Éditer </button> </a>
+            {% endif %}
         </div>
     </div>
-    <script> 
-        document.getElementById("id_bank").setAttribute("class","form-control")
-    
+</div>
+<script> 
+    document.getElementById("id_bank").setAttribute("class","form-control")
+
     let inputs = document.querySelectorAll("input")
     for (let i = 0; i<inputs.length; ++i) {
         inputs[i].setAttribute("class","form-control")
     }
-    
+
     document.getElementById("id_first_name").setAttribute("value", "{{data.firstname}}")
     document.getElementById("id_last_name").setAttribute("value", "{{data.lastname}}")
     document.getElementById("id_address").setAttribute("value", "{{data.address}}")
     document.getElementById("id_phone").setAttribute("value", "{{data.phone}}")
     document.getElementById("id_business_name").setAttribute("value", "{{data.business_name}}")
     document.getElementById("id_rip").setAttribute("value", "{{data.rip}}")
-    
+
     let options = document.querySelectorAll("#id_bank option")
     for (let i = 0; i<options.length; i++) {
         options[i].removeAttribute("selected")
@@ -118,6 +117,4 @@
 
 </script>
 {% endblock content %}
-
-</main>
 
