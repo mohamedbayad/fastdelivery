@@ -11,6 +11,12 @@
             <li class="m-lg-2 p-2 text-capitalize"><a href=" {% url 'logout' %} ">Logout</a></li>
             {% else %}
             {% comment %} <li class="m-lg-2 p-2 text-capitalize"><a href="{% url 'add_packages' %}">add</a></li> {% endcomment %}
+            {% comment %} <li class="m-lg-2 me-3 p-2 text-capitalize">
+                <i class='bx bxs-bell' style="font-size:20px !important; position:relative; color:#735d78; "><span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                    <span class="visually-hidden">New alerts</span>
+                    </span>
+                </i>
+            </li> {% endcomment %}
             <li class="m-lg-2 p-2 text-capitalize"><a href=" {% url 'logout' %} ">Logout</a></li>
             {% endif %}
         </ul>

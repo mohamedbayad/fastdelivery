@@ -33,9 +33,8 @@ def dashboardAdmin(request):
     total_packages = NewPackage.objects.all().count()
     # get count all packages delivered
     total_packages_deliveres = NewPackage.objects.filter(etat="Livrée").count()
-    # get total fee by packages
-
-    packages_fee = NewPackage.objects.all()
+    # get total packages
+    packages = NewPackage.objects.exclude(etat="EN ATTENTE DE RAMASSAGE")
     
     TOTAL_FEE = 0
     
@@ -60,6 +59,7 @@ def dashboardAdmin(request):
         "admins_delivery": admins_delivery,
         "exchanges": exchanges,
         "refunds": refunds,
+        "packages": packages,
     }
 
     return render(request, "dashboard-admin/dashboard.html", context)
@@ -227,7 +227,7 @@ def viewAdminMenDelivery(request, pk):
     total_packages = 0
 
     for item in data_admin:
-        packages = item.packages.all()
+        packages = item.packages.exclude(etat="EN ATTENTE DE RAMASSAGE")
         total_packages = packages.count()
         for package in packages:
             if package.etat == "Livrée":

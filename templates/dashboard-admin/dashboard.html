@@ -143,6 +143,64 @@
 								</div>
 							</div>
 							<!-- end -->
+							<!-- custemers and admin-delivery  -->
+							<div class="row justify-content-between mb-5">
+								<div class="show-data packages col-12 mt-5">
+									<div class="top">
+										<h1>packages</h1>
+									</div>
+									<div class="body">
+										<div class="filter">
+											<form action="" method="GET">
+												<input oninput="searchId(idSearch='search-package', idClass='id-package')" type="search" name="search-package" id="search-package" placeholder="search with id">
+											</form>
+										</div>
+										<div class="content">
+											<div class="package">
+												<table class="table table-bordered table-hover">
+													<thead>
+														<tr>
+															<th scope="col">ID</th>
+															<th scope="col">Client</th>
+															<th scope="col">Etat</th>
+															<th scope="col">City</th>
+															<th scope="col">Phone</th>
+															<th scope="col">Date</th>
+															<th scope="col">Actions</th>
+														</tr>
+													</thead>
+													<tbody >
+														{% for package in packages %}
+															<tr>
+																<th scope="row" name="id_package" data="{{pack.id_package}}" class="id id-package" id="ind">{{package.id_package}}</th>
+																<td>{{package.client_name}}</td>
+																{% if package.etat == "Ramassée"%}
+																	<td><span class="badge text-bg-warning">{{package.etat}}</span></td>
+																{% elif package.etat == "Annulée"%}
+																	<td><span class="badge text-bg-danger">{{package.etat}}</span></td>
+																{% elif package.etat == "Livrée"%}
+																	<td><span class="badge text-bg-success">{{package.etat}}</span></td>
+																{% elif package.etat == "Pas de réponse"%}
+																	<td><span class="badge text-bg-info">{{package.etat}}</span></td>
+																{% else %}
+																	<td><span class="badge text-bg-dark">{{package.etat}}</span></td>
+																{% endif %}
+																<td>{{package.city}}</td>
+																<td>{{package.phone_number}}</td>
+																<td>{{package.date_created}}</td>
+																<td>
+																	<a href="{% url 'edite_package_in_delivery' package.user.id package.id_package %}"><i class='bx bx-message-square-edit'></i></a>
+																</td>
+															</tr>
+														{% endfor %}
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end -->
 							<!-- exchange and refund -->
 							<div class="row justify-content-between mb-5">
 								<div class="show-data refund col-5 mb-3">
