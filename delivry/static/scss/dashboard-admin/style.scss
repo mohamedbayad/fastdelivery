@@ -59,10 +59,19 @@ a {
                 ul {
                     li {
                         list-style: none;
+                        position: relative;
                         a {
                             text-decoration: none;
                             color: #735d78;
                             font-size: 18px;
+                        }
+                        .disactive {
+                            display: none;
+                            width: 200px;
+                            min-height: 10px;
+                            position: absolute;
+                            right: 0;
+                            bottom: -23px;
                         }
                     }
                 }
