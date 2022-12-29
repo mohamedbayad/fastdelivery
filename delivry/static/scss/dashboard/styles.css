@@ -1244,92 +1244,100 @@ textarea,
   .webpage > .container .dashboard .content table {
     width: 1000px;
   }
+  /* line 169, All-devices/_media.scss */
+  .webpage > .container .get-data .table {
+    width: 1000px;
+  }
 }
 @media screen and (max-width: 425px) {
-  /* line 174, All-devices/_media.scss */
+  /* line 179, All-devices/_media.scss */
   .webpage > .container .dashboard {
     margin: 10px 5px !important;
   }
-  /* line 177, All-devices/_media.scss */
+  /* line 182, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards {
     -webkit-box-pack: center !important;
         -ms-flex-pack: center !important;
             justify-content: center !important;
   }
-  /* line 179, All-devices/_media.scss */
+  /* line 184, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards .card {
     width: 75% !important;
   }
-  /* line 183, All-devices/_media.scss */
+  /* line 188, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards .card .content .pric h3 {
     font-size: 30px !important;
   }
-  /* line 186, All-devices/_media.scss */
+  /* line 191, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards .card .content .pric p {
     font-size: 12px !important;
     width: -webkit-fit-content !important;
     width: -moz-fit-content !important;
     width: fit-content !important;
   }
-  /* line 191, All-devices/_media.scss */
+  /* line 196, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards .card .content i {
     font-size: 45px !important;
   }
-  /* line 197, All-devices/_media.scss */
+  /* line 202, All-devices/_media.scss */
   .webpage > .container .dashboard .content .graphbox {
     padding: 15px !important;
   }
-  /* line 199, All-devices/_media.scss */
+  /* line 204, All-devices/_media.scss */
   .webpage > .container .dashboard .content .graphbox .box {
     width: 100% !important;
     padding: 10px !important;
   }
-  /* line 202, All-devices/_media.scss */
+  /* line 207, All-devices/_media.scss */
   .webpage > .container .dashboard .content .graphbox .box h5 {
     font-size: 12px;
   }
-  /* line 208, All-devices/_media.scss */
+  /* line 213, All-devices/_media.scss */
   .webpage > .container .dashboard table {
     width: 1000px;
   }
-  /* line 212, All-devices/_media.scss */
+  /* line 217, All-devices/_media.scss */
   .webpage > .container .dashboard .parcels h1 {
     font-size: 20px !important;
   }
-  /* line 221, All-devices/_media.scss */
+  /* line 226, All-devices/_media.scss */
   .webpage > .container .navbar .container-fluid .user .setting .ul-setting {
     right: -60px !important;
   }
-  /* line 230, All-devices/_media.scss */
+  /* line 235, All-devices/_media.scss */
   .webpage > .container .pack-filter form input {
     width: 100% !important;
   }
-  /* line 233, All-devices/_media.scss */
+  /* line 238, All-devices/_media.scss */
   .webpage > .container .pack-filter form select {
     width: 100% !important;
   }
-  /* line 239, All-devices/_media.scss */
+  /* line 244, All-devices/_media.scss */
+  .webpage > .container .get-data .table {
+    width: 1000px;
+  }
+  /* line 247, All-devices/_media.scss */
   .webpage > .container .get-data .submit {
     z-index: 99;
   }
-  /* line 243, All-devices/_media.scss */
+  /* line 251, All-devices/_media.scss */
   .webpage > .container .get-data .content h4 {
     font-size: 20px !important;
   }
-  /* line 246, All-devices/_media.scss */
+  /* line 254, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content {
     overflow: auto;
     width: 100%;
   }
-  /* line 249, All-devices/_media.scss */
+  /* line 257, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content .table {
     width: 1000px;
   }
-  /* line 251, All-devices/_media.scss */
+  /* line 259, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content .table .td-actions {
     height: auto !important;
   }
-  /* line 254, All-devices/_media.scss */
+  /* line 262, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content .table .actions {
     height: auto !important;
     display: -webkit-box;
@@ -1341,26 +1349,26 @@ textarea,
         -ms-flex-align: center;
             align-items: center;
   }
-  /* line 259, All-devices/_media.scss */
+  /* line 267, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content .table .actions button {
     margin: 5px 0;
   }
-  /* line 269, All-devices/_media.scss */
+  /* line 277, All-devices/_media.scss */
   .webpage > .container .form-profile .content .form-content {
     padding: 10px !important;
   }
-  /* line 272, All-devices/_media.scss */
+  /* line 280, All-devices/_media.scss */
   .webpage > .container .form-profile .content .form-content .informations .info {
     width: 100% !important;
     margin: 10px 0 !important;
   }
-  /* line 275, All-devices/_media.scss */
+  /* line 283, All-devices/_media.scss */
   .webpage > .container .form-profile .content .form-content .informations .info .content {
     font-size: 14px !important;
   }
 }
 @media (max-width: 375px) {
-  /* line 291, All-devices/_media.scss */
+  /* line 300, All-devices/_media.scss */
   .navbar .container-fluid .user .setting .ul-setting {
     right: -90px !important;
   }
