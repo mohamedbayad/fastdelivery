@@ -223,7 +223,7 @@
                 .container-fluid {
                     .user {
                         .setting {
-                            .ul-setting {
+                            > .ul-setting {
                                 right: -60px !important;
                             }
                         }
@@ -291,17 +291,23 @@
         }
     }
 }
-@media (max-width:375px) {
-    
-    .navbar {
-        .container-fluid {
-            .user {
-                .setting {
-                    .ul-setting {
-                        right: -90px !important;
+@media screen and  (max-width:375px) {
+    .webpage {
+        >.container {
+            .navbar {
+                .container-fluid {
+                    .user {
+                        .setting {
+                            > .ul-setting {
+                                width: 300px !important;
+                                right: -66px !important;
+                            }
+                        }
                     }
                 }
             }
         }
     }
+    
+    
 }

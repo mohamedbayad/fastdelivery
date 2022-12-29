@@ -1301,7 +1301,7 @@ textarea,
     font-size: 20px !important;
   }
   /* line 226, All-devices/_media.scss */
-  .webpage > .container .navbar .container-fluid .user .setting .ul-setting {
+  .webpage > .container .navbar .container-fluid .user .setting > .ul-setting {
     right: -60px !important;
   }
   /* line 235, All-devices/_media.scss */
@@ -1367,10 +1367,11 @@ textarea,
     font-size: 14px !important;
   }
 }
-@media (max-width: 375px) {
-  /* line 300, All-devices/_media.scss */
-  .navbar .container-fluid .user .setting .ul-setting {
-    right: -90px !important;
+@media screen and (max-width: 375px) {
+  /* line 301, All-devices/_media.scss */
+  .webpage > .container .navbar .container-fluid .user .setting > .ul-setting {
+    width: 300px !important;
+    right: -66px !important;
   }
 }
 @-webkit-keyframes setting {
