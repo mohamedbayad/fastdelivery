@@ -26,9 +26,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '7C35291E5729694Ac13A40A2F05E8B72373De4Dc15256Bf9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["brigaddelivery.herokuapp.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["https://delivery-app.herokuapp.com/"]
 # ALLOWED_HOSTS = []
 
 

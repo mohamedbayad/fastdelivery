@@ -1,32 +1,53 @@
 {% extends 'dashbord/dashbord.html' %}
 {% load static %}
 
+
 {% block content %}
-<div class="contact-us repport">
+<div class="get-data tracking-packages repport">
     <div class="content">
-        <div class="contact-us">
-            <div class="title">
-                <h4>Nous Contacter</h4>
+        <div class="tracking-content">
+            <h4>suivi</h4>
+            <div class="filter sreach p-3">
+                <form class="row g-3 justify-content-center align-content-center flex-column mb-3" method="GET">
+                    <div class="col-md-6">
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Tracking Number">
+                    </div>
+                    <div class="col-6 text-center">
+                      <button type="submit" class="btn btn-primary w-100">suivi</button>
+                    </div>
+                </form>
             </div>
-            <div class="form contact p-3">
-                <form class="row col-md-9 g-3 m-auto justify-content-center" method="POST">
-                    {% csrf_token %}
-                    <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
+            <div class="tracking-data w-50 p-3 m-auto">
+                <div class="header-content info  d-flex justify-content-between">
+                    <div class="date">
+                        <h6>Date: </h6>
+                        <p>10 October 2022</p>
                     </div>
-                    <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">Subject</label>
-                        <input type="text" name="subject" class="form-control" id="inputPassword4" placeholder="Subject">
+                    <div class="package_info">
+                        <h6>Order No: </h6>
+                        <p>55d4deff95</p>
                     </div>
-                    <div class="col-12">
-                        <label for="inputAddress" class="form-label">Message</label>
-                        <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+                <div class="body-content info">
+                    <div class="price_package d-flex justify-content-between">
+                        <h6>prix de "polygel": </h6>
+                        <p>550dh</p>
                     </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">submit</button>
+                    <div class="delivery_cost d-flex justify-content-between">
+                        <h6>coût de livraison: </h6>
+                        <p>50dh</p>
                     </div>
-                  </form>
+                </div>
+                <div class="footer-content info">
+                    <div class="tracking">
+                        <ul id="progressbar">
+                            <li class="step0 active " id="step1">Ordered</li>
+                            <li class="step0 active text-center" id="step2">Shipped</li>
+                            <li class="step0 active text-right" id="step3">On the way</li>
+                            <li class="step0 text-right" id="step4">Delivered</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
