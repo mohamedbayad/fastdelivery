@@ -35,6 +35,11 @@
 							{% endfor %}
 						</div>
 						{% endif %}
+						{% if not profileImage %}
+							<div class="alert alert-danger" role="alert">
+								<p class="m-0">Merci de compléter toutes vos informations <a href="{% url 'profile' %}">Cliquez ici</a></p>
+							</div>
+						{% endif %}
 						<div class="cards">
 							<div class="card">
 								<div class="content">
