@@ -1074,114 +1074,120 @@ textarea,
 }
 
 /* line 1, pages/_tracking.scss */
+#progressbar {
+  margin-bottom: 3vh;
+  overflow: hidden;
+  color: #fc6731;
+  padding-left: 0px;
+  margin-top: 3vh;
+}
+/* line 7, pages/_tracking.scss */
+#progressbar li {
+  list-style-type: none;
+  font-size: x-small;
+  width: 25%;
+  float: left;
+  position: relative;
+  font-weight: 400;
+  color: #a09f9f;
+}
+/* line 15, pages/_tracking.scss */
+#progressbar li:before {
+  line-height: 29px;
+  display: block;
+  font-size: 12px;
+  background: #ddd;
+  border-radius: 50%;
+  margin: auto;
+  z-index: -1;
+  margin-bottom: 1vh;
+}
+/* line 25, pages/_tracking.scss */
+#progressbar li:after {
+  content: '';
+  height: 2px;
+  background: #ddd;
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  margin-bottom: 2vh;
+  top: 1px;
+  z-index: 1;
+}
+/* line 37, pages/_tracking.scss */
+#progressbar li:nth-child(2):after {
+  margin-right: auto;
+}
+/* line 42, pages/_tracking.scss */
+#progressbar li:nth-child(1):after {
+  margin: auto;
+}
+/* line 47, pages/_tracking.scss */
+#progressbar li:nth-child(3):after {
+  float: left;
+  width: 68%;
+}
+/* line 53, pages/_tracking.scss */
+#progressbar li:nth-child(4):after {
+  margin-left: auto;
+  width: 132%;
+}
+/* line 60, pages/_tracking.scss */
+#progressbar #step1:before {
+  content: "";
+  color: #fc6731;
+  width: 5px;
+  height: 5px;
+  margin-left: 0px !important;
+}
+/* line 69, pages/_tracking.scss */
+#progressbar #step2:before {
+  content: "";
+  color: #fff;
+  width: 5px;
+  height: 5px;
+  margin-left: 32%;
+}
+/* line 78, pages/_tracking.scss */
+#progressbar #step3:before {
+  content: "";
+  color: #fff;
+  width: 5px;
+  height: 5px;
+  margin-right: 32%;
+}
+/* line 87, pages/_tracking.scss */
+#progressbar #step4:before {
+  content: "";
+  color: #fff;
+  width: 5px;
+  height: 5px;
+  margin-right: 0px !important;
+}
+/* line 95, pages/_tracking.scss */
+#progressbar li.active {
+  color: black;
+}
+/* line 97, pages/_tracking.scss */
+#progressbar li.active:before {
+  background: #fc6731;
+}
+/* line 100, pages/_tracking.scss */
+#progressbar li.active:after {
+  background: #fc6731;
+}
+
+/* line 105, pages/_tracking.scss */
+.progress-track {
+  padding: 0 8%;
+}
+
+/* line 109, pages/_tracking.scss */
 .tracking-data {
   background-color: #fff;
   -webkit-box-shadow: 0 0 15px 0 #0000001a;
           box-shadow: 0 0 15px 0 #0000001a;
   border-radius: 10px;
-}
-
-/* line 15, pages/_tracking.scss */
-.hh-grayBox {
-  background-color: #F8F8F8;
-  margin-bottom: 20px;
-  padding: 35px;
-  margin-top: 20px;
-}
-
-/* line 21, pages/_tracking.scss */
-.pt45 {
-  padding-top: 45px;
-}
-
-/* line 24, pages/_tracking.scss */
-.order-tracking {
-  text-align: center;
-  width: 33.33%;
-  position: relative;
-  display: block;
-}
-/* line 29, pages/_tracking.scss */
-.order-tracking .is-complete {
-  display: block;
-  position: relative;
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  border: 0px solid #AFAFAF;
-  background-color: #f7be16;
-  margin: 0 auto;
-  transition: background 0.25s linear;
-  -webkit-transition: background 0.25s linear;
-  z-index: 2;
-}
-/* line 41, pages/_tracking.scss */
-.order-tracking .is-complete:after {
-  display: block;
-  position: absolute;
-  content: '';
-  height: 14px;
-  width: 7px;
-  top: -2px;
-  bottom: 0;
-  left: 5px;
-  margin: auto 0;
-  border: 0px solid #AFAFAF;
-  border-width: 0px 2px 2px 0;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  opacity: 0;
-}
-/* line 57, pages/_tracking.scss */
-.order-tracking p {
-  color: #A4A4A4;
-  font-size: 16px;
-  margin-top: 8px;
-  margin-bottom: 0;
-  line-height: 20px;
-}
-/* line 63, pages/_tracking.scss */
-.order-tracking p span {
-  font-size: 14px;
-}
-/* line 67, pages/_tracking.scss */
-.order-tracking::before {
-  content: '';
-  display: block;
-  height: 3px;
-  width: calc(100% - 40px);
-  background-color: #f7be16;
-  top: 13px;
-  position: absolute;
-  left: calc(-50% + 20px);
-  z-index: 0;
-}
-/* line 79, pages/_tracking.scss */
-.order-tracking:first-child:before {
-  display: none;
-}
-
-/* line 85, pages/_tracking.scss */
-.order-tracking.completed .is-complete {
-  border-color: #27aa80;
-  border-width: 0px;
-  background-color: #27aa80;
-}
-/* line 89, pages/_tracking.scss */
-.order-tracking.completed .is-complete:after {
-  border-color: #fff;
-  border-width: 0px 3px 3px 0;
-  width: 7px;
-  left: 11px;
-  opacity: 1;
-}
-/* line 97, pages/_tracking.scss */
-.order-tracking.completed p {
-  color: #000;
-}
-/* line 100, pages/_tracking.scss */
-.order-tracking.completed:before {
-  background-color: #27aa80;
 }
 
 @media screen and (min-width: 2560px) {
@@ -1506,4 +1512,4 @@ textarea,
   }
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=styles.css.984bdd03e4ad.map */

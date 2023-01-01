@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from .decorators import *
 from .forms import *
@@ -12,7 +13,10 @@ def register(request):
     if request.method == "POST":
         form = CreateNewUser(request.POST)
         if form.is_valid():
-            form.save()
+            obj = form.save()
+            group = Group.objects.get(name="customer")
+            obj.groups.add(group)
+            obj.save()
             messages.success(request, 'Compte créé avec succès')
             return redirect("connexion")
     context = {

@@ -24,7 +24,7 @@ def dashboardAdmin(request):
     # show all refund
     refunds = RefundRequest.objects.all()
     # add packages to admin delivery
-    appPackagesToAdminDelivery()
+    addPackagesToAdminDelivery()
     # get all admins delivery
     admins_delivery = ProfileAdminDelivery.objects.all()
     # get all users
@@ -215,7 +215,7 @@ def viewExchange(request, pk, npk):
 @allowedUsers(allowedGroups=["admin", "admins-delivery"])
 def viewAdminMenDelivery(request, pk):
     # add packages to admin delivery
-    appPackagesToAdminDelivery()
+    addPackagesToAdminDelivery()
 
     data_admin = ProfileAdminDelivery.objects.filter(user=pk)
 
@@ -359,7 +359,7 @@ def addManDelivery(request, pk):
     return render(request, "dashboard-admin/add_profile_delivery.html", context)
 
 
-def appPackagesToAdminDelivery():
+def addPackagesToAdminDelivery():
     packages = NewPackage.objects.all()
     admins_delivery = ProfileAdminDelivery.objects.all()
     for package in packages:
