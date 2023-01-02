@@ -7,7 +7,7 @@ from .models import *
 from packages.models import *
 from pickup.models import *
 from main.models import *
-from .statistics import countCitys
+from .statistics_1 import countCitys
 import datetime
 from account.decorators import *
 # Create your views here.
@@ -16,6 +16,7 @@ from account.decorators import *
 @login_required(login_url="login")
 @admins_only
 def dashboard(request):
+
     # data nav bar
     settings = Setting.objects.all()  # icon settings
     profileImage = Profile.objects.filter(user=request.user)  # icon profile

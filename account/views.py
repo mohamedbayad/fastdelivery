@@ -31,6 +31,10 @@ def userLogin(request):
         password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
         if user is not None:
+            if user.last_login is None:
+                messages.warning(request, "activate")
+            else:
+                messages.warning(request, "disable")
             log = login(request, user)
             messages.success(request, 'Connexion réussie')
             return redirect("dashboard")
@@ -40,5 +44,6 @@ def userLogin(request):
 
 def userLogout(request):
     logout(request)
+    messages.success(request, 'Déconnecté avec succès')
     return redirect("connexion")
 
