@@ -77,12 +77,12 @@
 							</div>
 						</div>
 						<div class="block container text-center mt-5 ">
-							<!-- custemers and admin-delivery  -->
+							<!-- custemers and admin-delivery -->
 							<div class="row justify-content-between mb-5">
-								<div class="users show-data custemers col-5 mb-3">
+								<div class="users show-data custemers col-5">
 									<div class="top">
 										<h1>All users</h1>
-										<small class="ms-2 " style="color: #efcefa;">33</small>
+										<small class="ms-2 " style="color: #efcefa;">{{users.count}}</small>
 									</div>
 									<div class="body">
 										<div class="filter">
@@ -95,7 +95,11 @@
 											<div class="user">
 												<div class="info">
 													<div class="logo">
+														{% if user.image %}
 														<img src="{{user.image.url}}" alt="">
+														{% else %}
+														<img src="{% static 'img/profile/default_profile.png' %}" alt="">
+														{% endif %}
 													</div>
 													<div class="username">
 														<h4 class="name">{{user.user}}</h4>
@@ -113,7 +117,7 @@
 								<div class="users show-data admin-men-delivery col-5">
 									<div class="top">
 										<h1>admins-men-delivery</h1>
-										<small class="ms-2 " style="color: #efcefa;">33</small>
+										<small class="ms-2 " style="color: #efcefa;">{{admins_delivery.count}}</small>
 									</div>
 									<div class="body">
 										<div class="filter">
@@ -143,11 +147,102 @@
 								</div>
 							</div>
 							<!-- end -->
+							<!-- tracking-orders -->
+							<div class="row justify-content-between mb-5">
+								<div class="tracking show-data tracking-orders col-12">
+									<div class="top">
+										<h1>Tracking Order</h1>
+										<small class="ms-2 " style="color: #efcefa;">{{ordersTracking.count}}</small>
+									</div>
+									<div class="body">
+										<div class="filter">
+											<form action="" method="GET">
+												<input type="search" name="search" id="search" placeholder="Search with username or company name">
+											</form>
+										</div>
+										<div class="content">
+											<div class='tracking'>
+												<table class="table table-bordered table-hover">
+													<thead>
+														<tr>
+															<th scope="col">ID</th>
+															<th scope="col">Date</th>
+															<th scope="col">Warehouse</th>
+															<th scope="col">City</th>
+															<th scope="col">Livry</th>
+															<th scope="col">Actions</th>
+														</tr>
+													</thead>
+													<tbody >
+														{% for tracking in ordersTracking %}
+															<form action="" method="POST">
+																{% csrf_token %}
+																<tr>
+																	<th scope="row" data="{{tracking.id_received}}" class="id id-refund" id="ind">{{tracking.id_received}}</th>
+																	<td hidden>
+																		<input name="user" type="text" value="{{tracking.user.id}}" hidden>
+																		<input name="received" type="text" value="{{tracking.received.id}}" hidden>
+																		<input name="id_received" type="text" value="{{tracking.id_received}}" hidden>
+																		<input name="tracking_number" type="text" value="{{tracking.tracking_number}}" hidden>
+																		<input name="date" type="text" value="{{tracking.date}}" hidden>
+																		<input name="warehouse" type="text" value="{{tracking.warehouse}}" hidden>
+																		<input name="city" type="text" value="{{tracking.city}}" hidden>
+																		<input name="livry" type="text" value="{{tracking.livry}}" hidden>
+																	</td>
+																	<td>{{tracking.date}}</td>
+																	<td>
+																		<select name="warehouse" class="form-select" id="inlineFormSelectPref">
+																			{% if tracking.warehouse == True %}
+																			<option value="true" selected>Yes</option>
+																			<option value="false">No</option>
+																			{% else %}
+																			<option value="true">Yes</option>
+																			<option value="false" selected>No</option>
+																			{% endif %}
+																		</select>
+																	</td>
+																	<td>
+																		<select name="city" class="form-select" id="inlineFormSelectPref">
+																			{% if tracking.city == True %}
+																			<option value="true" selected>Yes</option>
+																			<option value="false">No</option>
+																			{% else %}
+																			<option value="true">Yes</option>
+																			<option value="false" selected>No</option>
+																			{% endif %}
+																		</select>
+																	</td>
+																	<td>
+																		<select name="livry" class="form-select" id="inlineFormSelectPref">
+																			{% if tracking.livry == True %}
+																			<option value="true" selected>Yes</option>
+																			<option value="false">No</option>
+																			{% else %}
+																			<option value="true">Yes</option>
+																			<option value="false" selected>No</option>
+																			{% endif %}
+																		</select>
+																	</td>
+																	<td>
+																		<button type="submit" class="btn btn-outline-success">Submit</button>
+																	</td>
+																</tr>
+															</form>
+														{% endfor %}
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end -->
 							<!-- custemers and admin-delivery  -->
 							<div class="row justify-content-between mb-5">
 								<div class="show-data packages col-12 mt-5">
 									<div class="top">
 										<h1>packages</h1>
+										<small class="ms-2 " style="color: #efcefa;">{{packages.count}}</small>
 									</div>
 									<div class="body">
 										<div class="filter">
@@ -206,6 +301,7 @@
 								<div class="show-data refund col-5 mb-3">
 									<div class="top">
 										<h1>refunds</h1>
+										<small class="ms-2 " style="color: #efcefa;">{{refunds.count}}</small>
 									</div>
 									<div class="body">
 										<div class="filter">
@@ -242,6 +338,7 @@
 								<div class="show-data exchange col-5 m-1">
 									<div class="top">
 										<h1>exchanges</h1>
+										<small class="ms-2 " style="color: #efcefa;">{{exchanges.count}}</small>
 									</div>
 									<div class="body">
 										<div class="filter">
@@ -282,160 +379,33 @@
 								<div class="show-data support col-12">
 									<div class="top">
 										<h1>support</h1>
+										<small class="ms-2 " style="color: #efcefa;">{{messages.count}}</small>
 									</div>
 									<div class="body">
 										<div class="content">
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
+											<div class="message">
+												<div class="head-email">
+													<div class="accordion" id="accordionExample">
+														{% for message in messages %}
+														<div class="accordion-item">
+														  <h2 class="accordion-header" id="headingOne">
+															<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+															  <span class="id"> {{message.email}} </span> &nbsp | &nbsp <span class="date-message" style="color:#838383"> {{message.date}}</span>
+															</button>
+														  </h2>
+														  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+															<div class="accordion-body">
+															  <div class='subject'>
+																<p class="pt-2 pb-2 mb-3"></span> {{message.subject}}</p>
+															  </div>
+															  <p class="pt-2 pb-2"> {{message.message}} </p>
+															</div>
+														  </div>
 														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
-													</div>
-												</div>
-											</a>
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
-														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
+														{% endfor %}
 													</div>
 												</div>
-											</a>
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
-														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
-													</div>
-												</div>
-											</a>
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
-														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
-													</div>
-												</div>
-											</a>
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
-														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
-													</div>
-												</div>
-											</a>
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
-														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
-													</div>
-												</div>
-											</a>
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
-														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
-													</div>
-												</div>
-											</a>
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
-														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
-													</div>
-												</div>
-											</a>
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
-														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
-													</div>
-												</div>
-											</a>
-											<a href="">
-												<div class="message">
-													<div class="head-email">
-														<div class="text-email">
-															<p>mohamedbayad@gmail.com</p>
-														</div>
-														<div class="subject">
-															<p>Pymount</p>
-														</div>
-													</div>
-													<div class="text-message">
-														<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, quia. Cupiditate mollitia ipsam voluptatem delectus exercitationem ab doloribus adipisci sint magnam voluptas rem, quidem ullam eum. Placeat ipsum repellendus pariatur!</p>
-													</div>
-												</div>
-											</a>
-
+											</div>
 										</div>
 									</div>
 								</div>
@@ -458,7 +428,7 @@
             navigator.clipboard.writeText(orId);
             alert("Copiez ensuite le ID avec succès " + orId)
         }
-        let newIdPackage = idPackage[i].textContent.slice(0, 10);
+        let newIdPackage = idPackage[i].textContent;
         idPackage[i].textContent = newIdPackage + " ";
         idPackage[i].innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2" viewBox="0 0 16 16"><path d="M3.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5H12a.5.5 0 0 1 0-1h.5A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1H4a.5.5 0 0 1 0 1h-.5Z"/><path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/></svg>';
         idPackage[i].style.color = "#735d78";

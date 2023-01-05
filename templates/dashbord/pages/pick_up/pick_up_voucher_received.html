@@ -11,7 +11,7 @@
             <h4>Tous Les Bons De Ramassages</h4>
             <p>Total des résultats trouvés: <span style="color:green">{{receivCount}}</span></p>
             <div class="table-content">
-                <table class="table table-bordered table-striped table-hover">
+                <table class="table table-bordered table-striped table-hover  align-middle">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -25,7 +25,7 @@
                     {% for item in receiv %}
                         {% if item.receive == True %}
                             <tr>
-                                <td>{{item.received_id}}</td>
+                                <td class="id">{{item.received_id}}</td>
                                 <td>{{item.packages.count}}</td>
                                 <td>{{item.packages.count}}</td>
                                 <td>{{item.date_received}}</td>

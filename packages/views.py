@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
+import uuid
 from .forms import *
 from main.models import *
 from .models import *
 from .filters import *
 from dashboard.models import *
 from account.decorators import *
-import uuid
 
 
 # Create your views here.
@@ -19,7 +19,6 @@ def newPackage(request):
     # data nav bar
     settings = Setting.objects.all()  # icon settings
     profileImage = Profile.objects.filter(user=request.user)  # icon profile
-
     form = AddNewPackage()
     citys = City.objects.order_by("name")
     city = request.POST.get("city")
@@ -115,11 +114,13 @@ def packagePickedUp(request):
     packageData = NewPackage.objects.filter(
         user=request.user).exclude(etat="EN ATTENTE DE RAMASSAGE")
     # packageData = NewPackages.objects.exclude(etat="EN ATTENTE DE RAMASSAGE")
-    packageDataCount = NewPackage.objects.exclude(
+    packageDataCount = NewPackage.objects.filter(user=request.user).exclude(
         etat="EN ATTENTE DE RAMASSAGE").count()
     # ######### form filter #########
-    filterPackage = PackageFilter(request.GET, queryset=packageData)
-    packageData = filterPackage.qs
+    filterPackage = PackageFilter()
+    if request.method == "GET":
+        filterPackage = PackageFilter(request.GET, queryset=packageData)
+        packageData = filterPackage.qs
 
     context = {
         "packageData": packageData,

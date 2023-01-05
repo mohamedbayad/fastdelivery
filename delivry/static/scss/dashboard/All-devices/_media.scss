@@ -143,6 +143,20 @@
                     width: 1000px;
                 }
             }
+            .tracking-content {
+                .filter {
+                    form {
+                        .col-6 {
+                            width: 80%;
+                        }
+                    }
+                }
+                .page-tracking {
+                    .tracking-content {
+                        width: 80%;
+                    }
+                }
+            }
         }
     }
     
@@ -168,6 +182,20 @@
             .get-data {
                 .table {
                     width: 1000px;
+                }
+            }
+            .tracking-content {
+                .filter {
+                    form {
+                        .col-6 {
+                            width: 80%;
+                        }
+                    }
+                }
+                .page-tracking {
+                    .tracking-content {
+                        width: 80%;
+                    }
                 }
             }
         }
@@ -288,6 +316,36 @@
                     }
                 }
             }
+            .tracking-content {
+                .filter {
+                    form {
+                        .col-6 {
+                            width: 98%;
+                        }
+                    }
+                }
+                .page-tracking {
+                    .tracking-content {
+                        width: 98%;
+                        padding: 8px;
+                        .top-tracking {
+                            h5 {
+                                font-size: 14px;
+                            }
+                            p {
+                                font-size: 13px;
+                            }
+                        }
+                        .bottom-tracking {
+                            font-size: 14px;
+                            .track:nth-child(2)::after,
+                            .track:nth-child(3)::after {
+                                width: 70px;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -302,6 +360,27 @@
                                 width: 300px !important;
                                 right: -66px !important;
                             }
+                        }
+                    }
+                }
+            }
+            .page-tracking {
+                .tracking-content {
+                    width: 98%;
+                    padding: 8px;
+                    .top-tracking {
+                        h5 {
+                            font-size: 14px;
+                        }
+                        p {
+                            font-size: 13px;
+                        }
+                    }
+                    .bottom-tracking {
+                        font-size: 14px;
+                        .track:nth-child(2)::after,
+                        .track:nth-child(3)::after {
+                            width: 60px !important;
                         }
                     }
                 }

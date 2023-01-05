@@ -18,7 +18,13 @@
 				<div class="card">
 					<div class="content">
 						<div class="pric">
-							<h3>{{man_delivery.0.set_packages.all.count}}</h3>
+							<h3>
+								{% if man_delivery %}
+								{{man_delivery.0.set_packages.count}}
+								{% else %}
+								0
+								{% endif %}
+							</h3>
 							<p>LES COLIES</p>
 						</div>
 						<i class="fa-solid fa-cube"></i>

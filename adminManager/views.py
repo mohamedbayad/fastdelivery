@@ -9,9 +9,12 @@ from pickup.forms import *
 from invoices.views import *
 from .forms import *
 from .models import *
+from tracking.models import *
+from tracking.forms import *
+from contactUs.models import Contact
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
-
+from PIL import Image, ImageDraw, ImageFont
 
 # Create your views here.
 
@@ -19,9 +22,13 @@ from django.contrib.auth.models import Group
 @login_required(login_url="login")
 @allowedUsers(allowedGroups=["admin"])
 def dashboardAdmin(request):
-    # show all exchange
+    # get all messages 
+    messages = Contact.objects.all()
+    # get all exchange
     exchanges = ExchangeRequest.objects.all()
-    # show all refund
+    # get all orders tracking
+    ordersTracking = Tracking.objects.all()
+    # get all refund
     refunds = RefundRequest.objects.all()
     # add packages to admin delivery
     addPackagesToAdminDelivery()
@@ -37,18 +44,21 @@ def dashboardAdmin(request):
     packages = NewPackage.objects.exclude(etat="EN ATTENTE DE RAMASSAGE")
     
     TOTAL_FEE = 0
-    
-    # for pack in packages_fee:
-    #     if pack.etat == "Annulée" or pack.etat == "Livrée" or pack.etat == "Refusée" or "Retournée" in pack.etat:
-    #         TOTAL_FEE += pack.withdrawn_canceled + \
-    #             pack.withdrawn_livery + pack.withdrawn_refused
-
-    # get invoices
     package_invoices = Received.objects.filter(invoise=True)
     TOTAL_NET_INCOME = 0
     for pack_inv in package_invoices:
         TOTAL_NET_INCOME += pack_inv.total_amount
         TOTAL_FEE += pack_inv.total_withdrawn
+
+    formsTracking = AddNewTracking()
+    if request.POST.get("id_received") is not None:
+        instanceTracking = Tracking.objects.get(id_received=request.POST.get("id_received"))
+        formsTracking = AddNewTracking(instance=instanceTracking)
+        if request.method == 'POST':
+            formsTracking = AddNewTracking(request.POST, instance=instanceTracking)
+            if formsTracking.is_valid():
+                formsTracking.save()
+                return redirect("dashboard-admin")
 
     context = {
         "t_n_i_c": TOTAL_NET_INCOME,
@@ -60,6 +70,9 @@ def dashboardAdmin(request):
         "exchanges": exchanges,
         "refunds": refunds,
         "packages": packages,
+        "ordersTracking": ordersTracking,
+        "formsTracking": formsTracking,
+        "messages": messages,
     }
 
     return render(request, "dashboard-admin/dashboard.html", context)
@@ -328,6 +341,7 @@ def addPackages(request, pk):
         # "formPackages": formPackages,
         "data_admin_delivery": data_admin_delivery,
         "users_delivery": users_delivery,
+        "packages_deli": packages_deli,
     }
     return render(request, "dashboard-admin/add_packages.html", context)
 

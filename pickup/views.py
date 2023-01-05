@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from dashboard.models import *
 from packages.models import *
 from packages.forms import *
+from tracking.forms import AddNewTracking
 from .models import *
 from account.decorators import *
 from django.contrib import messages
@@ -16,6 +17,8 @@ import uuid
 @login_required(login_url="login")
 @allowedUsers(allowedGroups=["customer"])
 def pickedup(request):
+    formAddTracking = AddNewTracking() # add new tracking packages
+
     # data nav bar
     settings = Setting.objects.all()  # icon settings
     profileImage = Profile.objects.filter(user=request.user)  # icon profile
@@ -33,6 +36,8 @@ def pickedup(request):
         packages_picked_up = id_package
         receiv.received_id = id_received.hex[0:10]
         receiv.user = request.user
+        receiv.total_withdrawn = 0
+        receiv.total_amount = 0
         receiv.date_received = timezone.now().strftime('%d-%m-%Y')
         receiv.receive = True
         while True:
@@ -46,9 +51,16 @@ def pickedup(request):
             receiv.packages.add(picked_up)
             count += 1
             if count == len(id_package):
+                objTracking = formAddTracking.save(commit=False)
+                objTracking.id_received = receiv.received_id
+                objTracking.tracking_number = uuid.uuid4()
+                objTracking.date = receiv.date_received
+                objTracking.received = receiv
+                objTracking.user = request.user
+                objTracking.save()
+
                 messages.success(request, "Nouveau coupon créé avec succès")
                 return redirect("pickup")
-                break
 
     context = {
         "packagePickup": packagePickup,

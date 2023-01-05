@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
-/* line 3, styles.scss */
+/* line 4, styles.scss */
 * {
   padding: 0;
   margin: 0;
@@ -10,12 +10,12 @@
   scroll-behavior: smooth;
 }
 
-/* line 11, styles.scss */
+/* line 12, styles.scss */
 td {
   padding: 1.1rem 0.5rem !important;
 }
 
-/* line 14, styles.scss */
+/* line 15, styles.scss */
 input,
 textarea,
 .form-select {
@@ -26,30 +26,30 @@ textarea,
   width: 80%;
 }
 
-/* line 23, styles.scss */
+/* line 24, styles.scss */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
-/* line 27, styles.scss */
+/* line 28, styles.scss */
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
 /* Handle */
-/* line 32, styles.scss */
+/* line 33, styles.scss */
 ::-webkit-scrollbar-thumb {
   background: #735D78;
 }
 
 /* Handle on hover */
-/* line 37, styles.scss */
+/* line 38, styles.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #D1B3C4;
 }
 
-/* line 41, styles.scss */
+/* line 42, styles.scss */
 .webpage .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -60,7 +60,7 @@ textarea,
   background-color: whitesmoke;
   min-height: 100vh;
 }
-/* line 48, styles.scss */
+/* line 49, styles.scss */
 .webpage .container .nav-bar {
   height: 100vh;
   width: 330px;
@@ -69,26 +69,26 @@ textarea,
   position: sticky;
   top: 0;
 }
-/* line 54, styles.scss */
+/* line 55, styles.scss */
 .webpage .container .nav-bar .content {
   width: 100%;
   height: 100%;
   overflow-y: scroll;
 }
-/* line 58, styles.scss */
+/* line 59, styles.scss */
 .webpage .container .nav-bar .content .nav-close {
   display: none;
 }
-/* line 61, styles.scss */
+/* line 62, styles.scss */
 .webpage .container .nav-bar .content i {
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
 }
-/* line 64, styles.scss */
+/* line 65, styles.scss */
 .webpage .container .nav-bar .content .btn-nav {
   padding: 10px;
 }
-/* line 66, styles.scss */
+/* line 67, styles.scss */
 .webpage .container .nav-bar .content .btn-nav .icon-navbar {
   width: 40px;
   height: 40px;
@@ -105,44 +105,44 @@ textarea,
   cursor: pointer;
   margin: 0 0 0 auto;
 }
-/* line 74, styles.scss */
+/* line 75, styles.scss */
 .webpage .container .nav-bar .content .btn-nav .icon-navbar span {
   border: 1px solid #fff;
   margin: 3px;
 }
-/* line 80, styles.scss */
+/* line 81, styles.scss */
 .webpage .container .nav-bar .content .logo {
   padding: 20px;
 }
-/* line 82, styles.scss */
+/* line 83, styles.scss */
 .webpage .container .nav-bar .content .logo .title {
   font-size: 23px;
   font-weight: 700;
   color: #ffffff;
   height: 50px;
 }
-/* line 87, styles.scss */
+/* line 88, styles.scss */
 .webpage .container .nav-bar .content .logo .title small {
   font-size: 15px;
   top: -19px;
   position: relative;
   color: #D1B3C4;
 }
-/* line 95, styles.scss */
+/* line 96, styles.scss */
 .webpage .container .nav-bar .content nav {
   padding: 10px;
 }
-/* line 97, styles.scss */
+/* line 98, styles.scss */
 .webpage .container .nav-bar .content nav .parent_ul {
   padding: 0;
 }
-/* line 99, styles.scss */
+/* line 100, styles.scss */
 .webpage .container .nav-bar .content nav .parent_ul li {
   list-style: none;
   margin: 20px 0;
   padding: 5px;
 }
-/* line 103, styles.scss */
+/* line 104, styles.scss */
 .webpage .container .nav-bar .content nav .parent_ul li a {
   color: #fff;
   text-decoration: none;
@@ -156,12 +156,12 @@ textarea,
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
-/* line 109, styles.scss */
+/* line 110, styles.scss */
 .webpage .container .nav-bar .content nav .parent_ul li a svg {
   width: 30px;
   height: 30px;
 }
-/* line 113, styles.scss */
+/* line 114, styles.scss */
 .webpage .container .nav-bar .content nav .parent_ul li a span {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -178,12 +178,12 @@ textarea,
           align-items: center;
   width: 100%;
 }
-/* line 119, styles.scss */
+/* line 120, styles.scss */
 .webpage .container .nav-bar .content nav .parent_ul li a span p {
   margin: 0;
   margin-left: 10px;
 }
-/* line 125, styles.scss */
+/* line 126, styles.scss */
 .webpage .container .nav-bar .content nav .parent_ul li ul {
   display: none;
   padding: 0 6px;
@@ -191,21 +191,21 @@ textarea,
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
 }
-/* line 131, styles.scss */
+/* line 132, styles.scss */
 .webpage .container .nav-bar .content nav .parent_ul li ul li a {
   color: rgba(255, 255, 255, 0.59);
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
 }
-/* line 134, styles.scss */
+/* line 135, styles.scss */
 .webpage .container .nav-bar .content nav .parent_ul li ul li a:hover {
   color: rgba(255, 255, 255, 0.753);
 }
-/* line 145, styles.scss */
+/* line 146, styles.scss */
 .webpage .container main {
   width: 100%;
 }
-/* line 147, styles.scss */
+/* line 148, styles.scss */
 .webpage .container main .bg-light {
   background-color: #fff !important;
   position: -webkit-sticky;
@@ -213,7 +213,7 @@ textarea,
   top: 0;
   z-index: 2;
 }
-/* line 153, styles.scss */
+/* line 154, styles.scss */
 .webpage .container main .bg-light .container-fluid .title {
   font-size: 23px;
   margin: 0 10px;
@@ -221,14 +221,14 @@ textarea,
   color: #735D78;
   height: 50px;
 }
-/* line 159, styles.scss */
+/* line 160, styles.scss */
 .webpage .container main .bg-light .container-fluid .title small {
   font-size: 15px;
   top: -19px;
   position: relative;
   color: #D1B3C4;
 }
-/* line 166, styles.scss */
+/* line 167, styles.scss */
 .webpage .container main .bg-light .container-fluid .user {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -241,14 +241,14 @@ textarea,
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
 }
-/* line 170, styles.scss */
+/* line 171, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .i-p {
   margin: 0 15px;
   padding: 5px;
   cursor: pointer;
   position: relative;
 }
-/* line 176, styles.scss */
+/* line 177, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .setting svg {
   -webkit-animation-name: setting;
           animation-name: setting;
@@ -259,11 +259,11 @@ textarea,
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
 }
-/* line 183, styles.scss */
+/* line 184, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .setting .ul-setting {
   display: none;
 }
-/* line 186, styles.scss */
+/* line 187, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .setting .ul-setting.active {
   display: block;
   position: absolute;
@@ -280,13 +280,13 @@ textarea,
   cursor: default;
   overflow-y: scroll;
 }
-/* line 200, styles.scss */
+/* line 201, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .setting .ul-setting.active .content {
   border: 1px solid #d1b3c4;
   border-radius: 5px;
   margin-bottom: 5px;
 }
-/* line 204, styles.scss */
+/* line 205, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .setting .ul-setting.active .content .title {
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -297,12 +297,12 @@ textarea,
   border-bottom: 1px solid #d1b3c4;
   padding: 6px;
 }
-/* line 212, styles.scss */
+/* line 213, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .setting .ul-setting.active .content .message {
   font-size: 15px;
   padding: 5px;
 }
-/* line 220, styles.scss */
+/* line 221, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile img {
   width: 40px;
   height: 40px;
@@ -312,11 +312,11 @@ textarea,
   -o-object-fit: cover;
      object-fit: cover;
 }
-/* line 228, styles.scss */
+/* line 229, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile .ul-profile {
   display: none;
 }
-/* line 231, styles.scss */
+/* line 232, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile .ul-profile.active {
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
@@ -331,7 +331,7 @@ textarea,
   text-decoration: none;
   color: #fff;
 }
-/* line 243, styles.scss */
+/* line 244, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile .ul-profile.active a {
   text-decoration: none;
   color: #fff;
@@ -340,7 +340,7 @@ textarea,
   line-height: 44px;
   padding: 15px 20px;
 }
-/* line 252, styles.scss */
+/* line 253, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile::before {
   content: "";
   width: 10px;
@@ -352,11 +352,11 @@ textarea,
   right: 4px;
   bottom: 6px;
 }
-/* line 267, styles.scss */
+/* line 268, styles.scss */
 .webpage .container main .dashboard {
   margin: 40px 20px 20px 20px;
 }
-/* line 270, styles.scss */
+/* line 271, styles.scss */
 .webpage .container main .dashboard .content .cards {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -371,7 +371,7 @@ textarea,
       flex-wrap: wrap;
   margin: 50px auto;
 }
-/* line 276, styles.scss */
+/* line 277, styles.scss */
 .webpage .container main .dashboard .content .cards .card {
   border: none !important;
   width: 250px;
@@ -383,7 +383,7 @@ textarea,
           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.082);
   margin: 5px;
 }
-/* line 284, styles.scss */
+/* line 285, styles.scss */
 .webpage .container main .dashboard .content .cards .card .content {
   margin: 10px;
   display: -webkit-box;
@@ -397,36 +397,36 @@ textarea,
   width: 100%;
   height: 100%;
 }
-/* line 292, styles.scss */
+/* line 293, styles.scss */
 .webpage .container main .dashboard .content .cards .card .content .pric h3 {
   font-size: 30px;
   margin: 10px 0;
   color: #735D78;
 }
-/* line 297, styles.scss */
+/* line 298, styles.scss */
 .webpage .container main .dashboard .content .cards .card .content .pric p {
   margin: 10px 0;
   font-size: 12px;
   width: 110px;
 }
-/* line 303, styles.scss */
+/* line 304, styles.scss */
 .webpage .container main .dashboard .content .cards .card .content i {
   font-size: 50px;
   color: #735D78;
 }
-/* line 308, styles.scss */
+/* line 309, styles.scss */
 .webpage .container main .dashboard .content .cards .card:hover {
   background-color: #735D78;
 }
-/* line 311, styles.scss */
+/* line 312, styles.scss */
 .webpage .container main .dashboard .content .cards .card:hover .content .pric h3, .webpage .container main .dashboard .content .cards .card:hover .content .pric p {
   color: #fff;
 }
-/* line 315, styles.scss */
+/* line 316, styles.scss */
 .webpage .container main .dashboard .content .cards .card:hover .content i {
   color: #D1B3C4;
 }
-/* line 320, styles.scss */
+/* line 321, styles.scss */
 .webpage .container main .dashboard .content .graphbox {
   width: 100%;
   height: -webkit-fit-content;
@@ -444,7 +444,7 @@ textarea,
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
-/* line 328, styles.scss */
+/* line 329, styles.scss */
 .webpage .container main .dashboard .content .graphbox .box {
   background: #fff;
   padding: 20px;
@@ -454,28 +454,28 @@ textarea,
   border-radius: 20px;
   margin: 20px 0;
 }
-/* line 335, styles.scss */
+/* line 336, styles.scss */
 .webpage .container main .dashboard .content .graphbox .box h5 {
   text-align: center;
   color: #735D78;
   margin: 8px auto;
 }
-/* line 342, styles.scss */
+/* line 343, styles.scss */
 .webpage .container main .dashboard .content .parcels {
   background-color: #fff;
   padding: 20px;
   margin: 50px auto;
   border-radius: 10px;
 }
-/* line 348, styles.scss */
+/* line 349, styles.scss */
 .webpage .container main .dashboard .content .parcels .content .header-parcels {
   width: 100%;
 }
-/* line 350, styles.scss */
+/* line 351, styles.scss */
 .webpage .container main .dashboard .content .parcels .content .header-parcels h1 {
   font-size: 30px;
 }
-/* line 354, styles.scss */
+/* line 355, styles.scss */
 .webpage .container main .dashboard .content .parcels .content .tb {
   height: 335px;
   overflow-y: scroll;
@@ -611,8 +611,42 @@ textarea,
 .webpage .container .get-data .content .table tbody td {
   font-size: 14px;
   min-height: 80px;
+  padding: 5px !important;
 }
-/* line 35, pages/_waitingPickup.scss */
+/* line 36, pages/_waitingPickup.scss */
+.webpage .container .get-data .content .table tbody .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+/* line 41, pages/_waitingPickup.scss */
+.webpage .container .get-data .content .table tbody .actions .btn {
+  font-size: 13px;
+}
+/* line 45, pages/_waitingPickup.scss */
+.webpage .container .get-data .content .table tbody .actions-inv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+/* line 49, pages/_waitingPickup.scss */
+.webpage .container .get-data .content .table tbody .actions-inv .btn {
+  font-size: 13px;
+}
+/* line 53, pages/_waitingPickup.scss */
 .webpage .container .get-data .content .table tbody td:nth-child(10) {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -623,7 +657,7 @@ textarea,
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
-/* line 40, pages/_waitingPickup.scss */
+/* line 58, pages/_waitingPickup.scss */
 .webpage .container .get-data .content .table tbody td:nth-child(10) a svg {
   width: 20px;
   height: 20px;
@@ -718,19 +752,20 @@ textarea,
   border: 1px solid #735D78;
   font-weight: 600;
   width: 205px;
+  font-size: 13px;
 }
-/* line 65, pages/_packagePickUp.scss */
+/* line 66, pages/_packagePickUp.scss */
 .content-package .get-data .content .td-actions .actions:hover {
   background-color: #fff;
   color: #735D78 !important;
 }
-/* line 70, pages/_packagePickUp.scss */
+/* line 71, pages/_packagePickUp.scss */
 .content-package .get-data .content .td-actions .actions.tracking {
   border: 1px solid #E8C2CA;
   background: #D1B3C4;
   color: #735D78 !important;
 }
-/* line 74, pages/_packagePickUp.scss */
+/* line 75, pages/_packagePickUp.scss */
 .content-package .get-data .content .td-actions .actions.tracking:hover {
   border: 1px solid #E8C2CA;
   background: #fff;
@@ -1074,114 +1109,145 @@ textarea,
 }
 
 /* line 1, pages/_tracking.scss */
-.tracking-data {
+.page-tracking {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/* line 5, pages/_tracking.scss */
+.page-tracking .tracking-content {
   background-color: #fff;
-  -webkit-box-shadow: 0 0 15px 0 #0000001a;
-          box-shadow: 0 0 15px 0 #0000001a;
+  width: 55%;
+  padding: 15px;
   border-radius: 10px;
+  -webkit-box-shadow: 0 0 15px 0 #00000025;
+          box-shadow: 0 0 15px 0 #00000025;
 }
-
-/* line 15, pages/_tracking.scss */
-.hh-grayBox {
-  background-color: #F8F8F8;
-  margin-bottom: 20px;
-  padding: 35px;
-  margin-top: 20px;
+/* line 11, pages/_tracking.scss */
+.page-tracking .tracking-content .top-tracking {
+  width: 100%;
 }
-
-/* line 21, pages/_tracking.scss */
-.pt45 {
-  padding-top: 45px;
+/* line 13, pages/_tracking.scss */
+.page-tracking .tracking-content .top-tracking h5 {
+  text-transform: capitalize;
+  color: #3f3f3f !important;
+  font-size: 16px;
+  font-weight: 600;
 }
-
+/* line 19, pages/_tracking.scss */
+.page-tracking .tracking-content .top-tracking p {
+  font-weight: 400;
+  margin: 0;
+  font-size: 15px;
+}
 /* line 24, pages/_tracking.scss */
-.order-tracking {
-  text-align: center;
-  width: 33.33%;
-  position: relative;
-  display: block;
+.page-tracking .tracking-content .top-tracking .info-tracking {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px auto;
 }
-/* line 29, pages/_tracking.scss */
-.order-tracking .is-complete {
-  display: block;
-  position: relative;
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-  border: 0px solid #AFAFAF;
-  background-color: #f7be16;
-  margin: 0 auto;
-  transition: background 0.25s linear;
-  -webkit-transition: background 0.25s linear;
-  z-index: 2;
+/* line 31, pages/_tracking.scss */
+.page-tracking .tracking-content .top-tracking .price-tracking {
+  width: 100%;
+  margin: 10px auto;
 }
-/* line 41, pages/_tracking.scss */
-.order-tracking .is-complete:after {
-  display: block;
-  position: absolute;
-  content: '';
-  height: 14px;
-  width: 7px;
-  top: -2px;
-  bottom: 0;
-  left: 5px;
-  margin: auto 0;
-  border: 0px solid #AFAFAF;
-  border-width: 0px 2px 2px 0;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  opacity: 0;
+/* line 34, pages/_tracking.scss */
+.page-tracking .tracking-content .top-tracking .price-tracking .withdraw {
+  margin: 10px auto;
+}
+/* line 37, pages/_tracking.scss */
+.page-tracking .tracking-content .top-tracking .price-tracking .price-package, .page-tracking .tracking-content .top-tracking .price-tracking .fee-tracking {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+/* line 44, pages/_tracking.scss */
+.page-tracking .tracking-content .bottom-tracking {
+  margin-top: 30px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 100px;
+  text-transform: capitalize;
+}
+/* line 52, pages/_tracking.scss */
+.page-tracking .tracking-content .bottom-tracking .track {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 60px;
 }
 /* line 57, pages/_tracking.scss */
-.order-tracking p {
-  color: #A4A4A4;
-  font-size: 16px;
-  margin-top: 8px;
-  margin-bottom: 0;
-  line-height: 20px;
-}
-/* line 63, pages/_tracking.scss */
-.order-tracking p span {
-  font-size: 14px;
-}
-/* line 67, pages/_tracking.scss */
-.order-tracking::before {
-  content: '';
-  display: block;
-  height: 3px;
-  width: calc(100% - 40px);
-  background-color: #f7be16;
-  top: 13px;
+.page-tracking .tracking-content .bottom-tracking .track::before {
+  content: "";
   position: absolute;
-  left: calc(-50% + 20px);
-  z-index: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #ec3a3a;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>');
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+  top: -40px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #fff;
 }
-/* line 79, pages/_tracking.scss */
-.order-tracking:first-child:before {
-  display: none;
+/* line 74, pages/_tracking.scss */
+.page-tracking .tracking-content .bottom-tracking .track:nth-child(2)::after, .page-tracking .tracking-content .bottom-tracking .track:nth-child(3)::after {
+  content: "";
+  position: absolute;
+  width: 128px;
+  border: 2px solid #ec3a3a;
+  height: 0;
+  right: 50px;
+  top: -28px;
 }
-
-/* line 85, pages/_tracking.scss */
-.order-tracking.completed .is-complete {
-  border-color: #27aa80;
-  border-width: 0px;
-  background-color: #27aa80;
+/* line 84, pages/_tracking.scss */
+.page-tracking .tracking-content .bottom-tracking .track.True::after {
+  border: 2px solid #137a1b;
 }
-/* line 89, pages/_tracking.scss */
-.order-tracking.completed .is-complete:after {
-  border-color: #fff;
-  border-width: 0px 3px 3px 0;
-  width: 7px;
-  left: 11px;
-  opacity: 1;
-}
-/* line 97, pages/_tracking.scss */
-.order-tracking.completed p {
-  color: #000;
-}
-/* line 100, pages/_tracking.scss */
-.order-tracking.completed:before {
-  background-color: #27aa80;
+/* line 87, pages/_tracking.scss */
+.page-tracking .tracking-content .bottom-tracking .track.True::before {
+  background-color: #137a1b;
 }
 
 /* line 1, pop-up/_pop-up-message.scss */
@@ -1415,118 +1481,134 @@ textarea,
   .webpage > .container .dashboard table {
     width: 1000px;
   }
+  /* line 149, All-devices/_media.scss */
+  .webpage > .container .tracking-content .filter form .col-6 {
+    width: 80%;
+  }
+  /* line 155, All-devices/_media.scss */
+  .webpage > .container .tracking-content .page-tracking .tracking-content {
+    width: 80%;
+  }
 }
 @media screen and (max-width: 768px) {
-  /* line 153, All-devices/_media.scss */
+  /* line 167, All-devices/_media.scss */
   .webpage > .container {
     display: block !important;
   }
-  /* line 155, All-devices/_media.scss */
+  /* line 169, All-devices/_media.scss */
   .webpage > .container .nav-bar {
     display: none !important;
   }
-  /* line 160, All-devices/_media.scss */
+  /* line 174, All-devices/_media.scss */
   .webpage > .container .dashboard .content .box {
     width: 90% !important;
   }
-  /* line 163, All-devices/_media.scss */
+  /* line 177, All-devices/_media.scss */
   .webpage > .container .dashboard .content table {
     width: 1000px;
   }
-  /* line 169, All-devices/_media.scss */
+  /* line 183, All-devices/_media.scss */
   .webpage > .container .get-data .table {
     width: 1000px;
   }
+  /* line 190, All-devices/_media.scss */
+  .webpage > .container .tracking-content .filter form .col-6 {
+    width: 80%;
+  }
+  /* line 196, All-devices/_media.scss */
+  .webpage > .container .tracking-content .page-tracking .tracking-content {
+    width: 80%;
+  }
 }
 @media screen and (max-width: 425px) {
-  /* line 179, All-devices/_media.scss */
+  /* line 207, All-devices/_media.scss */
   .webpage > .container .dashboard {
     margin: 10px 5px !important;
   }
-  /* line 182, All-devices/_media.scss */
+  /* line 210, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards {
     -webkit-box-pack: center !important;
         -ms-flex-pack: center !important;
             justify-content: center !important;
   }
-  /* line 184, All-devices/_media.scss */
+  /* line 212, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards .card {
     width: 75% !important;
   }
-  /* line 188, All-devices/_media.scss */
+  /* line 216, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards .card .content .pric h3 {
     font-size: 30px !important;
   }
-  /* line 191, All-devices/_media.scss */
+  /* line 219, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards .card .content .pric p {
     font-size: 12px !important;
     width: -webkit-fit-content !important;
     width: -moz-fit-content !important;
     width: fit-content !important;
   }
-  /* line 196, All-devices/_media.scss */
+  /* line 224, All-devices/_media.scss */
   .webpage > .container .dashboard .content .cards .card .content i {
     font-size: 45px !important;
   }
-  /* line 202, All-devices/_media.scss */
+  /* line 230, All-devices/_media.scss */
   .webpage > .container .dashboard .content .graphbox {
     padding: 15px !important;
   }
-  /* line 204, All-devices/_media.scss */
+  /* line 232, All-devices/_media.scss */
   .webpage > .container .dashboard .content .graphbox .box {
     width: 100% !important;
     padding: 10px !important;
   }
-  /* line 207, All-devices/_media.scss */
+  /* line 235, All-devices/_media.scss */
   .webpage > .container .dashboard .content .graphbox .box h5 {
     font-size: 12px;
   }
-  /* line 213, All-devices/_media.scss */
+  /* line 241, All-devices/_media.scss */
   .webpage > .container .dashboard table {
     width: 1000px;
   }
-  /* line 217, All-devices/_media.scss */
+  /* line 245, All-devices/_media.scss */
   .webpage > .container .dashboard .parcels h1 {
     font-size: 20px !important;
   }
-  /* line 226, All-devices/_media.scss */
+  /* line 254, All-devices/_media.scss */
   .webpage > .container .navbar .container-fluid .user .setting > .ul-setting {
     right: -60px !important;
   }
-  /* line 235, All-devices/_media.scss */
+  /* line 263, All-devices/_media.scss */
   .webpage > .container .pack-filter form input {
     width: 100% !important;
   }
-  /* line 238, All-devices/_media.scss */
+  /* line 266, All-devices/_media.scss */
   .webpage > .container .pack-filter form select {
     width: 100% !important;
   }
-  /* line 244, All-devices/_media.scss */
+  /* line 272, All-devices/_media.scss */
   .webpage > .container .get-data .table {
     width: 1000px;
   }
-  /* line 247, All-devices/_media.scss */
+  /* line 275, All-devices/_media.scss */
   .webpage > .container .get-data .submit {
     z-index: 99;
   }
-  /* line 251, All-devices/_media.scss */
+  /* line 279, All-devices/_media.scss */
   .webpage > .container .get-data .content h4 {
     font-size: 20px !important;
   }
-  /* line 254, All-devices/_media.scss */
+  /* line 282, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content {
     overflow: auto;
     width: 100%;
   }
-  /* line 257, All-devices/_media.scss */
+  /* line 285, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content .table {
     width: 1000px;
   }
-  /* line 259, All-devices/_media.scss */
+  /* line 287, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content .table .td-actions {
     height: auto !important;
   }
-  /* line 262, All-devices/_media.scss */
+  /* line 290, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content .table .actions {
     height: auto !important;
     display: -webkit-box;
@@ -1538,29 +1620,77 @@ textarea,
         -ms-flex-align: center;
             align-items: center;
   }
-  /* line 267, All-devices/_media.scss */
+  /* line 295, All-devices/_media.scss */
   .webpage > .container .get-data .content .table-content .table .actions button {
     margin: 5px 0;
   }
-  /* line 277, All-devices/_media.scss */
+  /* line 305, All-devices/_media.scss */
   .webpage > .container .form-profile .content .form-content {
     padding: 10px !important;
   }
-  /* line 280, All-devices/_media.scss */
+  /* line 308, All-devices/_media.scss */
   .webpage > .container .form-profile .content .form-content .informations .info {
     width: 100% !important;
     margin: 10px 0 !important;
   }
-  /* line 283, All-devices/_media.scss */
+  /* line 311, All-devices/_media.scss */
   .webpage > .container .form-profile .content .form-content .informations .info .content {
     font-size: 14px !important;
   }
+  /* line 322, All-devices/_media.scss */
+  .webpage > .container .tracking-content .filter form .col-6 {
+    width: 98%;
+  }
+  /* line 328, All-devices/_media.scss */
+  .webpage > .container .tracking-content .page-tracking .tracking-content {
+    width: 98%;
+    padding: 8px;
+  }
+  /* line 332, All-devices/_media.scss */
+  .webpage > .container .tracking-content .page-tracking .tracking-content .top-tracking h5 {
+    font-size: 14px;
+  }
+  /* line 335, All-devices/_media.scss */
+  .webpage > .container .tracking-content .page-tracking .tracking-content .top-tracking p {
+    font-size: 13px;
+  }
+  /* line 339, All-devices/_media.scss */
+  .webpage > .container .tracking-content .page-tracking .tracking-content .bottom-tracking {
+    font-size: 14px;
+  }
+  /* line 341, All-devices/_media.scss */
+  .webpage > .container .tracking-content .page-tracking .tracking-content .bottom-tracking .track:nth-child(2)::after,
+  .webpage > .container .tracking-content .page-tracking .tracking-content .bottom-tracking .track:nth-child(3)::after {
+    width: 70px;
+  }
 }
 @media screen and (max-width: 375px) {
-  /* line 301, All-devices/_media.scss */
+  /* line 359, All-devices/_media.scss */
   .webpage > .container .navbar .container-fluid .user .setting > .ul-setting {
     width: 300px !important;
     right: -66px !important;
+  }
+  /* line 368, All-devices/_media.scss */
+  .webpage > .container .page-tracking .tracking-content {
+    width: 98%;
+    padding: 8px;
+  }
+  /* line 372, All-devices/_media.scss */
+  .webpage > .container .page-tracking .tracking-content .top-tracking h5 {
+    font-size: 14px;
+  }
+  /* line 375, All-devices/_media.scss */
+  .webpage > .container .page-tracking .tracking-content .top-tracking p {
+    font-size: 13px;
+  }
+  /* line 379, All-devices/_media.scss */
+  .webpage > .container .page-tracking .tracking-content .bottom-tracking {
+    font-size: 14px;
+  }
+  /* line 381, All-devices/_media.scss */
+  .webpage > .container .page-tracking .tracking-content .bottom-tracking .track:nth-child(2)::after,
+  .webpage > .container .page-tracking .tracking-content .bottom-tracking .track:nth-child(3)::after {
+    width: 60px !important;
   }
 }
 @-webkit-keyframes setting {

@@ -289,41 +289,36 @@ a {
                                             margin: 20px 0 !important;
                                             .head-email {
                                                 padding: 5px;
-                                                border-bottom: 2px solid #dbdbdb;
                                                 text-align: left;
                                                 text-transform: uppercase;
                                                 font-weight: 600;
                                                 font-size: 15px;
-                                                display: flex;
-                                                align-items: center;
-                                                justify-content: space-between;
-                                                .text-email, .subject {
-                                                    padding: 10px;
-                                                    width: 500px;
-                                                    background-color: #f7f7f7;
-                                                    border-radius: 5px;
-                                                    border: 1px solid #826c7f29;
-                                                    overflow: hidden;
-                                                }
-                                                .subject {
-                                                    width: 200px;
-                                                }
-                                            }
-                                            .text-message {
-                                                padding: 5px;
-                                                text-align: left;
-                                                -webkit-line-clamp: 2;
-                                                display: -webkit-box;
-                                                -webkit-box-orient: vertical;
-                                                overflow: hidden;
-                                                margin-top: 10px !important;
-                                                p {
-                                                    padding: 10px;
-                                                    // width: 500px;
-                                                    background-color: #f7f7f7;
-                                                    border-radius: 5px;
-                                                    border: 1px solid #826c7f29;
-                                                    overflow: hidden;
+                                                .accordion {
+                                                    --bs-accordion-btn-focus-box-shadow : none;
+                                                    .accordion-button {
+                                                        text-transform: uppercase;
+                                                        &:not(.collapsed) {
+                                                            .id {
+                                                                color: #fff !important;
+                                                            }
+                                                            background-color: #735d78;
+                                                            .date-message {
+                                                                color: #a88fac !important;
+                                                            }
+                                                        }
+                                                        &:focus {
+                                                            border-color: #a88fac;
+                                                        }
+                                                    }
+                                                    .accordion-collapse {
+                                                        .subject {
+                                                            p {
+                                                                border-bottom: 1px solid #735d78;
+                                                                text-transform: capitalize;
+                                                                font-weight: 400;
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }

@@ -24,7 +24,17 @@
                             <select name="set_packages" class="form-select" multiple id="id_set_packages">
                                 {% for item in data_admin_delivery %}
                                     {% for package in item.packages.all %}
+                                        {% if packages_deli %}
+                                            {% for packDeli in packages_deli %}
+                                                {% for pack in packDeli.set_packages.all %}
+                                                    {% if package != pack %}
+                                                        <option value="{{package.id}}">{{package.id_package}} - {{package.address}} - {{package.city}}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        {% else %}
                                         <option value="{{package.id}}">{{package.id_package}} - {{package.address}} - {{package.city}}</option>
+                                        {% endif %}
                                     {% endfor %}
                                 {% endfor %}
                             </select>

@@ -1,0 +1,70 @@
+.webpage {
+    .container {
+        .get-data {
+            padding: 10px;
+            .content {
+                padding: 20px;
+                background-color: $lightBgNav;
+                border-radius: 10px;
+                box-shadow: $shadow;
+                height: 100%;
+                h4 {
+                    font-size: 30px;
+                    margin: 10px auto 40px;
+                    padding: 3px;
+                    border-bottom: 2px solid $decColor;
+                    width: fit-content;
+                    text-transform: uppercase;
+                    color: $lightColor;
+                }
+                .table {
+                    thead {
+                        tr {
+                            th {
+                                width: 140px;
+                                overflow-wrap: anywhere;
+                            }
+                        }
+                        
+                    }
+                    tbody {
+                        td {
+                            font-size: 14px;
+                            min-height: 80px;
+                        }
+                        .actions {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                            padding: 5px !important;
+                            .btn {
+                                font-size: 13px;
+                            }
+                        }
+                        .actions-inv {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 5px !important;
+                            .btn {
+                                font-size: 13px;
+                            }
+                        }
+                        td:nth-child(10) {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            a {
+                                svg {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
