@@ -7,8 +7,8 @@ from dashboard.models import *
 
 # Create your views here.
 
-@login_required(login_url="login")
-@admins_only
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["customer"])
 def contact_us(request):
     # data nav bar
     settings = Setting.objects.all()  # icon settings

@@ -7,7 +7,7 @@ from account.decorators import *
 # Create your views here.
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def dilevery_men(request):
     # data nav bar

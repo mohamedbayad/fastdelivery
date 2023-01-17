@@ -22,7 +22,8 @@ textarea,
     width: 80%;
 }
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 3px;
+    height: 3px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
@@ -318,6 +319,58 @@ textarea,
                             }
                         }
                     }
+                    .welcome {
+                        margin: 5px;
+                        width: 100%;
+                        height: 240px;
+                        display: flex;
+                        align-items: center;
+                        align-items: flex-end;
+                        .content-welcome {
+                            width: 100%;
+                            height: 200px;
+                            padding: 25px;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            background-color: #fff ;
+                            position: relative;
+                            border-radius: 5px;
+                            box-shadow: 0 0 20px 0 #0000000a;
+                            .text {
+                                height: 100%;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                .title {
+                                    font-size: 40px;
+                                    font-weight: 800;
+                                    color: #4B4B4B;
+                                    text-transform: capitalize;
+                                    span {
+                                        font-size: 32px;
+                                        color: #735D78;
+                                        font-weight: 600;
+                                        text-transform: uppercase;
+                                    }
+                                }
+                                .desc {
+                                    font-size: 20px;
+                                    width: 345px;
+                                    font-weight: 300;
+                                }
+                            }
+                            .image-svg{
+                                img {
+                                    width: 29%;
+                                    position: absolute;
+                                    right: 33px;
+                                    bottom: 0;
+                                    height: fit-content;
+                                }
+                            }
+                        }
+                    }
                     .graphbox {
                         width: 100%;
                         height: fit-content;
@@ -325,13 +378,13 @@ textarea,
                         display: flex;
                         flex-wrap: wrap;
                         align-items: center;
-                        justify-content: space-around;
+                        justify-content: space-between;
                         .box {
                             background: $lightBgNav;
                             padding: 20px;
                             width: 48%;
                             box-shadow: $shadow;
-                            border-radius: 20px;
+                            border-radius: 5px;
                             margin: 20px 0;
                             h5 {
                                 text-align: center;
@@ -344,7 +397,7 @@ textarea,
                         background-color: $whiteColor;
                         padding: 20px;
                         margin: 50px auto;
-                        border-radius: 10px;
+                        border-radius: 5px;
                         .content {
                             .header-parcels {
                                 width: 100%;
@@ -353,7 +406,7 @@ textarea,
                                 }
                             }
                             .tb {
-                                height: 335px;
+                                max-height: 335px;
                                 overflow-y: scroll;
                             }
                         }
@@ -375,6 +428,7 @@ textarea,
 @import "./pages/contact_us";
 @import "./pages/tracking";
 @import "./pop-up/pop-up-message";
+@import "./pages/boxPackages";
 @import "./All-devices/media";
 
 @keyframes setting {

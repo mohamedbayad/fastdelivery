@@ -14,7 +14,7 @@ import uuid
 
 # Create your views here.
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def pickedup(request):
     formAddTracking = AddNewTracking() # add new tracking packages
@@ -70,7 +70,7 @@ def pickedup(request):
     return render(request, "dashbord/pages/pick_up/new_pick_up.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def received(request):
     # data nav bar
@@ -89,7 +89,7 @@ def received(request):
     return render(request, "dashbord/pages/pick_up/pick_up_voucher_received.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def no_received(request):
     # data nav bar
@@ -108,7 +108,7 @@ def no_received(request):
     return render(request, "dashbord/pages/pick_up/pickup_voucher_not_received.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def no_received_del(request, id):
     receiv = Received.objects.filter(user=request.user, received_id=id)
@@ -122,7 +122,7 @@ def no_received_del(request, id):
     return redirect("collection-voucher-no-received")
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def savePdfLb(request, id):
     dataPdf = Received.objects.filter(received_id=id)
@@ -134,7 +134,7 @@ def savePdfLb(request, id):
     return render(request, "dashbord/pdf/labels.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def pdfPickeup(request, pk):
     profile = Profile.objects.get(user=request.user)

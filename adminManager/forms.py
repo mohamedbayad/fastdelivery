@@ -3,6 +3,7 @@ from packages.models import *
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from boxPackages.models import NewBox
 
 
 class CreateNewUserDelivery(UserCreationForm):
@@ -16,6 +17,12 @@ class EditePackage(ModelForm):
         model = NewPackage
         fields = "__all__"
         exclude = ['user']
+
+
+class EditeBox(ModelForm):
+    class Meta:
+        model = NewBox
+        fields = "__all__"
 
 
 class AddPackageToDelivery(ModelForm):

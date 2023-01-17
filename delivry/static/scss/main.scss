@@ -46,7 +46,7 @@ header .container {
             height: 100%;
             .txt-main-header {
                 line-height: 40px;
-                h5 {
+                .txt-header {
                     color: $yellowColor;
                     font: {
                         size : 18px;
@@ -54,7 +54,7 @@ header .container {
                     };
                     text-transform: uppercase;
                 }
-                p {
+                .txt-paragraph {
                     font: {
                         size: 35px;
                         weight : bold;

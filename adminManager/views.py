@@ -11,6 +11,7 @@ from .forms import *
 from .models import *
 from tracking.models import *
 from tracking.forms import *
+from boxPackages.models import NewBox
 from contactUs.models import Contact
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
@@ -19,9 +20,11 @@ from PIL import Image, ImageDraw, ImageFont
 # Create your views here.
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin"])
 def dashboardAdmin(request):
+    # get all packages box
+    packages_box = NewBox.objects.all()
     # get all messages 
     messages = Contact.objects.all()
     # get all exchange
@@ -59,6 +62,19 @@ def dashboardAdmin(request):
             if formsTracking.is_valid():
                 formsTracking.save()
                 return redirect("dashboard-admin")
+    
+
+    formsBox = EditeBox()
+    if request.POST.get("id_box") is not None:
+        instancebox = NewBox.objects.get(id_box=request.POST.get("id_box"))
+        formsBox = EditeBox(instance=instancebox)
+        if request.method == 'POST':
+            formsBox = EditeBox(request.POST, instance=instancebox)
+            if formsBox.is_valid():
+                formsBox.save()
+                return redirect("dashboard-admin")
+
+    
 
     context = {
         "t_n_i_c": TOTAL_NET_INCOME,
@@ -72,13 +88,15 @@ def dashboardAdmin(request):
         "packages": packages,
         "ordersTracking": ordersTracking,
         "formsTracking": formsTracking,
+        "packages_box": packages_box,
+        "formsBox": formsBox,
         "messages": messages,
     }
 
     return render(request, "dashboard-admin/dashboard.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin"])
 def viewProfileUser(request, pk):
 
@@ -131,7 +149,7 @@ def viewProfileUser(request, pk):
     return render(request, "dashboard-admin/profile.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin"])
 def veiwReceive(request, pk, npk):
     received_update = Received.objects.get(received_id=npk)
@@ -149,7 +167,7 @@ def veiwReceive(request, pk, npk):
     return render(request, "dashboard-admin/received.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin"])
 def pdfInvoicesAdmin(request, pk, npk):
     profile = Profile.objects.get(user=npk)
@@ -175,7 +193,7 @@ def pdfInvoicesAdmin(request, pk, npk):
     return render(request, "dashbord/pdf/invoices.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin", "admins-delivery", "delivery"])
 def savePdfLb(request, pk, npk):
     dataPdf = Received.objects.filter(received_id=npk)
@@ -187,7 +205,7 @@ def savePdfLb(request, pk, npk):
     return render(request, "dashbord/pdf/labels.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin", "admins-delivery", "delivery"])
 def veiwPackages(request, pk, npk):
     obj = NewPackage.objects.get(user=pk, id_package=npk)
@@ -203,7 +221,7 @@ def veiwPackages(request, pk, npk):
     return render(request, 'dashboard-admin/packages.html', context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin"])
 def viewRefund(request, pk, npk):
 
@@ -214,7 +232,7 @@ def viewRefund(request, pk, npk):
     return render(request, 'dashboard-admin/refund.html', context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin"])
 def viewExchange(request, pk, npk):
     exchange_data = ExchangeRequest.objects.get(exchange_id=npk)
@@ -224,7 +242,7 @@ def viewExchange(request, pk, npk):
     return render(request, 'dashboard-admin/exchange.html', context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin", "admins-delivery"])
 def viewAdminMenDelivery(request, pk):
     # add packages to admin delivery
@@ -269,7 +287,7 @@ def viewAdminMenDelivery(request, pk):
     return render(request, "dashboard-admin/admin_men_delivery.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin", "admins-delivery", "delivery"])
 def viewManDelivery(request, pk):
     man_delivery = AddPackage.objects.filter(user=pk)
@@ -292,15 +310,32 @@ def viewManDelivery(request, pk):
 
     TOTAL_NET = TOTAL_MONEY - TOTAL_FEE
 
+    formsEditePackageEtat = EditePackage()
+    if request.POST.get("etat") is not None:
+        package = NewPackage.objects.get(id_package=request.POST.get("id_package"))
+        formsEditePackageEtat = EditePackage(instance=package)
+        if request.method == "POST":
+            formsEditePackageEtat = EditePackage(request.POST, instance=package)
+            if formsEditePackageEtat.is_valid():
+                formsEditePackageEtat.save()
+                try :
+                    return redirect("view_delivery", pk)
+                except:
+                    return redirect("view_delivery", request.user.id)
+
+
+    # print(request.POST.get("etat"))
+
     context = {
         "man_delivery": man_delivery,
         "TOTAL_NET": TOTAL_NET,
         "TOTAL_PACKAGE_DELIVERED": TOTAL_PACKAGE_DELIVERED,
+        "formsEditePackageEtat": formsEditePackageEtat,
     }
     return render(request, "dashboard-admin/profile_man_delivery.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin", "admins-delivery"])
 def addPackages(request, pk):
 
@@ -346,7 +381,7 @@ def addPackages(request, pk):
     return render(request, "dashboard-admin/add_packages.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["admin", "admins-delivery"])
 def addManDelivery(request, pk):
     form_user = CreateNewUserDelivery()

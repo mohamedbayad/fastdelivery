@@ -48,7 +48,7 @@ def calc(parcel_inv):
         t_w = 0
     
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def parcel_not_inv(request):
     # data nav bar
@@ -71,7 +71,7 @@ def parcel_not_inv(request):
     return render(request, "dashbord/pages/invoices/parcel_not_invoiced.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def parcel_inv(request):
     # data nav top
@@ -93,7 +93,7 @@ def parcel_inv(request):
     return render(request, "dashbord/pages/invoices/parcel_invoiced.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def parcel_inv_packages(request, id):
     # data nav bar
@@ -114,7 +114,7 @@ def parcel_inv_packages(request, id):
     return render(request, 'dashbord/pages/invoices/parts-inv/packages.html', context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def pdfInvoices(request, pk):
     

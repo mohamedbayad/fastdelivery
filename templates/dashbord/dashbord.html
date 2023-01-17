@@ -16,8 +16,8 @@
 	{% comment %} bootstrap {% endcomment %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="	sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-	{% comment %} bootstrap icons  {% endcomment %}
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+	<!-- chartJS -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 	<title>Brigad Style</title>
 </head>
 
@@ -62,6 +62,19 @@
 								<p class="m-0">Merci de compléter toutes vos informations <a href="{% url 'profile' %}">Cliquez ici</a></p>
 							</div>
 						{% endif %}
+						<div class="welcome">
+							<div class="content-welcome">
+								<div class="text">
+									<h1 class="title">
+										salut! <span>{{request.user}}</span>
+									</h1>
+									<p class="desc">Bienvenue, votre tableau de bord est prêt !</p>
+								</div>
+								<div class="image-svg">
+									<img src="{% static 'img/undraw_positive_attitude_re_wu7d.svg' %}" alt="">
+								</div>
+							</div>
+						</div>
 						<div class="cards">
 							<div class="card">
 								<div class="content">
@@ -211,100 +224,157 @@
 		</div>
 	</div>
 	
-</body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-<script>
-	// charts js
-	const ctx = document.getElementById('myChart').getContext('2d');
-	const myDash = document.getElementById('mydash').getContext('2d');
-	const myChart = new Chart(ctx, {
-		type: 'bar',
-		data: {
-			labels: {{listDays|safe}},
-			datasets: [{
-				label: "colis",
-				data: {{listDaysCount|safe}},
-				backgroundColor: [
-					'rgba(239, 206, 250)',
-					'rgba(212, 178, 216)',
-					'rgba(168, 143, 172)',
-					'rgba(130, 108, 127)',
-					'rgba(93, 78, 96)',
-					'rgba(208, 209, 255)',
-					'rgba(216, 187, 255)',
-				],
-				borderWidth:1,
-				barPercentage:0.6,
-			}]
-		},
-		options: {
-			scales: {
-				y: {
-					beginAtZero: true
-				}
+	
+	<script>
+		// charts js
+		const ctx = document.getElementById('myChart').getContext('2d');
+		const myDash = document.getElementById('mydash').getContext('2d');
+		const myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: {{listDays|safe}},
+				datasets: [{
+					label: "colis",
+					data: {{listDaysCount|safe}},
+					backgroundColor: [
+						'rgba(239, 206, 250)',
+						'rgba(212, 178, 216)',
+						'rgba(168, 143, 172)',
+						'rgba(130, 108, 127)',
+						'rgba(93, 78, 96)',
+						'rgba(208, 209, 255)',
+						'rgba(216, 187, 255)',
+					],
+					borderWidth:1,
+					barPercentage:0.6,
+				}]
 			},
-			responsive : true,
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				},
+				responsive : true,
+			}
+		});
+	
+		const myChartTwo = new Chart(myDash, {
+			type: 'line',
+			data: {
+				labels: {{listCity|safe}},
+				datasets: [{
+					label: "colis",
+					data: {{listCityCount|safe}},
+					backgroundColor: [
+						'rgba(239, 206, 250)',
+						'rgba(212, 178, 216)',
+						'rgba(168, 143, 172)',
+						'rgba(130, 108, 127)',
+						'rgba(93, 78, 96)',
+						'rgba(208, 209, 255)',
+					],
+					borderWidth:1,
+				}]
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				},
+				responsive : true,
+			},
+		});
+	
+	</script>
+	<script src="{% static 'js/dashboard.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+	<script>
+		let idPackage = document.querySelectorAll(".id");
+		for (let i = 0; i<idPackage.length; i++){
+			let orId = idPackage[i].textContent.trim()
+			idPackage[i].onclick = () => {
+				orId.select;
+				navigator.clipboard.writeText(orId);
+				alert("Copiez ensuite le ID avec succès " + orId)
+			}
+			let newIdPackage = idPackage[i].textContent.slice(0, 10);
+			// idPackage[i].textContent = newIdPackage + " " ;
+			idPackage[i].innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2" viewBox="0 0 16 16"><path d="M3.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5H12a.5.5 0 0 1 0-1h.5A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1H4a.5.5 0 0 1 0 1h-.5Z"/><path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/></svg>';
+			idPackage[i].style.color = "#735d78";
+			idPackage[i].style.cursor = "pointer";
 		}
-	});
-
-	const myChartTwo = new Chart(myDash, {
-		type: 'line',
-		data: {
-			labels: {{listCity|safe}},
-			datasets: [{
-				label: "colis",
-				data: {{listCityCount|safe}},
-				backgroundColor: [
-					'rgba(239, 206, 250)',
-					'rgba(212, 178, 216)',
-					'rgba(168, 143, 172)',
-					'rgba(130, 108, 127)',
-					'rgba(93, 78, 96)',
-					'rgba(208, 209, 255)',
-				],
-				borderWidth:1,
-			}]
-		},
-		options: {
-			scales: {
-				y: {
-					beginAtZero: true
+	
+		{% comment %} search fields  {% endcomment %}
+	
+		function searchUser(idSearch, idClass) {
+			let idPachage = document.querySelectorAll(`.${idClass}`);
+			let search = document.getElementById(`${idSearch}`);
+			// search.oninput = function() {
+			idPachage.forEach(t => {
+				if (t.getAttribute("data") != "") {
+					if (search.value !== "") {
+						if (! t.getAttribute("data").includes(search.value)) {
+							t.parentElement.style.display = "none"
+						} else {
+							t.parentElement.style.display = "flex"
+						}
+					} else {
+						search.value = "";
+						t.parentElement.style.display = "flex"
+					}
 				}
-			},
-			responsive : true,
-		},
-	});
-
-</script>
-<script src="{% static 'js/dashboard.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-<script>
-    let idPackage = document.querySelectorAll(".id");
-    for (let i = 0; i<idPackage.length; i++){
-        let orId = idPackage[i].textContent.trim()
-        idPackage[i].onclick = () => {
-            orId.select;
-            navigator.clipboard.writeText(orId);
-            alert("Copiez ensuite le ID avec succès " + orId)
-        }
-        let newIdPackage = idPackage[i].textContent.slice(0, 10);
-        // idPackage[i].textContent = newIdPackage + " " ;
-        idPackage[i].innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2" viewBox="0 0 16 16"><path d="M3.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5H12a.5.5 0 0 1 0-1h.5A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1H4a.5.5 0 0 1 0 1h-.5Z"/><path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/></svg>';
-        idPackage[i].style.color = "#735d78";
-        idPackage[i].style.cursor = "pointer";
-    }
-</script>
-<script>
-	let pop_up = document.getElementById("pop-up");
-	let close_btn = document.querySelector(".close");
-	close_btn.onclick = _ => {
-		pop_up.classList.replace("activate", "disable")
-	}
-	let alert_pop = document.querySelector(".alert-success");
-	function alertpop() {
-		alert_pop.remove()
-	}
-	setTimeout(alertpop, 5000)
-</script>
+			})
+			// }
+		}
+		
+		function searchId(idSearch, idClass) {
+			let idPachage = document.querySelectorAll(`.${idClass}`);
+			let search = document.getElementById(`${idSearch}`);
+			// search.oninput = function() {
+			idPachage.forEach(t => {
+				if (t.getAttribute("data") != "") {
+					if (search.value !== "") {
+						if (! t.getAttribute("data").includes(search.value)) {
+							t.parentElement.style.display = "none"
+						} else {
+							t.parentElement.style.display = "revert"
+						}
+					} else {
+						search.value = "";
+						t.parentElement.style.display = "revert"
+					}
+				}
+			})
+			// }
+		}
+	</script>
+	<script>
+		let pop_up = document.getElementById("pop-up");
+		let close_btn = document.querySelector(".close");
+		close_btn.onclick = _ => {
+			pop_up.classList.replace("activate", "disable")
+		}
+		let alert_pop = document.querySelector(".alert-success");
+		function alertpop() {
+			alert_pop.remove()
+		}
+		setTimeout(alertpop, 5000)
+	</script>
+	<script>
+		const divWelcome = document.querySelector(".welcome")
+		function removeDivWelcome(x) {
+			if (x.matches) {
+				divWelcome.style.display = "none"
+			} else {
+				divWelcome.style.display = "flex"
+			}
+		}
+		var mediaSize = window.matchMedia("(max-width: 765px)")
+		removeDivWelcome(mediaSize) // Call listener function at run time
+		mediaSize.addListener(removeDivWelcome) // Attach listener function on state changes
+	</script>
+</body>
 </html>

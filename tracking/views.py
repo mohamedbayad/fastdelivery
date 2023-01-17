@@ -7,7 +7,7 @@ from .filters import *
 
 # Create your views here.
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def tracking(request):
     # data nav bar

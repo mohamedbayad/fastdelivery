@@ -13,12 +13,13 @@ from account.decorators import *
 
 # Create your views here.
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def newPackage(request):
     # data nav bar
     settings = Setting.objects.all()  # icon settings
     profileImage = Profile.objects.filter(user=request.user)  # icon profile
+    
     form = AddNewPackage()
     citys = City.objects.order_by("name")
     city = request.POST.get("city")
@@ -46,7 +47,7 @@ def newPackage(request):
     }
     return render(request, "dashbord/pages/package/add_new_package.html", context)
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def waitingPickup(request):
     # data nav bar
@@ -63,7 +64,7 @@ def waitingPickup(request):
     }
     return render(request, "dashbord/pages/package/parcel_awaiting_pickup.html", context)
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def updatePackage(request, id):
     # data nav bar
@@ -95,7 +96,7 @@ def updatePackage(request, id):
     }
     return render(request, "dashbord/pages/package/add_new_package.html", context)
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def deletPackage(request, id):
     order = NewPackage.objects.get(user=request.user, id_package=id)
@@ -103,7 +104,7 @@ def deletPackage(request, id):
     messages.error(request, "Le paquet a été supprimé")
     return redirect("packages-waiting-for-pickup")
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def packagePickedUp(request):
     # data nav bar
@@ -131,7 +132,7 @@ def packagePickedUp(request):
     }
     return render(request, "dashbord/pages/package/parcel_picked_up.html", context)
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def refundRequest(request, id):
     # data nav bar
@@ -161,7 +162,7 @@ def refundRequest(request, id):
     }
     return render(request, "dashbord/parts-tool/refund.html", contextform)
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def exchangeRequest(request, id):
     # data nav bar
@@ -191,12 +192,12 @@ def exchangeRequest(request, id):
     }
     return render(request, "dashbord/parts-tool/exchange.html", contextform)
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def parcelTracking(request):
     return render(request, "dashbord/pages/package/parcel_tracking.html")
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def staticColis(request):
     # data nav bar

@@ -13,7 +13,7 @@ from account.decorators import *
 # Create your views here.
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @admins_only
 def dashboard(request):
 
@@ -82,7 +82,7 @@ def dashboard(request):
     return render(request, "dashbord/dashbord.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def profile(request):
     # data nav bar
@@ -119,7 +119,7 @@ def profile(request):
     return render(request, "dashbord/pages/profile.html", context)
 
 
-@login_required(login_url="login")
+@login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def updateProfile(request, pk):
     

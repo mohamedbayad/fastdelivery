@@ -67,33 +67,100 @@
 												<th scope="col">Actions</th>
 											</tr>
 										</thead>
-										<tbody >
-											{% for item in man_delivery %}
-												{% for pack in item.set_packages.all %}
-													<tr>
-														<th scope="row" name="id_package" data="{{pack.id_package}}" class="id id-package" id="ind">{{pack.id_package}}</th>
-														<td>{{pack.client_name}}</td>
-														{% if pack.etat == "Ramassée"%}
-															<td><span class="badge text-bg-warning">{{pack.etat}}</span></td>
-														{% elif pack.etat == "Annulée"%}
-															<td><span class="badge text-bg-danger">{{pack.etat}}</span></td>
-														{% elif pack.etat == "Livrée"%}
-															<td><span class="badge text-bg-success">{{pack.etat}}</span></td>
-														{% elif pack.etat == "Pas de réponse"%}
-															<td><span class="badge text-bg-info">{{pack.etat}}</span></td>
-														{% else %}
-															<td><span class="badge text-bg-dark">{{pack.etat}}</span></td>
-														{% endif %}
-														<td>{{pack.city}}</td>
-														<td>{{pack.phone_number}}</td>
-														<td>{{pack.date_created}}</td>
-														<td>
-															<a href="{% url 'edite_package_in_delivery' pack.user.id pack.id_package %}"><i class='bx bx-message-square-edit'></i></a>
-														</td>
-													</tr>
-												{% endfor %}
-											{% endfor %}
-										</tbody>
+										<form method='POST'>
+											{% csrf_token %}
+											<tbody >
+												{% for item in man_delivery %}
+													{% for pack in item.set_packages.all %}
+														<tr>
+															<th scope="row" name="id_package" data="{{pack.id_package}}" class="id id-package" id="ind">{{pack.id_package}}</th>
+															<td hidden>
+																<input type="text" name="id_package" class="form-control" value="{{pack.id_package}}">
+																<input type="text" name="article_name" class="form-control" value="{{pack.article_name}}">
+																<input type="text" name="city" class="form-control" value="{{pack.city}}">
+																<input type="text" name="address" class="form-control" value="{{pack.address}}">
+																<input type="text" name="remark" class="form-control" value="{{pack.remark}}">
+																<input type="text" name="price" class="form-control" value="{{pack.price}}">
+																<input type="text" name="phone_number" class="form-control" value="{{pack.phone_number}}">
+																<input type="text" name="client_name" class="form-control" value="{{pack.client_name}}">
+																<input type="text" name="date_created" class="form-control" value="{{pack.date_created}}">
+																{% comment %} <input type="text" name="etat" class="form-control" value="{{pack.etat}}"> {% endcomment %}
+																<input type="text" name="picked_up" class="form-control" value="{{pack.picked_up}}">
+																<input type="text" name="withdrawn_canceled" class="form-control" value="{{pack.withdrawn_canceled}}">
+																<input type="text" name="withdrawn_refused" class="form-control" value="{{pack.withdrawn_refused}}">
+																<input type="text" name="withdrawn_livery" class="form-control" value="{{pack.withdrawn_livery}}">
+																<input type="text" name="date_picked_up" class="form-control" value="{{pack.date_picked_up}}">
+																<input type="text" name="user" class="form-control" value="{{pack.user.id}}">
+															</td>
+															<td>{{pack.client_name}}</td>
+															<td>
+																<select name="etat" class="form-select" id="autoSizingSelect">
+																	{% if pack.etat == "Echange" %}
+																	<option value="Echange" selected>Echange</option>
+																	{% else %}
+																	<option value="Echange">Echange</option>
+																	{% endif %}
+																	
+																	{% if pack.etat == "Ramassée" %}
+																	<option value="Ramassée" selected>Ramassée</option>
+																	{% else %}
+																	<option value="Ramassée">Ramassée</option>
+																	{% endif %}
+
+																	{% if pack.etat == "Annulée" %}
+																	<option value="Annulée" selected>Annulée</option>
+																	{% else %}
+																	<option value="Annulée">Annulée</option>
+																	{% endif %}
+																	
+																	{% if pack.etat == "Livrée" %}
+																	<option value="Livrée" selected>Livrée</option>
+																	{% else %}
+																	<option value="Livrée">Livrée</option>
+																	{% endif %}
+																	
+																	{% if pack.etat == "Refusée" %}
+																	<option value="Refusée" selected>Refusée</option>
+																	{% else %}
+																	<option value="Refusée">Refusée</option>
+																	{% endif %}
+																	
+																	{% if pack.etat == "Pas de réponse" %}
+																	<option value="Pas de réponse" selected>Pas de réponse</option>
+																	{% else %}
+																	<option value="Pas de réponse">Pas de réponse</option>
+																	{% endif %}
+																	
+																	{% if pack.etat == "Retournée/Annulée" %}
+																	<option value="Retournée/Annulée" selected>Retournée/Annulée</option>
+																	{% else %}
+																	<option value="Retournée/Annulée">Retournée/Annulée</option>
+																	{% endif %}
+																	
+																	{% if pack.etat == "Retoure/Echange" %}
+																	<option value="Retoure/Echange" selected>Retoure/Echange</option>
+																	{% else %}
+																	<option value="Retoure/Echange">Retoure/Echange</option>
+																	{% endif %}
+																	
+																	{% if pack.etat == "Retournée/Refusée" %}
+																	<option value="Retournée/Refusée" selected>Retournée/Refusée</option>
+																	{% else %}
+																	<option value="Retournée/Refusée">Retournée/Refusée</option>
+																	{% endif %}
+																</select>
+															</td>
+															<td>{{pack.city}}</td>
+															<td>{{pack.phone_number}}</td>
+															<td>{{pack.date_created}}</td>
+															<td>
+																<button type="submit" class="btn btn-outline-success">Submit</button>
+															</td>
+														</tr>
+														{% endfor %}
+													{% endfor %}
+											</tbody>
+										</form>
 									</table>
 								</div>
 							</div>

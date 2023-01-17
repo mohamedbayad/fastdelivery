@@ -77,6 +77,77 @@
 							</div>
 						</div>
 						<div class="block container text-center mt-5 ">
+							<!-- Packages Box -->
+							<div class="row justify-content-between mb-5">
+								<div class="users show-data packages-box col-12">
+									<div class="top">
+										<h1>Box packages</h1>
+										<small class="ms-2 " style="color: #efcefa;">{{packages_box.count}}</small>
+									</div>
+									<div class="body">
+										<div class="filter">
+											<form action="" method="GET">
+												<input oninput="searchId(idSearch='search', idClass='id-box')" type="search" name="search" id="search" placeholder="Search with username or company name">
+											</form>
+										</div>
+										<div class="content">
+											<div class="box">
+												<table class="table table-bordered table-hover table-striped">
+													<thead>
+														<tr>
+															<th scope="col">ID</th>
+															<th scope="col">N° de Colis</th>
+															<th scope="col">Type</th>
+															<th scope="col">Etat</th>
+															<th scope="col">Date</th>
+															<th scope="col">Actions</th>
+														</tr>
+													</thead>
+													<form method="POST">
+														{% csrf_token %}
+														<tbody >
+															{% for box in packages_box %}
+															<tr>
+																<th scope="row" data="{{box.id_box}}" class="id id-box" id="ind">{{box.id_box}}</th>
+																<td hidden>
+																	<input type="text" name="user" class="form-control" value="{{box.user.id}}">
+																	<input type="text" name="id_box" class="form-control" value="{{box.id_box}}">
+																	<input type="text" name="number_packages" class="form-control" value="{{box.number_packages}}">
+																	<input type="text" name="type_box" class="form-control" value="{{box.type_box}}">
+																	<input type="text" name="date" class="form-control" value="{{box.date}}">
+																</td>
+																<td>{{box.number_packages}}</td>
+																<td>{{box.type_box}}</td>
+																<td>
+																	<select id="inputState" class="form-select" name="etat">
+																		{% if box.etat == "En coure ..."%}
+																		<option value="En coure ..." selected>En coure ...</option>
+																		{% else %}
+																		<option value='En coure ...' >En coure ...</option>
+																		{% endif %}
+																		{% if box.etat == "Valider"%}
+																		<option value='Valider' selected>Valider</option>
+																		{% else %}
+																		<option value='Valider'>Valider</option>
+																		{% endif %}
+																	</select>
+																</td>
+																<td>{{box.date}}</td>
+																<td>
+																	<button type="submit" class="btn btn-outline-success">Submit</button>
+																	{% comment %} <a href="{% url 'view_box' box.user.id box.id_box %}"><i class='bx bx-message-square-edit'></i></a> {% endcomment %}
+																</td>
+															</tr>
+															{% endfor %}
+														</tbody>
+													</form>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end -->
 							<!-- custemers and admin-delivery -->
 							<div class="row justify-content-between mb-5">
 								<div class="users show-data custemers col-5">
@@ -87,13 +158,13 @@
 									<div class="body">
 										<div class="filter">
 											<form action="" method="GET">
-												<input type="search" name="search" id="search" placeholder="Search with username or company name">
+												<input oninput="searchUser(idSearch='search-user', idClass='id-user')" type="search" name="search" id="search-user" placeholder="Search with username or company name">
 											</form>
 										</div>
 										<div class="content">
 											{% for user in users %}
 											<div class="user">
-												<div class="info">
+												<div class="info id-user" data="{{user.user}}">
 													<div class="logo">
 														{% if user.image %}
 														<img src="{{user.image.url}}" alt="">
@@ -452,6 +523,27 @@
 				} else {
 					search.value = "";
 					t.parentElement.style.display = "revert"
+				}
+			}
+		})
+		// }
+	}
+
+	function searchUser(idSearch, idClass) {
+		let idPachage = document.querySelectorAll(`.${idClass}`);
+		let search = document.getElementById(`${idSearch}`);
+		// search.oninput = function() {
+		idPachage.forEach(t => {
+			if (t.getAttribute("data") != "") {
+				if (search.value !== "") {
+					if (! t.getAttribute("data").includes(search.value)) {
+						t.parentElement.style.display = "none"
+					} else {
+						t.parentElement.style.display = "flex"
+					}
+				} else {
+					search.value = "";
+					t.parentElement.style.display = "flex"
 				}
 			}
 		})
