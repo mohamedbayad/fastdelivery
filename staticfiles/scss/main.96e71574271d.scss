@@ -1,0 +1,245 @@
+// @import './pages//platUser';
+
+// import varibles 
+@import './vribels/colors';
+
+// import font 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    transition: all .7s ease;
+}
+
+
+@import "./parts/navbar";
+
+header .container {
+    background-color: $backgroundLight;
+    height: 100vh;
+    overflow: hidden;
+    &::before {
+        content: "";
+        position: absolute;
+        background-image: url("/delivry/static/img/decoration.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        bottom: -85px;
+        transform: rotate(180deg);
+        left: 0;
+        width: 100%;
+        height: 200px;
+    }
+
+    .main-header {
+        height: 100%;
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 100%;
+            .txt-main-header {
+                line-height: 40px;
+                .txt-header {
+                    color: $textLightPurple;
+                    font: {
+                        size : 18px;
+                        weight : 700;
+                    };
+                    text-transform: uppercase;
+                }
+                .txt-paragraph {
+                    font: {
+                        size: 35px;
+                        weight : bold;
+                    };
+                    color: $normalColor;
+                    margin-bottom: 35px;
+                    width: 555px;
+                    text-transform: uppercase;
+                }
+                a {
+                    text-decoration: none;
+                    font-size: 20px;
+                    color: $normalColor;
+                    position: relative;
+                    padding: 15px 20px;
+                    z-index: 8;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        background-color: #3f3d561a;
+                        left: 0;
+                        top: 0;
+                        border-radius: 40px;
+                        border: $border;
+                        transition: all .5s ease-in-out;
+                    }
+                    &:hover::before {
+                        width: 25%;
+                    }
+                }
+            }
+            .image-main {
+                width: 45%;
+                position: relative;
+                img {
+                    width: 100%;
+                    position: absolute;
+                    top: -155px;
+                }
+            }
+        }
+    }
+}
+
+.our-work {
+    margin: 35px auto;
+    padding: 40px 25px;
+    background: linear-gradient(180deg, #f7f7f7, #f3f3f3, #fff0);
+    .container {
+        display: flex;
+        align-items: center;
+        justify-items: stretch;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: nowrap;
+        padding: 20px 35px;
+        overflow: hidden;
+        .box {
+            box-shadow: $shadow;
+            background: $backgroundLight;
+            padding: 10px 12px;
+            margin: 0 10px;
+            border-radius: 10px;
+            min-height: 180px;
+            width: 350px;
+            z-index: 2;
+            transition: all .4s ease-in-out;
+            
+            &:nth-child(1) {
+                transform: translateX(-500px);
+                opacity: 0;
+            }
+            &:nth-child(2) {
+                opacity: 0;
+            }
+            &:nth-child(3) {
+                transform: translateX(500px);
+                opacity: 0;
+            }
+            &:hover {
+                box-shadow: none;
+            }
+            h1, p {
+                margin: 16px auto;
+                color: $normalColor;
+            }
+            h1 {
+                border-bottom: $borderYellow;
+                width: fit-content;
+                text-align: left;
+            }
+            p {
+                line-height: 30px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.pricing {
+    margin: 35px auto;
+    padding: 40px 25px;
+    .container {
+        margin: 30px 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h1 {
+            color: $normalColor;
+            font-size: 40px;
+            text-transform: uppercase;
+            border-left: $borderYellow;
+            border-right: $borderYellow;
+            width: fit-content;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+        input {
+            padding: 15px 15px;
+            width: 500px;
+            outline: none;
+            border: $border;
+            border-radius: 50px;
+            margin: 46px auto;
+            font-size: 17px;
+        }
+        .content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            margin: 70px auto;
+            .pricing-thumb {
+                width: 290px;
+                background: $backgroundLight;
+                margin: 10px;
+                padding: 20px;
+                border-radius: 5px;
+                transition: all .4s ease-in-out;
+                border: $borderPricing;
+                // border-color: #dddddd;
+                &:hover {
+                    box-shadow: $shadow;
+                }
+                .title {
+                    padding: 8px;
+                    color: $normalColor;
+                }
+                .top-price,
+                .center-price,
+                .bottom-price {
+                    margin: 25px auto;
+                    padding: 8px;
+                    border-bottom: $borderDecoration;
+                    border-left: $borderYellow;
+                }
+            }
+        }
+    }
+}
+
+footer {
+    .content {
+        width: 100%;
+        height: 40px;
+        // background-color: #3f3d56;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+            color: $normalColor;
+            a {
+                color: $textPurple;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+// import pages
+@import './pages/connexion';
+@import './pages/inscription';
+
+// import layout
+@import './layout/allDevices';

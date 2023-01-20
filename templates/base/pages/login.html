@@ -11,38 +11,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="	sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <div class="form-login">
         <div class="content">
-            <h2>S'IDENTIFIER</h2>
-            {% if messages %}
-                {% for message in messages %}
-                    {% if message.tags == "success" %}
-                        <div class="alert alert-success" role="alert">
-                            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
-                        </div>
-                        {% elif  message.tags == "error"%}
-                        <div class="alert alert-danger" role="alert">
-                            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-            <form action="" method="POST">
-                {% csrf_token %}
-                <label>Nom d'utilisateur: </label><br>
-                <input type="text" name="username" id="username" maxlength="40" placeholder="Username" required = "required"><br>
-                <label>Mot de passe: </label><br>
-                <input type="password" name="password" id="password"  placeholder="Mot de passe" required = "required"><br>
-                <input type="submit" id="button" name="inscription" id="inscription" value="S'IDENTIFIER"><br>
-                <p class='mes-user-pasw'>{{message}}</p>
-                <div class="text-success">
-                    <hr>
-                </div>
-                <div class="register">
-                    <p>Vous n'avez pas de compte? <a style="color: #f8a726" id="login" href="{% url "register" %}"> Créer</a></p>
-                </div>
-                <div style="text-align: center;" class="forget-pass">
-                    <p>J'ai oublié le mot de passe? <a style="color: #f8a726" id="login" href="{% url "password_reset" %}"> J'ai oublié </a></p>
-                </div>
-            </form>
+            <div class="form-content">
+                <h2>S'IDENTIFIER</h2>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == "success" %}
+                            <div class="alert alert-success" role="alert">
+                                <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                            </div>
+                            {% elif  message.tags == "error"%}
+                            <div class="alert alert-danger" role="alert">
+                                <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <label>Nom d'utilisateur: </label><br>
+                    <input type="text" name="username" id="username" maxlength="40" placeholder="Username" required = "required"><br>
+                    <label>Mot de passe: </label><br>
+                    <input type="password" name="password" id="password"  placeholder="Mot de passe" required = "required"><br>
+                    <input type="submit" id="button" name="inscription" id="inscription" value="S'IDENTIFIER"><br>
+                    <p class='mes-user-pasw'>{{message}}</p>
+                    <div class="text-success">
+                        <hr>
+                    </div>
+                    <div class="register">
+                        <p>Vous n'avez pas de compte? <a id="register" href="{% url "register" %}"> Créer</a></p>
+                    </div>
+                    <div style="text-align: center;" class="forget-pass">
+                        <p>J'ai oublié le mot de passe? <a id="password_reset" href="{% url "password_reset" %}"> J'ai oublié </a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="pattern-deco" style="background-image: url({% static 'img/pattern.png' %})">
+
+            </div>
         </div>
     </div>
     <script type="text/javascript">

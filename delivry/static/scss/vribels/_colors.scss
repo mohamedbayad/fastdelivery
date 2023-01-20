@@ -1,12 +1,36 @@
-// normal mode 
+// // normal mode 
+// $backgroundLight : white;
+// $normalColor : #3f3d56;
+// $lightColor : #fff;
+// $border: 1px solid #3f3d56;
+// $borderPricing: 1px solid #dddddd;
+// $shadow : 0 0 12px 0 #f1f1f1;
+
+// // dark mode 
+// $backgroundDark : rgb(37, 37, 37);
+// $darkColor : white;
+// $yellowColor : #f8a726;
+
+// // main header
+// $bgmainHeader : #f7f7f7;
+
+
+
 $backgroundLight : white;
-$normalColor : #3f3d56;
-$lightColor : #fff;
+$bgMainHeader : #f7f7f7;
+$normalColor : #5a5a5a;
+$textWhite : #fff;
+$borderYellow : 2px solid #D1B3C4;
+$textPurple : #735d78;
+$backgroundPurple : #735d78;
+$textLightPurple : #d1b3c4;
+$backgroundPurple : #D1B3C4;
+$shadow : 0 0 12px 0 #f1f1f1;
+$border: 1px solid #3f3d56;
+$borderPricing: 1px solid #9c9aad;
+$borderDecoration: 1px solid #bebebe;
 
 // dark mode 
 $backgroundDark : rgb(37, 37, 37);
 $darkColor : white;
 $yellowColor : #f8a726;
-
-// main header
-$bgmainHeader : #f7f7f7;

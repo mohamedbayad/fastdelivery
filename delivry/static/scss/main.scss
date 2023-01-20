@@ -4,39 +4,27 @@
 @import './vribels/colors';
 
 // import font 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
     scroll-behavior: smooth;
 }
 
 body {
-    transition: all .5s ease;
+    transition: all .7s ease;
 }
 
 
 @import "./parts/navbar";
 
 header .container {
-    background-color: $bgmainHeader;
+    background-color: $backgroundLight;
     height: 100vh;
     overflow: hidden;
-    &::before {
-        content: "";
-        position: absolute;
-        background-image: url("../img/deco.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        bottom: -195px;
-        left: 0;
-        width: 100%;
-        height: 200px;
-    }
-
     .main-header {
         height: 100%;
         .content {
@@ -44,10 +32,11 @@ header .container {
             align-items: center;
             justify-content: space-around;
             height: 100%;
+            width: 100%;
             .txt-main-header {
                 line-height: 40px;
                 .txt-header {
-                    color: $yellowColor;
+                    color: $textLightPurple;
                     font: {
                         size : 18px;
                         weight : 700;
@@ -61,6 +50,8 @@ header .container {
                     };
                     color: $normalColor;
                     margin-bottom: 35px;
+                    width: 555px;
+                    text-transform: uppercase;
                 }
                 a {
                     text-decoration: none;
@@ -78,7 +69,7 @@ header .container {
                         left: 0;
                         top: 0;
                         border-radius: 40px;
-                        border: 1px solid #3f3d562c;
+                        border: $border;
                         transition: all .5s ease-in-out;
                     }
                     &:hover::before {
@@ -88,11 +79,8 @@ header .container {
             }
             .image-main {
                 width: 45%;
-                position: relative;
                 img {
                     width: 100%;
-                    position: absolute;
-                    top: -155px;
                 }
             }
         }
@@ -100,7 +88,30 @@ header .container {
 }
 
 .our-work {
+    margin: 35px auto;
+    padding: 40px 25px;
+    // background: linear-gradient(180deg, #f7f7f7, #f3f3f3, #fff0);
+    background-color: #e7d7e0;
     position: relative;
+    .waver-top {
+        position: absolute;
+        left: 0;
+        bottom: 305px;
+        width: 100%;
+        path {
+            fill: #e7d7e0;
+        }
+    }
+    .waver-bottom {
+        position: absolute;
+        bottom: -300px;
+        left: 0;
+        width: 100%;
+        transform: rotate(180deg);
+        path {
+            fill: #e7d7e0;
+        }
+    }
     .container {
         display: flex;
         align-items: center;
@@ -111,13 +122,14 @@ header .container {
         padding: 20px 35px;
         overflow: hidden;
         .box {
-            box-shadow: 0 0 13px 0 #00000012;
+            box-shadow: 0 0 15px 0 #00000029;
             background: $backgroundLight;
             padding: 10px 12px;
             margin: 0 10px;
             border-radius: 10px;
             min-height: 180px;
             width: 350px;
+            z-index: 2;
             transition: all .4s ease-in-out;
             
             &:nth-child(1) {
@@ -139,7 +151,7 @@ header .container {
                 color: $normalColor;
             }
             h1 {
-                border-bottom: 2px solid $yellowColor;
+                border-bottom: $borderYellow;
                 width: fit-content;
                 text-align: left;
             }
@@ -163,8 +175,8 @@ header .container {
             color: $normalColor;
             font-size: 40px;
             text-transform: uppercase;
-            border-left: 2px solid $yellowColor;
-            border-right: 2px solid $yellowColor;
+            border-left: $borderYellow;
+            border-right: $borderYellow;
             width: fit-content;
             padding: 0 20px;
             margin: 0 auto;
@@ -173,7 +185,7 @@ header .container {
             padding: 15px 15px;
             width: 500px;
             outline: none;
-            border: 1px solid #3f3d56;
+            border: $border;
             border-radius: 50px;
             margin: 46px auto;
             font-size: 17px;
@@ -186,25 +198,27 @@ header .container {
             margin: 70px auto;
             .pricing-thumb {
                 width: 290px;
-                background: white;
+                background: $backgroundLight;
                 margin: 10px;
                 padding: 20px;
                 border-radius: 5px;
                 transition: all .4s ease-in-out;
-                border: 1px solid #3f3d5633;
+                border: $borderPricing;
+                // border-color: #dddddd;
                 &:hover {
-                    box-shadow: 0 0 11px 0 #00000024;
+                    box-shadow: $shadow;
                 }
                 .title {
                     padding: 8px;
+                    color: $normalColor;
                 }
                 .top-price,
                 .center-price,
                 .bottom-price {
                     margin: 25px auto;
                     padding: 8px;
-                    border-bottom: 1px solid rgb(190, 190, 190);
-                    border-left: 2px solid $yellowColor;
+                    border-bottom: $borderDecoration;
+                    border-left: $borderYellow;
                 }
             }
         }
@@ -215,14 +229,14 @@ footer {
     .content {
         width: 100%;
         height: 40px;
-        background-color: #3f3d56;
+        // background-color: #3f3d56;
         display: flex;
         align-items: center;
         justify-content: center;
         span {
-            color: $lightColor;
+            color: $normalColor;
             a {
-                color: $yellowColor;
+                color: $textPurple;
                 text-decoration: none;
             }
         }

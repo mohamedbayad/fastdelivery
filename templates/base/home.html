@@ -15,7 +15,6 @@
     <title> {% block title %} Brigad-Style {% endblock title %}</title>
 </head>
 <body>
-    
     {% block content %}
     <div class="webpage">
         <!-- Star Header -->
@@ -27,11 +26,12 @@
                             <div class="txt-main-header">
                                 <h1 class="txt-header">bienvenue a tous</h1>
                                 <h2 class="txt-paragraph">votre service de livraison préféré</h2>
-                                <a href="#">Essayez maintenant</a>
+                                <a href="{% url 'connexion' %}">Essayez maintenant</a>
                             </div>
                             <div class="image-main right center">
-                                <img id="bg-scoter" src="{% static 'img/bg.png' %}" alt="brigaddelivery">
-                                <img id="scoter" src="{% static 'img/scoter.png' %}" alt="brigaddelivery">
+                                {% comment %} <img id="bg-scoter" src="{% static 'img/bg.png' %}" alt="brigaddelivery">
+                                <img id="scoter" src="{% static 'img/scoter.png' %}" alt="brigaddelivery"> {% endcomment %}
+                                <img id="scoter" src="{% static 'img/Barcode-Reader.svg' %}" alt="brigaddelivery">
                             </div>
                         </div>
                     </div>
@@ -42,6 +42,9 @@
         <!-- Star Main -->
         <main>
             <section class="our-work" id="our-work">
+                <div class="waver-top">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#d1b3c4" fill-opacity="1" d="M0,320L60,298.7C120,277,240,235,360,224C480,213,600,235,720,245.3C840,256,960,256,1080,245.3C1200,235,1320,213,1380,202.7L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+                </div>
                 <div class="container">
                     <div id="box-one" class="box">
                         <div class="content">
@@ -61,6 +64,9 @@
                             <p>Brigad Style assure le ramassage de vos colis, un de nos agent va se deplacer chez vous pour ramasser vos colis.</p>
                         </div>
                     </div>
+                </div>
+                <div class="waver-bottom">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#d1b3c4" fill-opacity="1" d="M0,320L1440,288L1440,320L0,320Z"></path></svg>
                 </div>
             </section>
             <section class="pricing" id="pricing">
