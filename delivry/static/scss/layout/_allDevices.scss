@@ -95,17 +95,23 @@
                     justify-content: center;
                     flex-direction: column-reverse;
                     .txt-main-header {
-                        margin-top: 110px;
+                        margin-top: 0;
                     }
                     .image-main {
-                        width: 65%;
-                        margin-top: 230px;
+                        width: 50% !important;
+                        margin-top: 0;
                     }
                 }
             }
         }
     }
     .our-work {
+        .waver-top {
+            bottom: 406px !important;
+        }
+        .waver-bottom {
+            bottom: -171px !important;
+        }
         .container {
             padding: 40px 10px;
         }
@@ -132,24 +138,32 @@
                     justify-content: center;
                     flex-direction: column-reverse;
                     .txt-main-header {
-                        margin-top: 55px;
-                        padding: 0 20px;
+                        margin-top: 7px;
+                        padding: 0 15px;
+                        width: 100%;
                         h1 {
                             font-size: 15px;
                         }
                         h2 {
                             font-size: 23px !important;
+                            width: 100% !important;
                         }
                     }
                     .image-main {
-                        width: 80%;
-                        margin-top: 230px;
+                        width: 80% !important;
+                        margin-top: 56px !important;
                     }
                 }
             }
         }
     }
     .our-work {
+        .waver-top {
+            top: -94px !important;
+        }
+        .waver-bottom {
+            bottom: -94px !important;
+        }
         .container {
             display: flex;
             flex-wrap: wrap;
@@ -197,6 +211,12 @@
         }
     }
     .our-work {
+        .waver-top {
+            top: -83px !important;
+        }
+        .waver-bottom {
+            bottom: -83px !important;
+        }
         .container {
             .box {
                 width: 100%;
@@ -241,6 +261,14 @@
     .nav-mobile {
         span:not(:nth-child(2)) {
             width: 35px !important;
+        }
+    }
+    .our-work {
+        .waver-top {
+            top: -71px !important;
+        }
+        .waver-bottom {
+            bottom: -71px !important;
         }
     }
     .pricing {
