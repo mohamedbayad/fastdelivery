@@ -108,6 +108,7 @@ header .container {
         left: 0;
         width: 100%;
         transform: rotate(180deg);
+        z-index: -1;
         path {
             fill: #e7d7e0;
         }
