@@ -3,60 +3,80 @@
     width: 100%;
     .content {
         height: 100%;
+        width: 100%;
         display: flex;
         align-items: center;
-        flex-direction: column;
-        h2 {
-            margin: 50px auto;
-            text-transform: uppercase;
-            color: #3f3d56;
-            font-size: 35px;
-            border-bottom: 3px solid #f8a726;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        .form-content {
+            width: 70%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            form {
+                background-color: $backgroundLight;
+                h2 {
+                    margin: 0px auto 20px;
+                    text-transform: uppercase;
+                    color: $textPurple;
+                    font-size: 35px;
+                    border-bottom: $border;
+                    width: fit-content;
+                }
+                width: 55%;
+                padding: 27px;
+                border-radius: 10px;
+                box-shadow: $shadow;
+                margin: 0 auto;
+                input {
+                    width: 100%;
+                    padding: 8px 15px;
+                    border-radius: 6px;
+                    outline: none;
+                    border: $borderDecoration;
+                    margin-bottom: 25px;
+                    margin-top: 5px;
+                }
+                .error1,
+                .error2 {
+                    margin-top: -23px;
+                    margin-bottom: 18px;
+                    color: red;
+                    font-size: 14px;
+                }
+                .error_user {
+                    margin-top: -23px;
+                    margin-bottom: 18px;
+                    color: red;
+                    font-size: 14px;
+                }
+                button {
+                    width: 100%;
+                    padding: 10px;
+                    border: none;
+                    border-radius: 8px;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                    text-transform: uppercase;
+                    color: $textPurple;
+                    font-weight: bold;
+                    cursor: pointer;
+                    background-color: $backgroundPurple;
+                    color: $textWhite;
+                }
+                .login {
+                    text-align: center;
+                }
+            }
         }
-        form {
-            min-width: 40%;
-            padding: 27px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #e5e5e5;
-            input {
-                width: 100%;
-                padding: 8px 15px;
-                border-radius: 6px;
-                outline: none;
-                border: 1px solid #b9b9b9;
-                margin-bottom: 25px;
-                margin-top: 5px;
-            }
-            .error1,
-            .error2 {
-                margin-top: -23px;
-                margin-bottom: 18px;
-                color: red;
-                font-size: 14px;
-                display: none;
-            }
-            .error_user {
-                margin-top: -23px;
-                margin-bottom: 18px;
-                color: red;
-                font-size: 14px;
-            }
-            button {
-                width: 100%;
-                padding: 10px;
-                border: none;
-                border-radius: 8px;
-                font-size: 18px;
-                margin-bottom: 20px;
-                text-transform: uppercase;
-                color: #3f3d56;
-                font-weight: bold;
-                cursor: pointer;
-                background-color: #f0f0f0;
-            }
-            .login {
-                text-align: center;
-            }
+        .pattern-deco {
+            width: 30%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
         }
     }
 }

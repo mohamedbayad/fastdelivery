@@ -125,34 +125,6 @@
             }
         }
     }
-
-    // pages
-    .form-login {
-        transition: all .5s ease-in-out;
-        .content {
-            .form-content {
-                form {
-                    width: 80% !important;
-                    h2 {
-                        font-size: 25px !important;
-                    }
-                }
-            }
-        }
-    }
-    .form-register {
-        transition: all .5s ease-in-out;
-        .content {
-            .form-content {
-                form {
-                    width: 80% !important;
-                    h2 {
-                        font-size: 25px !important;
-                    }
-                }
-            }
-        }
-    }
 }
 
 @media (max-width : 425px) {
@@ -203,6 +175,7 @@
             }
         }
     }
+
     .pricing {
         .container {
             h1 {
@@ -216,45 +189,6 @@
                 .pricing-thumb {
                     width: 100%;
                 }
-            }
-        }
-    }
-    // pages
-    .form-login {
-        .content {
-            .form-content {
-                width: 100% !important;
-                form {
-                    width: 90% !important;
-                    padding: 30px 10px 10px 10px !important;
-                }
-            }
-            .pattern-deco {
-                position: fixed;
-                width: 100% !important;
-                height: 150px !important;
-                top: 0;
-                left: 0;
-                z-index: -1;
-            }
-        }
-    }
-    .form-register {
-        .content {
-            .form-content {
-                width: 100% !important;
-                form {
-                    width: 90% !important;
-                    padding: 30px 10px 10px 10px !important;
-                }
-            }
-            .pattern-deco {
-                position: fixed;
-                width: 100% !important;
-                height: 150px !important;
-                top: 0;
-                left: 0;
-                z-index: -1;
             }
         }
     }
