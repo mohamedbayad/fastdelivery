@@ -20,18 +20,30 @@
             input,
             textarea,
             .form-select {
-                background-color: #0000000a;
+                background-color: #ebebeb;
                 border: none;
                 border-bottom: 2px solid #735d7842;
                 box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.055);
                 margin: 15px 0;
                 width: 100%;
+                // padding: 0px !important;
+                // display: flex !important;
                 &:focus {
                     border-bottom: 2px solid $lightColor;
                 }
                 .selected {
                     background: $lightColor;
                     color: $whiteColor;
+                }
+                &.selectize-control {
+                    display: flex !important;
+                    padding: 0 !important;
+                    .selectize-input.full {
+                        background-color: #ebebeb;
+                        padding: 5px 10px;
+                        border: none;
+                        outline: none;
+                    }
                 }
             }
             textarea {

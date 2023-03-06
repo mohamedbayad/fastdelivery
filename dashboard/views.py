@@ -10,6 +10,7 @@ from main.models import *
 from .statistics_1 import countCitys
 import datetime
 from account.decorators import *
+from invoices.views import calc
 # Create your views here.
 
 
@@ -17,11 +18,17 @@ from account.decorators import *
 @admins_only
 def dashboard(request):
 
+    parcel_inv = Received.objects.filter(user=request.user, invoise=True)
+    
+    # calc factur
+    calc(parcel_inv)
+
+    
     # data nav bar
     settings = Setting.objects.all()  # icon settings
     profileImage = Profile.objects.filter(user=request.user)  # icon profile
 
-    # data statistics
+    # data statistics withe DATE
     packages = NewPackage.objects.filter(user=request.user)
     listCityPack = []
     listDatePack = []
@@ -52,6 +59,7 @@ def dashboard(request):
         user=request.user, invoise=False)
     package_invoices = Received.objects.filter(user=request.user, invoise=True)
 
+    # Total packages returned 
     packages_return = NewPackage.objects.filter(
         user=request.user)
     pack_list_returned = []
@@ -59,11 +67,21 @@ def dashboard(request):
         if p_r.etat == "Retournée/Annulée" or p_r.etat == "Retoure/Echange" or p_r.etat == "Retournée/Refusée":
             pack_list_returned.append(p_r)
 
-    TOTAL_NET_INCOME = 0
+    # calc total net 
+    profileMoney = Profile.objects.get(user=request.user)
+    profileMoney.total_money_net = 0
     for pack_inv in package_invoices:
-        TOTAL_NET_INCOME += pack_inv.total_amount
+        profileMoney.total_money_net += pack_inv.total_amount
 
-    parcel_inv = Received.objects.filter(user=request.user, invoise=True)
+    refundMoney = RefundRequest.objects.filter(user=request.user)
+    if refundMoney.count() != 0 :
+        for r_m in refundMoney:
+            profileMoney.total_money_net -= int(r_m.refund_price)
+    
+    TOTAL_NET_INCOME = profileMoney.total_money_net
+    profileMoney.save()
+    ############# end #############
+
 
     context = {
         "pack_list_returned": len(pack_list_returned),

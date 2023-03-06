@@ -25,8 +25,8 @@
     </div>
     <script>
         let inputPrice = document.getElementById("id_refund_price");
-        inputPrice.setAttribute("value", "{{price}}")
-        inputPrice.setAttribute("disabled", "disabled")
+        inputPrice.setAttribute("value", "-{{price}}")
+        {% comment %} inputPrice.setAttribute("disabled", "disabled") {% endcomment %}
     </script>
 {% endblock %}
 </main>

@@ -13,7 +13,7 @@
         <div class="content">
             <div class="form-content">
                 {% if messages %}
-                {% for message in messages %}
+                    {% for message in messages %}
                         {% if message.tags == "success" %}
                         <div class="alert alert-success" role="alert">
                                 <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
@@ -24,8 +24,8 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                    {% endif %}
-                    <form action="" method="POST">
+                {% endif %}
+                <form action="" method="POST">
                     <h2>S'IDENTIFIER</h2>
                     {% csrf_token %}
                     <label>Nom d'utilisateur: </label><br>
@@ -45,9 +45,9 @@
                     </div>
                 </form>
             </div>
-            <div class="pattern-deco" style="background-image: url({% static 'img/pattern.png' %})">
-            </div>
+        <div class="pattern-deco" style="background-image: url({% static 'img/pattern.png' %})">
         </div>
+    </div>
     </div>
     <script type="text/javascript">
         let topHeader = document.querySelector(".insc");

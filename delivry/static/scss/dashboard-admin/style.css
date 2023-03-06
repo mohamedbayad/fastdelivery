@@ -6,115 +6,210 @@
           box-sizing: border-box;
 }
 
-/* line 7, style.scss */
+/* line 9, style.scss */
 body {
   background: #f5f5f5 !important;
 }
 
-/* line 11, style.scss */
+/* line 13, style.scss */
 a {
   text-decoration: none !important;
 }
 
-/* line 15, style.scss */
+/* line 17, style.scss */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
-/* line 19, style.scss */
+/* line 21, style.scss */
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
 /* Handle */
-/* line 23, style.scss */
+/* line 25, style.scss */
 ::-webkit-scrollbar-thumb {
   background: #735d78;
 }
 
 /* Handle on hover */
-/* line 27, style.scss */
+/* line 29, style.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #efcefa;
 }
 
-/* line 31, style.scss */
+/* line 33, style.scss */
 .webpage {
   width: 100%;
   height: 100%;
 }
-/* line 34, style.scss */
-.webpage .container {
+/* line 36, style.scss */
+.webpage .container-page {
   max-width: 100% !important;
   padding: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-/* line 37, style.scss */
-.webpage .container header {
-  background-color: #ffffff;
-  width: 100%;
-  height: 70px;
-  -webkit-box-shadow: 0 0 15px 0 #0000000d;
-          box-shadow: 0 0 15px 0 #0000000d;
+/* line 40, style.scss */
+.webpage .container-page .nav-bar {
+  height: 100vh;
+  width: 20%;
+  background-color: #735d78;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 9999999;
 }
-/* line 45, style.scss */
-.webpage .container header .nav-bar {
+/* line 46, style.scss */
+.webpage .container-page .nav-bar .content {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+/* line 50, style.scss */
+.webpage .container-page .nav-bar .content .nav-close {
+  display: none;
+}
+/* line 53, style.scss */
+.webpage .container-page .nav-bar .content i {
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+/* line 56, style.scss */
+.webpage .container-page .nav-bar .content .btn-nav {
+  padding: 10px;
+}
+/* line 58, style.scss */
+.webpage .container-page .nav-bar .content .btn-nav .icon-navbar {
+  width: 40px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  margin: 0 0 0 auto;
+}
+/* line 66, style.scss */
+.webpage .container-page .nav-bar .content .btn-nav .icon-navbar span {
+  border: 1px solid #fff;
+  margin: 3px;
+}
+/* line 72, style.scss */
+.webpage .container-page .nav-bar .content .logo {
+  padding: 20px;
+}
+/* line 74, style.scss */
+.webpage .container-page .nav-bar .content .logo .title {
+  font-size: 23px;
+  font-weight: 700;
+  color: #ffffff;
+  height: 50px;
+}
+/* line 79, style.scss */
+.webpage .container-page .nav-bar .content .logo .title small {
+  font-size: 15px;
+  top: -19px;
+  position: relative;
+  color: #D1B3C4;
+}
+/* line 87, style.scss */
+.webpage .container-page .nav-bar .content nav {
+  padding: 10px;
+}
+/* line 89, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul {
+  padding: 0;
+}
+/* line 91, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li {
+  list-style: none;
+  margin: 20px 0;
+  padding: 5px;
+}
+/* line 95, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+/* line 101, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li a svg {
+  width: 30px;
+  height: 30px;
+}
+/* line 105, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li a span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 20px;
-  height: 100%;
   width: 100%;
 }
-/* line 53, style.scss */
-.webpage .container header .nav-bar .logo h1 {
-  text-transform: uppercase;
-  font-size: 25px;
-  color: #735d78;
+/* line 111, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li a span p {
+  margin: 0;
+  margin-left: 10px;
 }
-/* line 60, style.scss */
-.webpage .container header .nav-bar ul li {
-  list-style: none;
-  position: relative;
-}
-/* line 63, style.scss */
-.webpage .container header .nav-bar ul li a {
-  text-decoration: none;
-  color: #735d78;
-  font-size: 18px;
-}
-/* line 68, style.scss */
-.webpage .container header .nav-bar ul li .disactive {
+/* line 117, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li ul {
   display: none;
-  width: 200px;
-  min-height: 10px;
-  position: absolute;
-  right: 0;
-  bottom: -23px;
+  padding: 0 6px;
+  font-size: 15px;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
 }
-/* line 82, style.scss */
-.webpage .container main .dashboard .content {
+/* line 123, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li ul li a {
+  color: rgba(255, 255, 255, 0.59);
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+/* line 126, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li ul li a:hover {
+  color: rgba(255, 255, 255, 0.753);
+}
+/* line 180, style.scss */
+.webpage .container-page main {
+  width: calc(100% - 20%);
+}
+/* line 183, style.scss */
+.webpage .container-page main .dashboard > .content {
   margin: 0 auto !important;
   padding: 10px;
-  width: 95%;
+  width: 98%;
   margin-bottom: 30px !important;
 }
-/* line 83, style.scss */
-.webpage .container main .dashboard .content i {
+/* line 184, style.scss */
+.webpage .container-page main .dashboard > .content i {
   font-size: 28px;
 }
-/* line 90, style.scss */
-.webpage .container main .dashboard .content .cards {
+/* line 191, style.scss */
+.webpage .container-page main .dashboard > .content .cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -128,8 +223,8 @@ a {
       flex-wrap: wrap;
   margin: 80px auto !important;
 }
-/* line 96, style.scss */
-.webpage .container main .dashboard .content .cards .card {
+/* line 197, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card {
   border: none !important;
   width: 250px;
   height: 150px;
@@ -140,8 +235,8 @@ a {
           box-shadow: 0 0 15px #0000000d;
   margin: 5px;
 }
-/* line 104, style.scss */
-.webpage .container main .dashboard .content .cards .card .content {
+/* line 205, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card .content {
   margin: 10px !important;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -154,43 +249,43 @@ a {
   width: 100%;
   height: 100%;
 }
-/* line 112, style.scss */
-.webpage .container main .dashboard .content .cards .card .content .pric h3 {
+/* line 213, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card .content .pric h3 {
   font-size: 30px;
   margin: 10px 0;
   color: #735d78;
 }
-/* line 117, style.scss */
-.webpage .container main .dashboard .content .cards .card .content .pric p {
+/* line 218, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card .content .pric p {
   margin: 10px 0;
   font-size: 12px;
   width: 110px;
   text-transform: uppercase;
 }
-/* line 124, style.scss */
-.webpage .container main .dashboard .content .cards .card .content i {
+/* line 225, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card .content i {
   font-size: 50px;
   color: #735d78;
 }
-/* line 129, style.scss */
-.webpage .container main .dashboard .content .cards .card:hover {
+/* line 230, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card:hover {
   background-color: #735d78;
 }
-/* line 132, style.scss */
-.webpage .container main .dashboard .content .cards .card:hover .content .pric h3, .webpage .container main .dashboard .content .cards .card:hover .content .pric p {
+/* line 233, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card:hover .content .pric h3, .webpage .container-page main .dashboard > .content .cards .card:hover .content .pric p {
   color: #fff;
 }
-/* line 136, style.scss */
-.webpage .container main .dashboard .content .cards .card:hover .content i {
+/* line 237, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card:hover .content i {
   color: #efcefa;
 }
-/* line 141, style.scss */
-.webpage .container main .dashboard .content .block {
+/* line 242, style.scss */
+.webpage .container-page main .dashboard > .content .block {
   width: 100%;
   height: auto;
 }
-/* line 145, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data {
+/* line 246, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data {
   -webkit-box-shadow: 0 0 18px 0 #0000000d;
           box-shadow: 0 0 18px 0 #0000000d;
   max-height: 500px;
@@ -200,8 +295,8 @@ a {
   overflow: auto;
   position: relative;
 }
-/* line 153, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .top {
+/* line 254, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .top {
   width: 100%;
   padding: 15px;
   height: 50px;
@@ -217,14 +312,14 @@ a {
           align-items: center;
   z-index: 55;
 }
-/* line 163, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .top h1 {
+/* line 264, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .top h1 {
   color: #fff;
   font-size: 20px;
   text-transform: uppercase;
 }
-/* line 170, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .filter {
+/* line 271, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .filter {
   padding: 10px;
   height: 80px;
   width: 100%;
@@ -236,8 +331,8 @@ a {
           box-shadow: 0 0 15px 0 #0000000d;
   z-index: 9;
 }
-/* line 179, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .filter form {
+/* line 280, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .filter form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -247,8 +342,8 @@ a {
   width: 100%;
   height: 100%;
 }
-/* line 184, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .filter form input {
+/* line 285, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .filter form input {
   width: 100%;
   margin: 0 10px !important;
   border: 0;
@@ -258,8 +353,8 @@ a {
   outline: none;
   border: 1px solid #a88fac;
 }
-/* line 194, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .filter form .submit {
+/* line 295, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .filter form .submit {
   padding: 10px 15px;
   border: 0;
   outline: none;
@@ -268,21 +363,21 @@ a {
   color: #735d78;
   font-weight: 600;
 }
-/* line 205, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content {
+/* line 306, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content {
   margin: 10px auto !important;
   width: 95%;
   background: #f9f9f9;
 }
-/* line 209, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content a {
+/* line 310, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content a {
   height: 100%;
   width: 100%;
   text-decoration: none;
   color: #735d78;
 }
-/* line 215, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user {
+/* line 316, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -301,8 +396,8 @@ a {
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
-/* line 225, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info {
+/* line 326, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -310,66 +405,66 @@ a {
       -ms-flex-align: center;
           align-items: center;
 }
-/* line 228, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .logo {
+/* line 329, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .logo {
   border-radius: 50%;
   overflow: hidden;
   width: 40px;
   height: 40px;
   border: 2px solid #735d78;
 }
-/* line 234, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .logo img {
+/* line 335, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .logo img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-/* line 240, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .username {
+/* line 341, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .username {
   margin-left: 19px !important;
   text-align: left;
 }
-/* line 243, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .username .name {
+/* line 344, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .username .name {
   font-size: 18px;
   text-transform: uppercase;
 }
-/* line 247, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .username .company-name {
+/* line 348, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .username .company-name {
   text-transform: uppercase;
   font-size: 12px;
   color: #858585;
 }
-/* line 256, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .actions i {
+/* line 357, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .actions i {
   font-size: 25px;
   color: #735d78;
   -webkit-filter: drop-shadow(0px 0px 3px #b8b8b8);
           filter: drop-shadow(0px 0px 3px #b8b8b8);
 }
-/* line 262, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover {
+/* line 363, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover {
   background-color: #735d78;
 }
-/* line 265, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover .info .logo {
+/* line 366, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover .info .logo {
   border-color: #fff;
 }
-/* line 269, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover .info .username .name {
+/* line 370, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover .info .username .name {
   color: #ffffff;
 }
-/* line 272, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover .info .username .company-name {
+/* line 373, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover .info .username .company-name {
   color: #efcefa;
 }
-/* line 278, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover .actions i {
+/* line 379, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover .actions i {
   color: #fff;
 }
-/* line 284, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message {
+/* line 385, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message {
   padding: 5px;
   background: #fff;
   border-radius: 10px;
@@ -377,40 +472,40 @@ a {
           box-shadow: 0 0 15px 0 #0000000d;
   margin: 20px 0 !important;
 }
-/* line 290, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email {
+/* line 391, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email {
   padding: 5px;
   text-align: left;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 15px;
 }
-/* line 296, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .accordion {
+/* line 397, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion {
   --bs-accordion-btn-focus-box-shadow: none;
 }
-/* line 298, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button {
+/* line 399, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button {
   text-transform: uppercase;
 }
-/* line 300, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:not(.collapsed) {
+/* line 401, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:not(.collapsed) {
   background-color: #735d78;
 }
-/* line 301, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:not(.collapsed) .id {
+/* line 402, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:not(.collapsed) .id {
   color: #fff !important;
 }
-/* line 305, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:not(.collapsed) .date-message {
+/* line 406, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:not(.collapsed) .date-message {
   color: #a88fac !important;
 }
-/* line 309, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:focus {
+/* line 410, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:focus {
   border-color: #a88fac;
 }
-/* line 315, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .accordion .accordion-collapse .subject p {
+/* line 416, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-collapse .subject p {
   border-bottom: 1px solid #735d78;
   text-transform: capitalize;
   font-weight: 400;

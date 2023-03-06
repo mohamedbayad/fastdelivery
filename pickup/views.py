@@ -39,11 +39,11 @@ def pickedup(request):
         receiv.total_withdrawn = 0
         receiv.total_amount = 0
         receiv.date_received = timezone.now().strftime('%d-%m-%Y')
-        receiv.receive = True
+        receiv.receive = False
         while True:
             picked_up = NewPackage.objects.get(id_package=id_package[count])
             picked_up_form = AddNewPackage(request.POST, instance=picked_up)
-            picked_up.etat = "Ramassée"
+            picked_up.etat = "En cours..."
             picked_up.picked_up = True
             picked_up.date_picked_up = timezone.now().strftime('%d-%m-%Y')
             picked_up.save()

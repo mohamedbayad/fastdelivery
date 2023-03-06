@@ -24,6 +24,7 @@ class Profile(models.Model):
     address = models.CharField(max_length=100)
     bank = models.CharField(max_length=50, choices=TYPEBANK)
     rip = models.CharField(max_length=27, unique=True)
+    total_money_net = models.IntegerField(blank=True, null=True, default=0)
     image = models.ImageField(upload_to="profiles/%Y/%m/%d", null=True, blank=True)
 
     def __str__(self):

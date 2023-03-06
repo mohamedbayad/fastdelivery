@@ -1,6 +1,7 @@
 {% extends 'dashbord/dashbord.html' %}
 {% load static %}
 
+
 <main>
 {% block content %}
     {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
@@ -25,7 +26,7 @@
     <script>
         let inputPrice = document.getElementById("id_exchange_price");
         inputPrice.setAttribute("value", "{{price}}")
-        inputPrice.setAttribute("disabled", "disabled")
+        {% comment %} inputPrice.setAttribute("disabled", "disabled") {% endcomment %}
     </script>
 {% endblock %}
 </main>

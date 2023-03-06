@@ -10,5 +10,6 @@ urlpatterns = [
     path("edite/<str:id>/", views.updatePackage, name="update"),
     path("delete/<str:id>/", views.deletPackage, name="remove"),
     path("demande-de-remboursement/<str:id>", views.refundRequest, name="refund"),
-    path("demande-d'échange/<str:id>/", views.exchangeRequest, name="exchange"),
+    path("demande-d'echange/<str:id>", views.exchangeRequest, name="exchange"),
+    path("changement-d'adresse/<str:id>/", views.change_address, name="exchange_address"),
 ]

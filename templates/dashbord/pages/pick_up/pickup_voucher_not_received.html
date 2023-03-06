@@ -24,7 +24,7 @@
                     {% for item in noreceiv %}
                         {% if item.receive == False %}
                         <tr>
-                            <td>{{item.received_id}}</td>
+                            <td class="id">{{item.received_id}} </td>
                             <td>{{item.packages.count}}</td>
                             <td>{{item.date_received}}</td>
                             <td class="actions" id="actions">

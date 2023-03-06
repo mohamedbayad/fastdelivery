@@ -24,12 +24,16 @@ def calc(parcel_inv):
                         withdraw = city.price_c
                         break
                 pack.withdrawn_canceled = withdraw
+                pack.withdrawn_refused = 0
+                pack.withdrawn_livery = 0
             if "Refusée" in pack.etat:
                 for city in citys:
                     if city.name == pack.city:
                         withdraw = city.price_r
                         break
                 pack.withdrawn_refused = withdraw
+                pack.withdrawn_canceled = 0
+                pack.withdrawn_livery = 0
             if "Livrée" in pack.etat:
                 price += pack.price
                 for city in citys:
@@ -37,6 +41,8 @@ def calc(parcel_inv):
                         withdraw = city.price_l
                         break
                 pack.withdrawn_livery = withdraw
+                pack.withdrawn_canceled = 0
+                pack.withdrawn_refused = 0
             t_w += int(pack.withdrawn_canceled +
                         pack.withdrawn_refused + pack.withdrawn_livery)
             pack.save()
@@ -46,7 +52,7 @@ def calc(parcel_inv):
         price = 0
         withdraw = 0
         t_w = 0
-    
+
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
@@ -64,7 +70,6 @@ def parcel_not_inv(request):
     context = {
         "parcel_inv": parcel_inv,
         "parcel_invCount": parcel_invCount,
-        # "packages": packages,
         "settings": settings,
         "profileImage": profileImage,
     }

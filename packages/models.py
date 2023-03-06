@@ -8,6 +8,7 @@ from django.utils import timezone
 class NewPackage(models.Model):
     ETAT = [
         ("EN ATTENTE DE RAMASSAGE", "EN ATTENTE DE RAMASSAGE"),
+        ("En cours...", "En cours..."),
         ("Echange", "Echange"),
         ("Ramassée", "Ramassée"),
         ("Annulée", "Annulée"),
@@ -33,6 +34,7 @@ class NewPackage(models.Model):
     withdrawn_refused = models.IntegerField(default=0, null=True, blank=True)
     withdrawn_livery = models.IntegerField(default=0, null=True, blank=True)
     date_picked_up = models.CharField(max_length=100, blank=True, null=True, default=timezone.now().strftime('%d-%m-%Y'))
+    exchange = models.BooleanField(default=False, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
@@ -42,7 +44,7 @@ class NewPackage(models.Model):
 class RefundRequest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     refund_id = models.CharField(max_length=100, null=True, blank=True, unique=True)
-    refund_price = models.CharField(max_length=100, null=True, blank=True, unique=True)
+    refund_price = models.IntegerField(null=True, blank=True, unique=True)
     refund = models.TextField(null=True, blank=False, unique=True)
     refund_date = models.DateTimeField(auto_now_add=True, unique=True)
 
@@ -52,10 +54,10 @@ class RefundRequest(models.Model):
 
 class ExchangeRequest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    exchange_id = models.CharField(max_length=100, null=True, blank=True)
-    exchange_price = models.CharField(max_length=100, null=True, blank=True)
-    exchange = models.TextField(null=True, blank=False)
-    exchange_date = models.DateTimeField(auto_now_add=True)
+    exchange_id = models.CharField(max_length=100, null=True, blank=True, unique=True)
+    exchange_price = models.IntegerField(null=True, blank=True, unique=True)
+    exchange = models.TextField(null=True, blank=False, unique=True)
+    exchange_date = models.DateTimeField(auto_now_add=True, unique=True)
 
     def __str__(self):
         return self.exchange

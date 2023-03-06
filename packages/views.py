@@ -139,9 +139,11 @@ def refundRequest(request, id):
     settings = Setting.objects.all()  # icon settings
     profileImage = Profile.objects.filter(user=request.user)  # icon profile
 
-    package = NewPackage.objects.filter(id_package=id)
+    package = NewPackage.objects.get(id_package=id)
+
     refund_count = RefundRequest.objects.filter(refund_id=id).count()
-    price = package[0].price
+
+    price = package.price
     form = NewRefund()
     if request.method == "POST":
         form = NewRefund(request.POST)
@@ -149,18 +151,22 @@ def refundRequest(request, id):
             obj = form.save(commit=False)
             obj.refund_id = id
             obj.user = request.user
-            obj.refund_price = package[0].price
+            obj.refund_price = package.price
             obj.save()
             messages.success(request, "Le retour a été demandé avec succès")
             return redirect("packages-pickup")
     contextform = {
-        "refund_count": refund_count,
+        "refund_count":refund_count,
         "price": price,
         "form": form,
         "settings": settings,
         "profileImage": profileImage,
     }
     return render(request, "dashbord/parts-tool/refund.html", contextform)
+
+
+
+
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
@@ -169,9 +175,11 @@ def exchangeRequest(request, id):
     settings = Setting.objects.all()  # icon settings
     profileImage = Profile.objects.filter(user=request.user)  # icon profile
 
-    package = NewPackage.objects.filter(id_package=id)
+    package = NewPackage.objects.get(id_package=id)
+
     exchange_count = ExchangeRequest.objects.filter(exchange_id=id).count()
-    price = package[0].price
+
+    price = package.price
     form = NewExchange()
     if request.method == "POST":
         form = NewExchange(request.POST)
@@ -179,9 +187,9 @@ def exchangeRequest(request, id):
             obj = form.save(commit=False)
             obj.exchange_id = id
             obj.user = request.user
-            obj.exchange_price = package[0].price
+            obj.exchange_price = package.price
             obj.save()
-            messages.success(request, "Demande de décaissement complétée avec succès")
+            messages.success(request, "Le retour a été demandé avec succès")
             return redirect("packages-pickup")
     contextform = {
         "exchange_count": exchange_count,
@@ -191,6 +199,38 @@ def exchangeRequest(request, id):
         "profileImage": profileImage,
     }
     return render(request, "dashbord/parts-tool/exchange.html", contextform)
+
+
+
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["customer"])
+def change_address(request, id):
+    # data nav bar
+    settings = Setting.objects.all()  # icon settings
+    profileImage = Profile.objects.filter(user=request.user)  # icon profile
+
+    citys = City.objects.order_by("name")
+    orderPackage = NewPackage.objects.get(id_package=id)
+    form = AddNewPackage(instance=orderPackage)
+    if request.method == "POST":
+        form = AddNewPackage(request.POST, instance=orderPackage)
+        if form.is_valid():
+            # form.save()
+            obj = form.save(commit=False)
+            obj.exchange = True
+            obj.save()
+            messages.success(request, "Demande de décaissement complétée avec succès")
+            return redirect("packages-pickup")
+    
+    contextform = {
+        "orderPackage": orderPackage,
+        "citys": citys,
+        "form": form,
+        "settings": settings,
+        "profileImage": profileImage,
+    }
+    return render(request, "dashbord/parts-tool/change-address.html", contextform)
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])

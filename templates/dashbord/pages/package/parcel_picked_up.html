@@ -6,9 +6,31 @@
     {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
     <div class="content-package">
         <div class="pack-filter">
-            <form method="GET">
-                {{filterPackage.form}}
-                <button type="submit" class="btn btn-primary">Chercher</button>
+            <form method="GET" class="row g-3">
+                {% comment %} {{filterPackage.form}} {% endcomment %}
+                <div class="col-md-4">
+                    <label>{{filterPackage.form.id_package.label}}:</label></br>
+                    {{filterPackage.form.id_package}}</br>
+                </div>
+                <div class="col-md-4">
+                    <label>{{filterPackage.form.city.label}}:</label></br>
+                    {{filterPackage.form.city}}
+                </div>
+                <div class="col-md-4">
+                    <label>{{filterPackage.form.price.label}}:</label></br>
+                    {{filterPackage.form.price}}
+                </div>
+                <div class="col-md-4">
+                    <label>{{filterPackage.form.phone_number.label}}:</label></br>
+                    {{filterPackage.form.phone_number}}
+                </div>
+                <div class="col-md-4">
+                    <label>{{filterPackage.form.etat.label}}:</label></br>
+                    {{filterPackage.form.etat}}
+                </div>
+                <div class="col-md-12 d-flex align-items-center">
+                    <button type="submit" class="btn btn-primary">Chercher</button>
+                </div>
             </form>
         </div>
         <div class="get-data">
@@ -61,14 +83,23 @@
                                 <td><span class="badge text-bg-light">{{item.etat}}</span></td>
                                 {% elif item.etat == "Echange"%}
                                 <td><span class="badge text-bg-primary">{{item.etat}}</span></td>
+                                {% elif item.etat == "En cours..."%}
+                                <td><span class="badge text-bg-danger" style='background-color:#767676 !important'>{{item.etat}}</span></td>
                                 {% else %}
                                 <td><span class="badge text-bg-danger">{{item.etat}}</span></td>
                             {% endif %}
                             
-                            <td class="td-actions"> 
+                            <td class="td-actions">
+                                {% if item.etat == "Ramassée" or item.etat == "En cours..."%}
+                                <a href="#" class="text-info actions actions-refuse" style="pointer-events: none; cursor: default; opacity:0.4;">Demande de remboursement</a>
+                                <a href="#" class="text-info actions actions-refuse" style="pointer-events: none; cursor: default; opacity:0.4;">Demande d'échange</a>
+                                <a href="#" class="text-info actions actions-refuse" style="pointer-events: none; cursor: default; opacity:0.4;">Changement d'adresse</a>
+                                {% comment %} <a href="#" class="text-secondary actions tracking" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suivi</a> {% endcomment %}            
+                                {% else %}
                                 <a href="{% url 'refund' item.id_package %}" class="text-info actions">Demande de remboursement</a>
                                 <a href="{% url 'exchange' item.id_package %}" class="text-info actions">Demande d'échange</a>
-                                {% comment %} <a href="#" class="text-secondary actions tracking" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suivi</a> {% endcomment %}
+                                <a href="{% url 'exchange_address' item.id_package %}" class="text-info actions">Changement d'adresse</a>
+                                {% endif %}
                             </td>
                         </tr>
                         <!-- Modal -->

@@ -1,0 +1,78 @@
+{% extends 'dashbord/dashbord.html' %}
+{% load static %}
+
+<main>
+{% block content %}
+    {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
+    <div class = "form-package exchange">
+        <h4 class="title">Demande d'exchange</h4>
+        <div class="content">
+            <form method="POST" actions="" class="row g-3">
+                {% csrf_token %}
+                <div class="col-md-6 package">
+                    <label>Nom d'article : </label></br>
+                    {{form.article_name}}
+                </div>
+                <div class="col-md-6 package">
+                    <label>Ville : </label></br>
+                    <select class="form-select" aria-label="Default select example" name="city" id="city">
+                        <option selected first>Choisissez la ville</option>
+                        {% for city in citys %}
+                        <option value="{{city}}">{{city}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 package">
+                    <label>Adresse : </label></br>
+                    {{form.address}}
+                </div>
+                <div class="col-md-6 package dh">
+                    <label>Prix : </label></br>
+                    {{form.price}}
+                </div>
+                <div class="col-md-6 package">
+                    <label>Télephone : </label></br>
+                    {{form.phone_number}}
+                </div>
+                <div class="col-md-6 package">
+                    <label>Nom du client : </label></br>
+                    {{form.client_name}}
+                </div>
+                <div class="col-md-6 package">
+                    <label>Remarque : </label></br>
+                    {{form.remark}}
+                </div>
+    
+                {% if "edite" in request.build_absolute_uri %}
+                <div class="col-12 package">
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                </div>
+                {% else %}
+                <div class="col-12 package">
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    <script>
+        let inputPrice = document.getElementById("id_exchange_price");
+        inputPrice.setAttribute("value", "{{price}}")
+        inputPrice.setAttribute("disabled", "disabled")
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#city').selectize({
+                sortField: 'text',
+                delimiter: " - ",
+            });
+        });
+    </script>
+{% endblock %}
+</main>
+
+
+
+
+
+{% comment %} #ebebeb {% endcomment %}

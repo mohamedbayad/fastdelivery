@@ -32,10 +32,10 @@
 
 <body>
 	<div class="webpage">
-		<div class="container">
+		<div class="container-page">
 			{% include "dashboard-admin/parts-tool/navbar.html" %}
-			{% block content %}
 			<main>
+				{% block content %}
 				<div class="dashboard">
 					<div class="content">
 						<div class="cards">
@@ -76,6 +76,27 @@
 								</div>
 							</div>
 						</div>
+
+
+
+
+						<div class="block container text-center ">
+							<!-- Packages Box -->
+							<div class="row justify-content-between mb-5">
+								<div class="users show-data packages-box col-12 p-2">
+									<canvas id="myChart" width="100%"></canvas>
+								</div>
+								{% comment %} <div class="users show-data packages-box col-5">
+
+								</div> {% endcomment %}
+							</div>
+							<!-- end -->
+						</div>
+
+
+
+
+
 						<div class="block container text-center mt-5 ">
 							<!-- Packages Box -->
 							<div class="row justify-content-between mb-5">
@@ -150,7 +171,7 @@
 							<!-- end -->
 							<!-- custemers and admin-delivery -->
 							<div class="row justify-content-between mb-5">
-								<div class="users show-data custemers col-5">
+								<div class="users show-data custemers col-6">
 									<div class="top">
 										<h1>All users</h1>
 										<small class="ms-2 " style="color: #efcefa;">{{users.count}}</small>
@@ -485,8 +506,8 @@
 						</div>
 					</div>
 				</div>
+				{% endblock content %}
 			</main>
-			{% endblock content %}
 		</div>
 	</div>
 </body>
@@ -562,4 +583,115 @@
     })
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% comment %} <script>
+	const labels = Utils.months({count: 7});
+	const ctx = document.getElementById('myChart');
+	const data = {
+	labels: labels,
+	datasets: [{
+		label: 'My First Dataset',
+		data: [65, 59, 80, 81, 56, 55, 40],
+		backgroundColor: [
+		'rgba(255, 99, 132, 0.2)',
+		'rgba(255, 159, 64, 0.2)',
+		'rgba(255, 205, 86, 0.2)',
+		'rgba(75, 192, 192, 0.2)',
+		'rgba(54, 162, 235, 0.2)',
+		'rgba(153, 102, 255, 0.2)',
+		'rgba(201, 203, 207, 0.2)'
+		],
+		borderColor: [
+		'rgb(255, 99, 132)',
+		'rgb(255, 159, 64)',
+		'rgb(255, 205, 86)',
+		'rgb(75, 192, 192)',
+		'rgb(54, 162, 235)',
+		'rgb(153, 102, 255)',
+		'rgb(201, 203, 207)'
+		],
+		borderWidth: 1
+	},
+	{
+		label: 'My First Dataset',
+		data: [65, 20, 80, 3, 56, 40, 15],
+		backgroundColor: [
+		'rgba(255, 99, 132, 0.2)',
+		'rgba(255, 159, 64, 0.2)',
+		'rgba(255, 205, 86, 0.2)',
+		'rgba(75, 192, 192, 0.2)',
+		'rgba(54, 162, 235, 0.2)',
+		'rgba(153, 102, 255, 0.2)',
+		'rgba(201, 203, 207, 0.2)'
+		],
+		borderColor: [
+		'rgb(255, 99, 132)',
+		],
+		type: 'line',
+		borderWidth: 1
+	}]
+	};
+</script> {% endcomment %}
+
+<script>
+	const ctx = document.getElementById('myChart');
+  
+	new Chart(ctx, {
+	  type: 'bar',
+	  data: {
+		labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+		datasets: [{
+			label: 'My First Dataset',
+			data: [65, 59, 80, 81, 56, 55, 40],
+			backgroundColor: [
+			'rgba(255, 99, 132, 0.2)',
+			'rgba(255, 159, 64, 0.2)',
+			'rgba(255, 205, 86, 0.2)',
+			'rgba(75, 192, 192, 0.2)',
+			'rgba(54, 162, 235, 0.2)',
+			'rgba(153, 102, 255, 0.2)',
+			'rgba(201, 203, 207, 0.2)'
+			],
+			borderColor: [
+			'rgb(255, 99, 132)',
+			'rgb(255, 159, 64)',
+			'rgb(255, 205, 86)',
+			'rgb(75, 192, 192)',
+			'rgb(54, 162, 235)',
+			'rgb(153, 102, 255)',
+			'rgb(201, 203, 207)'
+			],
+			borderWidth: 1
+		},
+		{
+			label: 'My First Dataset',
+			data: [65, 20, 80, 3, 56, 40, 15],
+			backgroundColor: [
+			'rgba(255, 99, 132, 0.2)',
+			'rgba(255, 159, 64, 0.2)',
+			'rgba(255, 205, 86, 0.2)',
+			'rgba(75, 192, 192, 0.2)',
+			'rgba(54, 162, 235, 0.2)',
+			'rgba(153, 102, 255, 0.2)',
+			'rgba(201, 203, 207, 0.2)'
+			],
+			borderColor: [
+			'rgb(255, 99, 132)',
+			],
+			type: 'line',
+			borderWidth: 1
+		}]
+	  },
+	  options: {
+		scales: {
+		  y: {
+			beginAtZero: true
+		  }
+		}
+	  }
+	});
+  </script>
+  
+	
 </html>
