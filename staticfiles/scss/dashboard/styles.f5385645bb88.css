@@ -275,19 +275,18 @@ textarea,
   -webkit-box-shadow: 0 0 10px 0 #0000002e;
           box-shadow: 0 0 10px 0 #0000002e;
   margin: 0;
-  padding: 10px 10px 5px 10px;
   border-radius: 2px;
   max-height: 225px;
   cursor: default;
   overflow-y: scroll;
 }
-/* line 203, styles.scss */
+/* line 202, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .setting .ul-setting.active .content {
   border: 1px solid #d1b3c4;
   border-radius: 5px;
   margin-bottom: 5px;
 }
-/* line 207, styles.scss */
+/* line 206, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .setting .ul-setting.active .content .title {
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -298,12 +297,12 @@ textarea,
   border-bottom: 1px solid #d1b3c4;
   padding: 6px;
 }
-/* line 215, styles.scss */
+/* line 214, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .setting .ul-setting.active .content .message {
   font-size: 15px;
   padding: 5px;
 }
-/* line 223, styles.scss */
+/* line 222, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile img {
   width: 40px;
   height: 40px;
@@ -313,11 +312,11 @@ textarea,
   -o-object-fit: cover;
      object-fit: cover;
 }
-/* line 231, styles.scss */
+/* line 230, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile .ul-profile {
   display: none;
 }
-/* line 234, styles.scss */
+/* line 233, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile .ul-profile.active {
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
@@ -327,12 +326,12 @@ textarea,
   padding: 0;
   margin: 0;
   right: 0;
-  bottom: -96px;
-  border-radius: 2px;
+  bottom: -97px;
+  border-radius: 10px;
   text-decoration: none;
   color: #fff;
 }
-/* line 246, styles.scss */
+/* line 245, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile .ul-profile.active a {
   text-decoration: none;
   color: #fff;
@@ -341,7 +340,7 @@ textarea,
   line-height: 44px;
   padding: 15px 20px;
 }
-/* line 255, styles.scss */
+/* line 254, styles.scss */
 .webpage .container main .bg-light .container-fluid .user .profile::before {
   content: "";
   width: 10px;
@@ -353,11 +352,11 @@ textarea,
   right: 4px;
   bottom: 6px;
 }
-/* line 270, styles.scss */
+/* line 269, styles.scss */
 .webpage .container main .dashboard {
   margin: 40px 20px 20px 20px;
 }
-/* line 273, styles.scss */
+/* line 272, styles.scss */
 .webpage .container main .dashboard .content .cards {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -372,7 +371,7 @@ textarea,
       flex-wrap: wrap;
   margin: 50px auto;
 }
-/* line 279, styles.scss */
+/* line 278, styles.scss */
 .webpage .container main .dashboard .content .cards .card {
   border: none !important;
   width: 250px;
@@ -384,7 +383,7 @@ textarea,
           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.082);
   margin: 5px;
 }
-/* line 287, styles.scss */
+/* line 286, styles.scss */
 .webpage .container main .dashboard .content .cards .card .content {
   margin: 10px;
   display: -webkit-box;
@@ -398,36 +397,36 @@ textarea,
   width: 100%;
   height: 100%;
 }
-/* line 295, styles.scss */
+/* line 294, styles.scss */
 .webpage .container main .dashboard .content .cards .card .content .pric h3 {
   font-size: 30px;
   margin: 10px 0;
   color: #735D78;
 }
-/* line 300, styles.scss */
+/* line 299, styles.scss */
 .webpage .container main .dashboard .content .cards .card .content .pric p {
   margin: 10px 0;
   font-size: 12px;
   width: 110px;
 }
-/* line 306, styles.scss */
+/* line 305, styles.scss */
 .webpage .container main .dashboard .content .cards .card .content i {
   font-size: 50px;
   color: #735D78;
 }
-/* line 311, styles.scss */
+/* line 310, styles.scss */
 .webpage .container main .dashboard .content .cards .card:hover {
   background-color: #735D78;
 }
-/* line 314, styles.scss */
+/* line 313, styles.scss */
 .webpage .container main .dashboard .content .cards .card:hover .content .pric h3, .webpage .container main .dashboard .content .cards .card:hover .content .pric p {
   color: #fff;
 }
-/* line 318, styles.scss */
+/* line 317, styles.scss */
 .webpage .container main .dashboard .content .cards .card:hover .content i {
   color: #D1B3C4;
 }
-/* line 323, styles.scss */
+/* line 322, styles.scss */
 .webpage .container main .dashboard .content .welcome {
   margin: 5px;
   width: 100%;
@@ -442,7 +441,7 @@ textarea,
       -ms-flex-align: end;
           align-items: flex-end;
 }
-/* line 330, styles.scss */
+/* line 329, styles.scss */
 .webpage .container main .dashboard .content .welcome .content-welcome {
   width: 100%;
   height: 200px;
@@ -462,7 +461,7 @@ textarea,
   -webkit-box-shadow: 0 0 20px 0 #0000000a;
           box-shadow: 0 0 20px 0 #0000000a;
 }
-/* line 341, styles.scss */
+/* line 340, styles.scss */
 .webpage .container main .dashboard .content .welcome .content-welcome .text {
   height: 100%;
   display: -webkit-box;
@@ -476,27 +475,27 @@ textarea,
       -ms-flex-pack: center;
           justify-content: center;
 }
-/* line 346, styles.scss */
+/* line 345, styles.scss */
 .webpage .container main .dashboard .content .welcome .content-welcome .text .title {
   font-size: 40px;
   font-weight: 800;
   color: #4B4B4B;
   text-transform: capitalize;
 }
-/* line 351, styles.scss */
+/* line 350, styles.scss */
 .webpage .container main .dashboard .content .welcome .content-welcome .text .title span {
   font-size: 32px;
   color: #735D78;
   font-weight: 600;
   text-transform: uppercase;
 }
-/* line 358, styles.scss */
+/* line 357, styles.scss */
 .webpage .container main .dashboard .content .welcome .content-welcome .text .desc {
   font-size: 20px;
   width: 345px;
   font-weight: 300;
 }
-/* line 365, styles.scss */
+/* line 364, styles.scss */
 .webpage .container main .dashboard .content .welcome .content-welcome .image-svg img {
   width: 29%;
   position: absolute;
@@ -506,7 +505,7 @@ textarea,
   height: -moz-fit-content;
   height: fit-content;
 }
-/* line 375, styles.scss */
+/* line 374, styles.scss */
 .webpage .container main .dashboard .content .graphbox {
   width: 100%;
   height: -webkit-fit-content;
@@ -525,7 +524,7 @@ textarea,
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-/* line 383, styles.scss */
+/* line 382, styles.scss */
 .webpage .container main .dashboard .content .graphbox .box {
   background: #fff;
   padding: 20px;
@@ -535,28 +534,28 @@ textarea,
   border-radius: 5px;
   margin: 20px 0;
 }
-/* line 390, styles.scss */
+/* line 389, styles.scss */
 .webpage .container main .dashboard .content .graphbox .box h5 {
   text-align: center;
   color: #735D78;
   margin: 8px auto;
 }
-/* line 397, styles.scss */
+/* line 396, styles.scss */
 .webpage .container main .dashboard .content .parcels {
   background-color: #fff;
   padding: 20px;
   margin: 50px auto;
   border-radius: 5px;
 }
-/* line 403, styles.scss */
+/* line 402, styles.scss */
 .webpage .container main .dashboard .content .parcels .content .header-parcels {
   width: 100%;
 }
-/* line 405, styles.scss */
+/* line 404, styles.scss */
 .webpage .container main .dashboard .content .parcels .content .header-parcels h1 {
   font-size: 30px;
 }
-/* line 409, styles.scss */
+/* line 408, styles.scss */
 .webpage .container main .dashboard .content .parcels .content .tb {
   max-height: 335px;
   overflow-y: scroll;
@@ -1908,4 +1907,4 @@ textarea,
   }
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=styles.css.25dece449379.map */
