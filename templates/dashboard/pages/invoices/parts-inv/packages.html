@@ -1,0 +1,58 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+    <div class="get-data collections invoices">
+        <div class="content">
+            <h1>{% trans "Tous Les Colis" %}</h1>
+            <p>{% trans "Total des résultats trouvés" %}: <span style="color:green">{{count_packages}}</span></p>
+            <div class="overflow-auto">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">{% trans "Etat" %}</th>
+                            <th scope="col">{% trans "Article" %}</th>
+                            <th scope="col">{% trans "Prix" %}</th>
+                            <th scope="col">{% trans "Tél" %}</th>
+                            <th scope="col">{% trans "Ville" %}</th>
+                            <th scope="col">{% trans "client" %}</th>
+                            <th scope="col">{% trans "Adresse" %}</th>
+                            <th scope="col">{% trans "Date" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in parcel_inv_packs %}
+                            {% for pack in item.packages.all %}
+                                <tr class="invoice">
+                                    <td class="id">{{pack.id_package}}</td>
+                                    {% if pack.etat == "Picked Up"%}
+                                        <td><span class="badge text-bg-warning">{{pack.etat}}</span></td>
+                                        {% elif pack.etat == "Cancelled"%}
+                                        <td><span class="badge text-bg-danger">{{pack.etat}}</span></td>
+                                        {% elif pack.etat == "Delivered"%}
+                                        <td><span class="badge text-bg-success">{{pack.etat}}</span></td>
+                                        {% elif pack.etat == "No answer"%}
+                                        <td><span class="badge text-bg-info">{{pack.etat}}</span></td>
+                                        {% else %}
+                                        <td><span class="badge text-bg-dark">{{pack.etat}}</span></td>
+                                    {% endif %}
+                                    <td>{{pack.article_name}}</td>
+                                    <td>{{pack.price}}</td>
+                                    <td>{{pack.phone_number}}</td>
+                                    <td>{{pack.city}}</td>
+                                    <td>{{pack.client_name}}</td>
+                                    <td>{{pack.address}}</td>
+                                    <td>{{pack.date_created}}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

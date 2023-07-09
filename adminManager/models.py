@@ -13,7 +13,9 @@ class ProfileManDelivery(models.Model):
     last_name = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
     phone_number = models.CharField(max_length=100, blank=True, null=True)
-    # profile = models.ImageField(upload_to="profiles/men-delivery/%Y/%m/%d", null=True, blank=True)
+    
+    DisplayFields = ["id", "user", "first_name", "last_name", "city", "phone_number"]
+    SearchbleFields = ["first_name", "last_name"]
 
     def __str__(self):
         return f"{self.first_name} - {self.last_name}"
@@ -26,8 +28,10 @@ class ProfileAdminDelivery(models.Model):
     city = models.CharField(max_length=200, null=True, blank=True)
     packages = models.ManyToManyField(NewPackage, blank=True)
     men_delivery = models.ManyToManyField(ProfileManDelivery, blank=True)
-    # profile = models.ImageField(upload_to="profiles/admin-delivery/%Y/%m/%d", null=True, blank=True)
-
+    
+    DisplayFields = ["id", "user", "phone_number", "city"]
+    SearchbleFields = ['phone_number', 'city']
+    
     def __str__(self):
         return str(self.user)
 
@@ -38,5 +42,8 @@ class AddPackage(models.Model):
     man_delivery = models.ForeignKey(
         ProfileManDelivery, on_delete=models.CASCADE, blank=True, null=True)
     set_packages = models.ManyToManyField(NewPackage, blank=True)
+
+    DisplayFields = ["id", "user", "man_delivery"]
+
     def __str__(self):
         return f"package {self.man_delivery}"

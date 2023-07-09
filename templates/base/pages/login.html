@@ -1,5 +1,6 @@
 {% extends "base/home.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block description %}{% endblock description %}
 {% block keywords %}{% endblock keywords %}
@@ -7,18 +8,21 @@
 {% block keywords %}<meta name="keywords" content="brigaddelivery, delivery"/>{% endblock keywords %} {% endcomment %}
 
 {% block content %}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="	sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <div class="form-login">
+    <header>
+        <div class="container-x" style="height: 0;">
+            {% include "base/parts-tool/navbar.html" %}
+        </div>
+    </header>
+    <div class="form-login mt-5">
         <div class="content">
             <div class="form-content">
                 {% if messages %}
                     {% for message in messages %}
                         {% if message.tags == "success" %}
-                        <div class="alert alert-success" role="alert">
+                            <div class="alert alert-success" role="alert">
                                 <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
                             </div>
-                            {% elif  message.tags == "error"%}
+                        {% elif  message.tags == "error"%}
                             <div class="alert alert-danger" role="alert">
                                 <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
                             </div>
@@ -26,26 +30,26 @@
                     {% endfor %}
                 {% endif %}
                 <form action="" method="POST">
-                    <h2>S'IDENTIFIER</h2>
+                    <h2>{% trans "connexion" %}</h2>
                     {% csrf_token %}
-                    <label>Nom d'utilisateur: </label><br>
-                    <input type="text" name="username" id="username" maxlength="40" placeholder="Username" required = "required"><br>
-                    <label>Mot de passe: </label><br>
-                    <input type="password" name="password" id="password"  placeholder="Mot de passe" required = "required"><br>
-                    <input type="submit" id="button" name="inscription" id="inscription" value="S'IDENTIFIER"><br>
+                    <label>{% trans "Nom d'utilisateur" %}: </label><br>
+                    <input type="text" name="username" id="username" maxlength="40" placeholder="{% trans "Nom d'utilisateur" %}" required = "required"><br>
+                    <label>{% trans "Mot de passe" %}: </label><br>
+                    <input type="password" name="password" id="password"  placeholder="{% trans "Mot de passe" %}" required = "required"><br>
+                    <input type="submit" id="button" name="inscription" id="inscription" value="{% trans "connexion" %}"><br>
                     <p class='mes-user-pasw'>{{message}}</p>
                     <div class="text-success">
                         <hr>
                     </div>
                     <div class="register">
-                        <p>Vous n'avez pas de compte? <a id="register" href="{% url "register" %}"> Créer</a></p>
+                        <p>{% trans "Vous n'avez pas de compte?" %} <a id="register" href="{% url "register" %}"> {% trans "Créer" %}</a></p>
                     </div>
                     <div style="text-align: center;" class="forget-pass">
-                        <p>J'ai oublié le mot de passe? <a id="password_reset" href="{% url "password_reset" %}"> J'ai oublié </a></p>
+                        <p>{% trans "J'ai oublié le mot de passe?" %} <a id="password_reset" href="{% url "password_reset" %}"> {% trans "J'ai oublié" %} </a></p>
                     </div>
                 </form>
             </div>
-        <div class="pattern-deco" style="background-image: url({% static 'img/pattern.png' %})">
+            <div class="pattern-deco" style="background-image: url({% static 'img/pattern.png' %})">
         </div>
     </div>
     </div>

@@ -7,5 +7,8 @@ class City(models.Model):
     price_r = models.IntegerField()
     price_c = models.IntegerField()
 
+    DisplayFields = ["id", "name", "price_l", "price_r", "price_c"]
+    SearchbleFields = ["name"]
+
     def __str__(self):
         return self.name

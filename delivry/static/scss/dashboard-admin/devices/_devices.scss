@@ -1,4 +1,85 @@
+
+@media screen and (max-width:1024px) {
+    .webpage .container-page {
+        display: block;
+    }
+    .webpage .container-page main {
+        width: 100% !important;
+    }
+    .nav-bar {
+        transform: translateX(-335px);
+        transition: transform .5s ease;
+        position: fixed !important;
+        z-index: 9999;
+        width: 330px !important;
+    }
+    .navbar {
+        .container-fluid {
+            .btn-nav {
+                width: 50px !important;
+                height: 50px !important;
+                cursor: pointer;
+                .icon-navbar {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    height: 100%;
+                    span {
+                        border: 1px solid #735d78;
+                        margin: 3px !important;
+                        border-radius: 5px;
+                        width: 40px;
+                    }
+                    span.center {
+                        width: 30px;
+                    }
+                }
+            }
+        }
+    }
+    .nav-bar.active {
+        transform: translateX(0px);
+        .content {
+            .nav-close {
+                width: 100%;
+                position: relative;
+                display: block !important;
+                i {
+                    position: absolute;
+                    right: 0;
+                    top: 20px;
+                    font-size: 45px;
+                    color: #ffff;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .cards {
+        .card {
+            width: 45% !important;
+            .content {
+                .pric {
+                    h3 {
+                        font-size: 40px !important;
+                    }
+                    p {
+                        font-size: 16px !important;
+                        width: fit-content !important;
+                    }
+                }
+                i {
+                    font-size: 65px !important;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 768px){
+    .nav-bar {
+        width: 275px;
+    }
     .cards {
         .card {
             margin: 5px auto !important;
@@ -18,12 +99,27 @@
         }
     }
 }
+
+
 @media screen and (max-width: 425px){
     .cards {
         justify-content: center !important;
         .card {
-            width: 90% !important;
-            margin: 5px auto !important;
+            width: 75% !important;
+            .content {
+                .pric {
+                    h3 {
+                        font-size: 30px !important;
+                    }
+                    p {
+                        font-size: 12px !important;
+                        width: fit-content !important;
+                    }
+                }
+                i {
+                    font-size: 45px !important;
+                }
+            }
         }
     }
     .show-data {

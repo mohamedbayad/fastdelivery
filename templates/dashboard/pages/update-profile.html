@@ -1,0 +1,84 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+
+<main>
+    {% block content %}
+    <div class="form-profile">
+        <div class="content">
+            <div class="form-content">
+                <div class="title">
+                    <h4>{% trans "Modifier les informations de profil" %} </h4>
+                </div>
+                <form class="row g-3" method="POST" enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <div class="col-md-6 f_input">
+                        <label class="form-label">{% trans "Nom" %}: </label></br>
+                        {{form.first_name}}
+                    </div>
+                    <div class="col-md-6 f_input">
+                        <label class="form-label">{% trans "Prénom" %}: </label></br>
+                        {{form.last_name}}
+                    </div>
+                    <div class="col-12 f_input">
+                        <label class="form-label">{% trans "Adresse" %}: </label></br>
+                        {{form.address}}
+                    </div>
+                    <div class="col-md-6 f_input">
+                        <label class="form-label">{% trans "Nom de la boutique" %}: </label></br>
+                        {{form.business_name}}
+                    </div>
+                    <div class="col-md-6 f_input">
+                        <label class="form-label">{% trans "Tél" %}: </label></br>
+                        {{form.phone}}
+                    </div>
+                    <div class="col-md-6 f_input">
+                        <label class="form-label">{% trans "Banque" %}: </label></br>
+                        {{form.bank}}
+                    </div>
+                    <div class="col-md-6 f_input">
+                        <label class="form-label">{% trans "RIP" %}: </label></br>
+                        {{form.rip}}
+                    </div>
+                    <div class="col-md-6 f_input upload_profile">
+                        <label class="form-label">{% trans "Profile" %}: </label></br>
+                        {{form.image}}
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">{% trans "Modifier" %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script> 
+    document.getElementById("id_bank").setAttribute("class","form-control")
+    
+    let inputs = document.querySelectorAll("input")
+    for (let i = 0; i < inputs.length; ++i) {
+        inputs[i].setAttribute("class","form-control")
+    }
+    
+    document.getElementById("id_first_name").setAttribute("value", "{{data.firstname}}")
+    document.getElementById("id_last_name").setAttribute("value", "{{data.lastname}}")
+    document.getElementById("id_address").setAttribute("value", "{{data.address}}")
+    document.getElementById("id_phone").setAttribute("value", "{{data.phone}}")
+    document.getElementById("id_business_name").setAttribute("value", "{{data.business_name}}")
+    document.getElementById("id_rip").setAttribute("value", "{{data.rip}}")
+    
+    let options = document.querySelectorAll("#id_bank option")
+    for (let i = 0; i < options.length; i++) {
+        options[i].removeAttribute("selected")
+        if (options[i].innerHTML === "{{data.bank}}") {
+            options[i].setAttribute("selected", "selected")
+        }
+    }
+
+    document.getElementById("image-clear_id").style.display = "none"
+    document.querySelector('.upload_profile').children[4].remove()
+
+</script>
+{% endblock content %}
+</main>

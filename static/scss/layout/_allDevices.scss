@@ -38,6 +38,7 @@
 @media (max-width : 768px) {
     header {
         .container {
+            height: 120vh !important;
             .top-header {
                 .content {
                     .nav-top,
@@ -92,24 +93,72 @@
                     display: flex;
                     flex-wrap: wrap;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-end;
                     flex-direction: column-reverse;
                     .txt-main-header {
-                        margin-top: 110px;
+                        margin-top: 0;
+                        text-align: center;
+                        margin-top: 15px;
                     }
                     .image-main {
-                        width: 65%;
-                        margin-top: 230px;
+                        width: 50% !important;
+                        margin-top: 0;
                     }
                 }
             }
         }
     }
+    .our-work {
+        .waver-top {
+            bottom: 406px !important;
+        }
+        .waver-bottom {
+            bottom: -171px !important;
+        }
+        .container {
+            padding: 40px 10px;
+            flex-wrap: wrap;
+            .box {
+                flex: 1 45%;
+                margin: 10px;
+            }
+        }
+    }
     .pricing {
         .container {
+            margin: 0 !important;
             .content {
+                justify-content: center;
                 .pricing-thumb {
                     width: 314px;
+                }
+            }
+        }
+    }
+
+    // pages
+    .form-login {
+        transition: all .5s ease-in-out;
+        .content {
+            .form-content {
+                form {
+                    width: 80% !important;
+                    h2 {
+                        font-size: 25px !important;
+                    }
+                }
+            }
+        }
+    }
+    .form-register {
+        transition: all .5s ease-in-out;
+        .content {
+            .form-content {
+                form {
+                    width: 80% !important;
+                    h2 {
+                        font-size: 25px !important;
+                    }
                 }
             }
         }
@@ -120,6 +169,7 @@
     header {
         .container {
             .main-header {
+                height: auto !important;
                 .content {
                     display: flex;
                     flex-wrap: wrap;
@@ -127,34 +177,50 @@
                     justify-content: center;
                     flex-direction: column-reverse;
                     .txt-main-header {
-                        margin-top: 55px;
-                        h5 {
+                        margin-top: 7px;
+                        padding: 0 15px;
+                        width: 100%;
+                        h1 {
                             font-size: 15px;
                         }
-                        p {
-                            font-size: 23px !important;
+                        h2 {
+                            font-size: 22px !important;
+                            width: 100% !important;
+                        }
+                        a.ar {
+                            padding: 15px 30px;
+                            &::before {
+                                left: inherit;
+                                right: inherit;
+                            }   
                         }
                     }
                     .image-main {
-                        width: 80%;
-                        margin-top: 230px;
+                        width: 80% !important;
+                        margin-top: 56px !important;
                     }
                 }
             }
         }
     }
     .our-work {
+        .waver-top {
+            top: -94px !important;
+        }
+        .waver-bottom {
+            bottom: -94px !important;
+        }
         .container {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             flex-direction: column;
+            padding: 20px 0 !important;
             .box {
                 margin: 5px auto !important;
             }
         }
     }
-
     .pricing {
         .container {
             h1 {
@@ -164,11 +230,60 @@
             #search {
                 width: 325px;
             }
-            .content {
-                .pricing-thumb {
-                    width: 100%;
+            // .content {
+            //     .pricing-thumb {
+            //         width: 100%;
+            //     }
+            // }
+        }
+    }
+    // pages
+    .form-login {
+        .content {
+            .form-content {
+                width: 100% !important;
+                form {
+                    width: 90% !important;
+                    padding: 30px 10px 10px 10px !important;
                 }
             }
+            .pattern-deco {
+                position: fixed;
+                width: 100% !important;
+                height: 150px !important;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+        }
+    }
+    .form-register {
+        .content {
+            .form-content {
+                width: 100% !important;
+                form {
+                    width: 90% !important;
+                    padding: 30px 10px 10px 10px !important;
+                }
+            }
+            .pattern-deco {
+                position: fixed;
+                width: 100% !important;
+                height: 150px !important;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+        }
+    }
+    footer {
+        flex-direction: column !important;
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+        p {
+            font-size: 14px !important;
+            margin-bottom: 1rem !important;
+            text-align: center;
         }
     }
 }
@@ -190,9 +305,15 @@
         }
     }
     .our-work {
+        .waver-top {
+            top: -83px !important;
+        }
+        .waver-bottom {
+            bottom: -83px !important;
+        }
         .container {
             .box {
-                width: 100%;
+                width: 90%;
             }
         }
     }
@@ -200,7 +321,6 @@
         margin: 30px auto;
         padding: 30px 20px;
         .container {
-            margin: 20px 15px;
             h1 {
                 font-size: 23px;
             }
@@ -234,6 +354,14 @@
     .nav-mobile {
         span:not(:nth-child(2)) {
             width: 35px !important;
+        }
+    }
+    .our-work {
+        .waver-top {
+            top: -71px !important;
+        }
+        .waver-bottom {
+            bottom: -71px !important;
         }
     }
     .pricing {

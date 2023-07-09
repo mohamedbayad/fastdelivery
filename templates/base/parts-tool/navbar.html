@@ -1,5 +1,75 @@
 {% load static %}
-<div class="top-header insc conn">
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+
+
+<nav class="navbar top-header sticky-lg-top navbar-expand-lg px-3">
+    <div class="container-fluid">
+      <a class="navbar-brand text-uppercase" href="{% url "home" %}"><h3 class="mb-0"><img src="{% static 'img/logo/logo.png' %}" width="150px"/></h3></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url "home" %}">{% trans "Accueil" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#our-work">{% trans "notre travail" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#pricing">{% trans "tarification" %}</a>
+          </li>
+        </ul>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'register' %}">{% trans "inscription" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'connexion' %}">{% trans "connexion" %}</a>
+          </li>
+          <li class="nav-item d-flex px-3 align-items-center">
+              <select class="form-select form-select-sm" id="mySelect" onchange='submitForm()'>
+                  
+                  {% for language in languages %}
+                  
+                  <option onclick='submitValue()' value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                      {{ language.name_local }} ({{ language.code }})
+                  </option >
+                  {% endfor %}
+              </select>
+              <form action="{% url 'set_language' %}" id="myForm" method="post">
+                  {% csrf_token %}
+                  <input name="next" type="hidden" value="{{ redirect_to }}">
+                  <input type="hidden" name="language" id="customValue" >
+              </form>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {% comment %} <div class="top-header insc conn">
     <div class="content">
         <div class="logo">
             <a href="/"><h2 id="logo">brigad delivery</h2></a>
@@ -15,14 +85,14 @@
                 <a href="/#our-work" id="notre-travail">notre travail</a>
                 <a href="/#pricing" id="tarification">tarification</a>
             </nav>
-        </div>
-        <div class="register">
-            <div class="i-c" id="inscription">
-                <a href="{% url 'register' %}" id="insc">inscription</a>
-            </div>
-            <div class="i-c" id="connexion">
-                <a href="{% url 'connexion' %}" id="con">connexion</a>
+            <div class="register">
+                <div class="i-c" id="inscription">
+                    <a href="{% url 'register' %}" id="insc">inscription</a>
+                </div>
+                <div class="i-c" id="connexion">
+                    <a href="{% url 'connexion' %}" id="con">connexion</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</div> {% endcomment %}

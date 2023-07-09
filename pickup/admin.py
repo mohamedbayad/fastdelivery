@@ -3,4 +3,7 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(Received)
+@admin.register(Received)
+class ReceivedAdmin(admin.ModelAdmin):
+    list_display = Received.DisplayFields
+    search_fields = Received.SearchbleFields

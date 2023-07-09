@@ -15,7 +15,6 @@ from boxPackages.models import NewBox
 from contactUs.models import Contact
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
-from PIL import Image, ImageDraw, ImageFont
 
 # Create your views here.
 
@@ -26,7 +25,7 @@ def dashboardAdmin(request):
     # get all packages box
     packages_box = NewBox.objects.all()
     # get all messages 
-    messages = Contact.objects.all()
+    message = Contact.objects.all()
     # get all exchange
     exchanges = ExchangeRequest.objects.all()
     # get all orders tracking
@@ -42,9 +41,9 @@ def dashboardAdmin(request):
     # get count packages
     total_packages = NewPackage.objects.all().count()
     # get count all packages delivered
-    total_packages_deliveres = NewPackage.objects.filter(etat="Livrée").count()
+    total_packages_deliveres = NewPackage.objects.filter(etat="Delivered").count()
     # get total packages
-    packages = NewPackage.objects.exclude(etat="EN ATTENTE DE RAMASSAGE")
+    packages = NewPackage.objects.exclude(etat="WAITING FOR PICKUP")
     
     TOTAL_FEE = 0
     package_invoices = Received.objects.filter(invoise=True)
@@ -62,7 +61,6 @@ def dashboardAdmin(request):
             if formsTracking.is_valid():
                 formsTracking.save()
                 return redirect("dashboard-admin")
-    
 
     formsBox = EditeBox()
     if request.POST.get("id_box") is not None:
@@ -74,7 +72,6 @@ def dashboardAdmin(request):
                 formsBox.save()
                 return redirect("dashboard-admin")
 
-    
 
     context = {
         "t_n_i_c": TOTAL_NET_INCOME,
@@ -90,10 +87,134 @@ def dashboardAdmin(request):
         "formsTracking": formsTracking,
         "packages_box": packages_box,
         "formsBox": formsBox,
-        "messages": messages,
+        "support": message,
     }
 
     return render(request, "dashboard-admin/dashboard.html", context)
+
+
+################## pages ##################
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin"])
+def boxPackages (request):
+    # get all packages box
+    packages_box = NewBox.objects.all()
+    formsBox = EditeBox()
+    if request.POST.get("id_box") is not None:
+        instancebox = NewBox.objects.get(id_box=request.POST.get("id_box"))
+        formsBox = EditeBox(instance=instancebox)
+        if request.method == 'POST':
+            formsBox = EditeBox(request.POST, instance=instancebox)
+            if formsBox.is_valid():
+                formsBox.save()
+                return redirect("parcel_box")
+    context = {
+        "formsBox":formsBox,
+        "packages_box":packages_box,
+    }
+    return render(request, "dashboard-admin/pages/parcel-box.html", context)
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin"])
+def tracking (request):
+    # get all orders tracking
+    ordersTracking = Tracking.objects.all()
+
+    formsTracking = AddNewTracking()
+    if request.POST.get("id_received") is not None:
+        instanceTracking = Tracking.objects.get(id_received=request.POST.get("id_received"))
+        formsTracking = AddNewTracking(instance=instanceTracking)
+        if request.method == 'POST':
+            formsTracking = AddNewTracking(request.POST, instance=instanceTracking)
+            if formsTracking.is_valid():
+                formsTracking.save()
+                return redirect("dashboard-admin")
+    context = {
+        "formsTracking":formsTracking,
+        "ordersTracking":ordersTracking,
+    }
+    return render(request, "dashboard-admin/pages/tracking.html", context)
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin"])
+def customers(request):
+    # get all users
+    users = Profile.objects.all()
+
+    context = {
+        "users":users,
+    }
+    return render(request, "dashboard-admin/pages/customer.html", context)
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin"])
+def adminDelivery(request):
+    # get all admins delivery
+    admins_delivery = ProfileAdminDelivery.objects.all()
+
+    context = {
+        "admins_delivery":admins_delivery,
+    }
+    return render(request, "dashboard-admin/pages/admin_delivery.html", context)
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin"])
+def package(request):
+    # get total packages
+    packages = NewPackage.objects.exclude(etat="WAITING FOR PICKUP")
+
+    context = {
+        "packages":packages,
+    }
+    return render(request, "dashboard-admin/pages/packages.html", context)
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin"])
+def exchange(request):
+     # get all exchange
+    exchanges = ExchangeRequest.objects.all()
+
+    context = {
+        "exchanges":exchanges,
+    }
+    return render(request, "dashboard-admin/pages/exchanges.html", context)
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin"])
+def refundPage(request):
+    # get all refund
+    refunds = RefundRequest.objects.all()
+
+    context = {
+        "refunds":refunds,
+    }
+    return render(request, "dashboard-admin/pages/refunds.html", context)
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin"])
+def invoice(request):
+    # get data invoices
+    receivesd = Received.objects.all()
+    invoices = Received.objects.filter(invoise=True)
+
+    context = {
+        "invoices":invoices,
+        "receivesd":receivesd,
+    }
+    return render(request, "dashboard-admin/pages/invoices.html", context)
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin"])
+def support(request):
+    # get all messages 
+    messages = Contact.objects.all()
+
+    context = {
+        "messages":messages,
+    }
+    return render(request, "dashboard-admin/pages/support.html", context)
+
 
 
 @login_required(login_url="connexion")
@@ -102,7 +223,7 @@ def viewProfileUser(request, pk):
 
     # get data to send in cards
     total_packages_deliveres = NewPackage.objects.filter(
-        user=pk, etat="Livrée").count()
+        user=pk, etat="Delivered").count()
     total_packages = NewPackage.objects.filter(user=pk).count()
 
     packages = NewPackage.objects.filter(user=pk)
@@ -113,10 +234,10 @@ def viewProfileUser(request, pk):
     FIN_TOTAL = 0
 
     for pack in packages:
-        if pack.etat == "Annulée" or pack.etat == "Livrée" or pack.etat == "Refusée" or "Retournée" in pack.etat:
+        if pack.etat == "Cancelled" or pack.etat == "Delivered" or pack.etat == "Refused" or "Returned" in pack.etat:
             # TOTAL_FEE += pack.withdrawn_canceled + \
             #     pack.withdrawn_livery + pack.withdrawn_refused
-            if pack.etat == "Livrée":
+            if pack.etat == "Delivered":
                 TOTAL_NET_INCOME += pack.price
     for invoice in invoices:
         TOTAL_FEE += invoice.total_withdrawn
@@ -180,7 +301,7 @@ def pdfInvoicesAdmin(request, pk, npk):
 
     for package in dataPackages:
         for t in package.packages.all():
-            if t.etat == "Livrée":
+            if t.etat == "Delivered":
                 total_price += t.price
         total_withdraw += package.total_withdrawn
 
@@ -258,10 +379,10 @@ def viewAdminMenDelivery(request, pk):
     total_packages = 0
 
     for item in data_admin:
-        packages = item.packages.exclude(etat="EN ATTENTE DE RAMASSAGE")
+        packages = item.packages.exclude(etat="WAITING FOR PICKUP")
         total_packages = packages.count()
         for package in packages:
-            if package.etat == "Livrée":
+            if package.etat == "Delivered":
                 TOTAL_PACKAGE_DELIVERED += 1
                 TOTAL_MONEY += package.price
                 TOTAL_FEE += package.withdrawn_canceled + \
@@ -299,7 +420,7 @@ def viewManDelivery(request, pk):
 
     for item in man_delivery:
         for price_pack in item.set_packages.all():
-            if price_pack.etat == "Livrée":
+            if price_pack.etat == "Delivered":
                 TOTAL_PACKAGE_DELIVERED += 1
                 TOTAL_MONEY += price_pack.price
                 TOTAL_FEE += price_pack.withdrawn_canceled + \
@@ -386,7 +507,7 @@ def addPackages(request, pk):
 def addManDelivery(request, pk):
     form_user = CreateNewUserDelivery()
     form_profile = CreateNewProfileDelivery()
-    admin_deli = ProfileAdminDelivery.objects.get(user=request.user)
+    admin_deli = ProfileAdminDelivery.objects.filter(user=request.user)
     if request.method == "POST":
         form_profile = CreateNewProfileDelivery(request.POST)
         form_user = CreateNewUserDelivery(request.POST)
@@ -398,7 +519,7 @@ def addManDelivery(request, pk):
             obj2 = form_profile.save(commit=False)
             obj2.user = User.objects.get(id=obj.id)
             obj2.save()
-            admin_deli.men_delivery.add(obj2)
+            admin_deli[0].men_delivery.add(obj2)
             return redirect("add_delivery", request.user.id)
 
     context = {
@@ -415,3 +536,92 @@ def addPackagesToAdminDelivery():
         for admin in admins_delivery:
             if package.city.lower() == admin.city.lower():
                 admin.packages.add(package)
+
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin", "admins-delivery"])
+def settings(request):
+    setting_data = Setting.objects.all()
+    citys = City.objects.all()
+    context = {
+        "setting_data":setting_data,
+        "citys":citys,
+    }
+    return render(request, "dashboard-admin/pages/settings/all_settings.html", context)
+
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin", "admins-delivery"])
+def addCity(request):
+    form_city = AddCity()
+    if request.method == "POST":
+        form_city = AddCity(request.POST)
+        if form_city.is_valid:
+            form_city.save()
+            return redirect("addCity")
+            
+    return render(request, "dashboard-admin/pages/settings/city/add.html")
+
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin", "admins-delivery"])
+def editCity(request, pk):
+    city = City.objects.get(id=pk)
+    form_city = AddCity()
+    if request.method == "POST":
+        form_city = AddCity(request.POST, instance=city)
+        if form_city.is_valid:
+            form_city.save()
+            return redirect("settings")
+    context = {
+        "city":city,
+    }
+            
+    return render(request, "dashboard-admin/pages/settings/city/edit.html", context)
+
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin", "admins-delivery"])
+def deleteCity(request, pk):
+    city = City.objects.get(id=pk)
+    city.delete()
+    return redirect("settings")
+
+
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin", "admins-delivery"])
+def addUpdate(request):
+    form_update = AddUpdate()
+    if request.method == "POST":
+        form_update = AddUpdate(request.POST)
+        if form_update.is_valid:
+            form_update.save()
+            return redirect("addUpdate")
+            
+    return render(request, "dashboard-admin/pages/settings/update_platform/add.html")
+
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin", "admins-delivery"])
+def editUpdate(request, pk):
+    update = Setting.objects.get(id=pk)
+    form_update = AddUpdate()
+    if request.method == "POST":
+        form_update = AddUpdate(request.POST, instance=update)
+        if form_update.is_valid:
+            form_update.save()
+            return redirect("settings")
+    context = {
+        "update":update,
+    }
+            
+    return render(request, "dashboard-admin/pages/settings/update_platform/edit.html", context)
+
+
+@login_required(login_url="connexion")
+@allowedUsers(allowedGroups=["admin", "admins-delivery"])
+def deleteUpdate(request, pk):
+    update = Setting.objects.get(id=pk)
+    update.delete()
+    return redirect("settings")

@@ -13,6 +13,10 @@ td {
     // padding: 1.1rem 0.5rem !important;
     text-align: center;
 }
+.form-select:focus {
+    border-color: transparent !important;
+    box-shadow: 0 0 0 0.25rem rgba(115, 93, 120, 0.22) !important;
+}
 input,
 textarea,
 .form-select {
@@ -40,6 +44,26 @@ textarea,
 ::-webkit-scrollbar-thumb:hover {
     background: $color; 
 }
+
+.btn {
+    text-transform: uppercase;
+    background: #735D78 !important;
+    border: 2px solid #D1B3C4 !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    transition: all .3s ease-in-out !important;
+    font-size: 14px !important;
+    &:hover {
+        background: #fff !important;
+        color: #735D78 !important;
+    }
+}
+
+.form-control:focus {
+    border-color: #735D78 !important;
+    box-shadow: 0 0 0 0.25rem #735d7833 !important;
+}
+
 .webpage {
     .container {
         display: flex;
@@ -50,7 +74,7 @@ textarea,
         min-height: 100vh;
         .nav-bar {
             height: 100vh;
-            width: 330px;
+            width: 300px;
             background-color: #735d78;
             position: sticky;
             top: 0;
@@ -121,7 +145,7 @@ textarea,
                                     width: 100%;
                                     p {
                                         margin: 0;
-                                        margin-left: 10px;
+                                        margin: 0 10px;
                                     }
                                 }
                             }
@@ -146,7 +170,7 @@ textarea,
             }
         }
         main {
-            width: 100%;
+            width: calc(100% - 300px);
             .bg-light {
                 background-color: $lightBgNav !important;
                 position: sticky;
@@ -170,6 +194,7 @@ textarea,
                         display: flex;
                         align-items: center;
                         flex-direction: row-reverse;
+                        flex: 1;
                         .i-p {
                             margin: 0 15px;
                             padding: 5px;
@@ -218,6 +243,12 @@ textarea,
                                     }
                                 }
                             }
+                            &.ar {
+                                .ul-setting.active {
+                                    right: inherit;
+                                    left: 0;
+                                }
+                            }
                         }
                         .profile {
                             img {
@@ -263,6 +294,12 @@ textarea,
                                 right: 4px;
                                 bottom: 6px;
                             }
+                            &.ar {
+                                .ul-profile.active {
+                                    right: inherit !important;
+                                    left: 0;
+                                }
+                            }
                         }
                     }
                 }
@@ -284,6 +321,7 @@ textarea,
                             transition: all .3s ease-out;
                             box-shadow: $shadow;
                             margin: 5px;
+                            flex: 1;
                             .content {
                                 margin: 10px;
                                 display: flex;

@@ -49,3 +49,11 @@ function settingTap() {
 
 }
 
+// remove alert from pages after 5s
+let alert_pop = document.querySelectorAll(".message");
+		function alertpop() {
+			alert_pop.forEach((e) => {
+				e.remove()
+			})
+		}
+		setTimeout(alertpop, 5000)

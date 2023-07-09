@@ -6,13 +6,17 @@
         padding: 20px;
         background: #fff;
         border-radius: 10px;
+        label {
+            text-transform: uppercase;
+            font-size: 14px;
+        }
         input {
             background-color: #0000000a;
             border: none;
             border-bottom: 2px solid $lightColor;
             box-shadow: $shadow;
             margin: 15px 5px;
-            width: 25%;
+            width: 100%;
         }
         select {
             background-color: #0000000a;
@@ -20,7 +24,7 @@
             border-bottom: 2px solid $lightColor;
             box-shadow: 0 0 7px 0 $shadow;
             margin: 15px 5px;
-            width: 25%;
+            width: 100%;
             outline: none;
             padding: 5px 10px;
             border-radius: 3px;
@@ -47,6 +51,7 @@
             .table tbody td {
                 font-size: 14px;
                 min-height: 80px !important;
+                padding: 10px !important;
             }
             .td-actions {
                 display: flex;
@@ -62,6 +67,7 @@
                     border: 1px solid $lightColor;
                     font-weight: 600;
                     width: 205px;
+                    font-size: 13px;
                     &:hover {
                         background-color: $whiteColor;
                         color: $lightColor !important;

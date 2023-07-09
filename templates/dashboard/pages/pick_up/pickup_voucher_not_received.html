@@ -1,0 +1,46 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+
+
+<main>
+    {% block content %}
+    {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
+    <div class="get-data">
+        <div class="content">
+            <h4>{% trans "Total des résultats trouvés" %}</h4>
+            <p>{% trans "Total des résultats trouvés" %}: <span style="color:green">{{noreceivCount}}</span></p>
+            <div class="table-content">
+                <table class="table table-bordered table-striped table-hover align-middle">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">{% trans "Nombre total d'articles" %}</th>
+                        <th scope="col">{% trans "Date" %}</th>
+                        <th scope="col">{% trans "Actions" %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in noreceiv %}
+                        {% if item.receive == False %}
+                        <tr>
+                            <td class="id">{{item.received_id}} </td>
+                            <td>{{item.packages.count}}</td>
+                            <td>{{item.date_received}}</td>
+                            <td class="actions" id="actions">
+                                <a href="{% url 'pickedup_pdf' item.received_id %}"><button type="button" class="btn btn-success">{% trans "Bons de ramassage" %}</button></a>
+                                <a href="{% url 'labels' item.received_id %}"><button type="button" class="btn btn-success">{% trans "Étiquettes" %}</button></a>
+                                <a href="{% url 'invoices_packages' item.received_id %}"><button type="button" class="btn btn-primary">{% trans "Colis" %}</button></a>
+                                <a href="{% url 'delet_receive' item.received_id %}"><button type="button" class="btn btn-danger">{% trans "Supprimer" %}</button></a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </div>
+    </div>
+    {% endblock content %}
+</main>

@@ -1,0 +1,400 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html {% if LANGUAGE_CODE == "ar" %} dir="rtl" {% else %} dir="ltr" {% endif %} >
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% comment %} font google {% endcomment %}
+	<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	{% comment %} font awesome {% endcomment %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	{% comment %} css style {% endcomment %}
+	<link rel="stylesheet" href="{% static 'scss/dashboard/styles.css' %}"/>
+	<!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+	{% comment %} bootstrap {% endcomment %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="	sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<!-- chartJS -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+	{% comment %} select {% endcomment %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" /> 
+	
+	<title>FastDelivery</title>
+</head>
+
+<body>
+	<div class="webpage">
+		<div class="container">
+			{% if messages %}
+				{% for message in messages %}
+					{% if message.tags == "warning" %}
+						<div class="pop-up-message {{message}}" id="pop-up">
+							<div class="content-message" style="background: url({% static 'img/dicorations/congrate.jpg' %}) no-repeat;">
+								<div class="top-content">
+									<h1>{% trans "Bienvenue" %}</h1>
+									<p>{% trans "lorsqu'un imprimeur inconnu a pris une galère de type et l'a brouillé pour en faire" %}</p>
+								</div>
+								<div class="bottom-content">
+									<button class="close">{% trans "Fermer" %}</button>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+
+			{% endif %}
+			{% include 'dashboard/parts-tool/navbar.html' %}
+			<main>
+				{% include 'dashboard/parts-tool/navtop.html' %}
+				{% block content %}
+				<div class="dashboard">
+					<div class="content">
+						{% if messages %}
+						<div class="alert message alert-success" role="alert" id="alert-success">
+							{% for message in messages %}
+							{% if message.tags == "success" %}
+							<div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+							{% endif %}
+							{% endfor %}
+						</div>
+						{% endif %}
+						{% if not profileImage %}
+							<div class="alert alert-danger" role="alert">
+								<p class="m-0">{% trans "Merci de compléter toutes vos informations" %} <a href="{% url 'profile' %}">{% trans "Cliquez ici" %}</a></p>
+							</div>
+						{% endif %}
+						<div class="welcome">
+							<div class="content-welcome">
+								<div class="text">
+									<h1 class="title">
+										{% trans "salut" %}! <span>{{request.user}}</span>
+									</h1>
+									<p class="desc">{% trans "Bienvenue, votre tableau de bord est prêt" %} !</p>
+								</div>
+								<div class="image-svg">
+									{% if LANGUAGE_CODE == "ar" %}
+									<img style='left: 0; right: inherit;' src="{% static 'img/undraw_positive_attitude_re_wu7d.svg' %}" alt="">
+									{% else %}
+									<img  src="{% static 'img/undraw_positive_attitude_re_wu7d.svg' %}" alt="">
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="cards">
+							<div class="card">
+								<div class="content">
+									<div class="pric">
+										<h3>{{TOTAL_NET_INCOME}} DH</h3>
+										<p>{% trans "REVENU NET TOTAL" %}</p>
+									</div>
+									<i class="fa-solid fa-dollar-sign"></i>
+								</div>
+							</div>
+							<div class="card">
+								<div class="content">
+									<div class="pric">
+										<h3> {{package_invoices}} </h3>
+										<p>{% trans "LES FACTURES" %}</p>
+									</div>
+									<i class="fa-solid fa-receipt"></i>
+								</div>
+							</div>
+							<div class="card">
+								<div class="content">
+									<div class="pric">
+										<h3>{{ package_no_invoices }}</h3>
+										<p>{% trans "COLIS NON FACTURÉ" %}</p>
+									</div>
+									<i class="fa-solid fa-cube"></i>
+								</div>
+							</div>
+							<div class="card">
+								<div class="content">
+									<div class="pric">
+										<h3>{{pack_list_returned}}</h3>
+										<p>{% trans "COLIS RETOURNÉS" %}</p>
+									</div>
+									<i class="fa-solid fa-arrow-rotate-left"></i>
+								</div>
+							</div>
+						</div>
+						<div class="graphbox">
+							<div class="box">
+								<h5>{% trans "Nombre de colis par semaine" %}</h5>
+								<canvas id="myChart" width="90%"></canvas>
+							</div>
+							<div class="box">
+								<h5>{% trans "Nombre de colis par ville" %}</h5>
+								<canvas id="mydash" width="90%"></canvas>
+							</div>
+						</div>
+						<div class="parcels" id="parcels">
+							<div class="content">
+								<div class="header-parcels">
+									<h1 class="title">{% trans "Les 10 Dernières Colis" %}</h1>
+									<p class="description">{% trans "ésultats Totaux" %}: <span class="text-danger">{{latest_packages|length}}</span></p>
+								</div>
+								<div class="tb">
+								<table class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th scope="col">ID</th>
+											<th scope="col">{% trans "État" %}</th>
+											<th scope="col">{% trans "Article" %}</th>
+											<th scope="col">{% trans "CRBT" %}</th>
+											<th scope="col">{% trans "Tél" %}</th>
+											<th scope="col">{% trans "Ville" %}</th>
+											<th scope="col">{% trans "Client" %}</th>
+											<th scope="col">{% trans "Date" %}</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for item in latest_packages %}
+											<tr>
+												<td class="id" style='font-weight: 700;'> {{item.id_package}} </td>
+												{% if item.etat == "Picked Up"%}
+													<td><span class="badge text-bg-warning"> {{item.etat}} </span></td>
+													{% elif item.etat == "Cancelled"%}
+													<td><span class="badge text-bg-danger">{{item.etat}}</span></td>
+													{% elif item.etat == "Delivered"%}
+													<td><span class="badge text-bg-success"> {{item.etat}} </span></td>
+													{% elif item.etat == "No answer"%}
+													<td><span class="badge text-bg-info">{{item.etat}}</span></td>
+													{% elif item.etat == "WAITING FOR PICKUP"%}
+													<td><span class="badge text-bg-secondary">{{item.etat}}</span></td>
+													{% elif item.etat == "Exchange"%}
+													<td><span class="badge" style="background-color: #826c7f;">{{item.etat}}</span></td>
+													{% else %}
+													<td><span class="badge text-bg-dark">{{item.etat}}</span></td>
+												{% endif %}
+												<td> {{item.article_name}} </td>
+												<td> {{item.price}} </td>
+												<td> {{item.phone_number}} </td>
+												<td> {{item.city}} </td>
+												<td> {{item.client_name}} </td>
+												<td> {{item.date_created}} </td>
+											</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="parcels" id="invoices">
+						<div class="content">
+							<div class="header-parcels">
+								<h1 class="title">{% trans "Les 10 Dernières Factures" %}</h1>
+								<p class="description">{% trans "Résultats Totaux" %}: <span class="text-danger">{{parcel_inv.count}}</span></p>
+							</div>
+							<div class="tb">
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th scope="col">ID</th>
+											<th scope="col">{% trans "Nombre total d'articles" %}</th>
+											<th scope="col">{% trans "Montant total" %}</th>
+											<th scope="col">{% trans "Montant retiré" %}</th>
+											<th scope="col">{% trans "Date" %}</th>
+											<th scope="col">{% trans "Actions" %}</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for item in parcel_inv %}
+											{% if item.receive == True %}
+											<tr class="invoice" id="{{item.received_id}}">
+												<td class="id">{{item.received_id}}</td>
+												<td>{{item.packages.count}}</td>
+												{% if item.total_amount < 0 %}
+												<td> <span class="badge text-bg-danger"> {{item.total_amount}} DH </span> </td>
+												{% else %}
+												<td> <span class="badge text-bg-success"> {{item.total_amount}} DH </span> </td>
+												{% endif %}
+												<td><span class="badge text-bg-danger">- {{item.total_withdrawn}} DH </span></td>
+												<td>{{item.date_received}}</td>
+												<td class="actions" id="actions">
+													<a class="download" href="{% url 'factur_pdf' item.received_id %}"><button type="button" class="btn btn-success">{% trans "Télécharger" %}</button></a>
+													<a class="packages" href="{% url 'invoices_packages' item.received_id %}"><button type="button" class="btn btn-success">{% trans "Colis" %}</button></a>
+												</td>
+											</tr>
+										{% endif %}
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endblock content %}
+			</main>
+		</div>
+	</div>
+	
+	
+	<script>
+		// charts js
+		const ctx = document.getElementById('myChart').getContext('2d');
+		const myDash = document.getElementById('mydash').getContext('2d');
+		const myChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: {{listDays|safe}},
+				datasets: [{
+					label: "colis",
+					data: {{listDaysCount|safe}},
+					backgroundColor: [
+						'rgba(239, 206, 250)',
+						'rgba(212, 178, 216)',
+						'rgba(168, 143, 172)',
+						'rgba(130, 108, 127)',
+						'rgba(93, 78, 96)',
+						'rgba(208, 209, 255)',
+						'rgba(216, 187, 255)',
+					],
+					borderWidth:1,
+					barPercentage:0.6,
+				}]
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				},
+				responsive : true,
+			}
+		});
+	
+		const myChartTwo = new Chart(myDash, {
+			type: 'line',
+			data: {
+				labels: {{listCity|safe}},
+				datasets: [{
+					label: "colis",
+					data: {{listCityCount|safe}},
+					backgroundColor: [
+						'rgba(239, 206, 250)',
+						'rgba(212, 178, 216)',
+						'rgba(168, 143, 172)',
+						'rgba(130, 108, 127)',
+						'rgba(93, 78, 96)',
+						'rgba(208, 209, 255)',
+					],
+					borderWidth:1,
+				}]
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true
+					}
+				},
+				responsive : true,
+			},
+		});
+	
+	</script>
+	<script src="{% static 'js/dashboard.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+	<script>
+		let idPackage = document.querySelectorAll(".id");
+		for (let i = 0; i<idPackage.length; i++){
+			let orId = idPackage[i].textContent.trim()
+			idPackage[i].onclick = () => {
+				orId.select;
+				navigator.clipboard.writeText(orId);
+				alert("Copiez ensuite le ID avec succès " + orId)
+			}
+			let newIdPackage = idPackage[i].textContent.slice(0, 10);
+			// idPackage[i].textContent = newIdPackage + " " ;
+			idPackage[i].innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2" viewBox="0 0 16 16"><path d="M3.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5H12a.5.5 0 0 1 0-1h.5A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1H4a.5.5 0 0 1 0 1h-.5Z"/><path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/></svg>';
+			idPackage[i].style.color = "#735d78";
+			idPackage[i].style.cursor = "pointer";
+		}
+	
+		{% comment %} search fields  {% endcomment %}
+	
+		function searchUser(idSearch, idClass) {
+			let idPachage = document.querySelectorAll(`.${idClass}`);
+			let search = document.getElementById(`${idSearch}`);
+			// search.oninput = function() {
+			idPachage.forEach(t => {
+				if (t.getAttribute("data") != "") {
+					if (search.value !== "") {
+						if (! t.getAttribute("data").includes(search.value)) {
+							t.parentElement.style.display = "none"
+						} else {
+							t.parentElement.style.display = "flex"
+						}
+					} else {
+						search.value = "";
+						t.parentElement.style.display = "flex"
+					}
+				}
+			})
+			// }
+		}
+		
+		function searchId(idSearch, idClass) {
+			let idPachage = document.querySelectorAll(`.${idClass}`);
+			let search = document.getElementById(`${idSearch}`);
+			// search.oninput = function() {
+			idPachage.forEach(t => {
+				if (t.getAttribute("data") != "") {
+					if (search.value !== "") {
+						if (! t.getAttribute("data").includes(search.value)) {
+							t.parentElement.style.display = "none"
+						} else {
+							t.parentElement.style.display = "revert"
+						}
+					} else {
+						search.value = "";
+						t.parentElement.style.display = "revert"
+					}
+				}
+			})
+			// }
+		}
+	</script>
+	<script>
+		let pop_up = document.getElementById("pop-up");
+		let close_btn = document.querySelector(".close");
+		close_btn.onclick = _ => {
+			pop_up.classList.replace("activate", "disable")
+		}
+	</script>
+	<script>
+		const divWelcome = document.querySelector(".welcome")
+		function removeDivWelcome(x) {
+			if (x.matches) {
+				divWelcome.style.display = "none"
+			} else {
+				divWelcome.style.display = "flex"
+			}
+		}
+		var mediaSize = window.matchMedia("(max-width: 765px)")
+		removeDivWelcome(mediaSize) // Call listener function at run time
+		mediaSize.addListener(removeDivWelcome) // Attach listener function on state changes
+	</script>
+	<script>
+		function submitForm() {
+			var selectElement = document.getElementById("mySelect");
+			var customValueElement = document.getElementById("customValue");
+			var selectedValue = selectElement.value;
+		  
+			if (selectedValue === "") {
+			  customValueElement.value = ""; // Clear the form field if no option is selected
+			} else {
+			  customValueElement.value = selectedValue; // Assign the selected value to the form field
+			  document.getElementById("myForm").submit(); // Submit the form
+			}
+		  }
+	</script>
+</body>
+</html>

@@ -38,6 +38,7 @@
 @media (max-width : 768px) {
     header {
         .container {
+            height: 120vh !important;
             .top-header {
                 .content {
                     .nav-top,
@@ -92,10 +93,12 @@
                     display: flex;
                     flex-wrap: wrap;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-end;
                     flex-direction: column-reverse;
                     .txt-main-header {
                         margin-top: 0;
+                        text-align: center;
+                        margin-top: 15px;
                     }
                     .image-main {
                         width: 50% !important;
@@ -114,11 +117,18 @@
         }
         .container {
             padding: 40px 10px;
+            flex-wrap: wrap;
+            .box {
+                flex: 1 45%;
+                margin: 10px;
+            }
         }
     }
     .pricing {
         .container {
+            margin: 0 !important;
             .content {
+                justify-content: center;
                 .pricing-thumb {
                     width: 314px;
                 }
@@ -159,6 +169,7 @@
     header {
         .container {
             .main-header {
+                height: auto !important;
                 .content {
                     display: flex;
                     flex-wrap: wrap;
@@ -175,6 +186,13 @@
                         h2 {
                             font-size: 22px !important;
                             width: 100% !important;
+                        }
+                        a.ar {
+                            padding: 15px 30px;
+                            &::before {
+                                left: inherit;
+                                right: inherit;
+                            }   
                         }
                     }
                     .image-main {
@@ -258,6 +276,16 @@
             }
         }
     }
+    footer {
+        flex-direction: column !important;
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+        p {
+            font-size: 14px !important;
+            margin-bottom: 1rem !important;
+            text-align: center;
+        }
+    }
 }
 
 @media (max-width : 375px) {
@@ -285,7 +313,7 @@
         }
         .container {
             .box {
-                width: 100%;
+                width: 90%;
             }
         }
     }
@@ -293,7 +321,6 @@
         margin: 30px auto;
         padding: 30px 20px;
         .container {
-            margin: 20px 15px;
             h1 {
                 font-size: 23px;
             }

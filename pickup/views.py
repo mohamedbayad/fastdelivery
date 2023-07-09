@@ -10,6 +10,7 @@ from account.decorators import *
 from django.contrib import messages
 from django.utils import timezone
 import uuid
+from django.utils.translation import gettext as _
 
 
 # Create your views here.
@@ -25,49 +26,51 @@ def pickedup(request):
 
     # ############# Get Data #############
     packagePickup = NewPackage.objects.filter(
-        user=request.user, etat="EN ATTENTE DE RAMASSAGE", picked_up=False)
+        user=request.user, etat="WAITING FOR PICKUP", picked_up=False)
     id_received = uuid.uuid1()
     receiv = Received()
     m = ""
     # ############# Update Data #############
     count = 0
-    if request.method == "POST":
-        id_package = request.POST.getlist("pickup-check")
-        packages_picked_up = id_package
-        receiv.received_id = id_received.hex[0:10]
-        receiv.user = request.user
-        receiv.total_withdrawn = 0
-        receiv.total_amount = 0
-        receiv.date_received = timezone.now().strftime('%d-%m-%Y')
-        receiv.receive = False
-        while True:
-            picked_up = NewPackage.objects.get(id_package=id_package[count])
-            picked_up_form = AddNewPackage(request.POST, instance=picked_up)
-            picked_up.etat = "En cours..."
-            picked_up.picked_up = True
-            picked_up.date_picked_up = timezone.now().strftime('%d-%m-%Y')
-            picked_up.save()
-            receiv.save()
-            receiv.packages.add(picked_up)
-            count += 1
-            if count == len(id_package):
-                objTracking = formAddTracking.save(commit=False)
-                objTracking.id_received = receiv.received_id
-                objTracking.tracking_number = uuid.uuid4()
-                objTracking.date = receiv.date_received
-                objTracking.received = receiv
-                objTracking.user = request.user
-                objTracking.save()
-
-                messages.success(request, "Nouveau coupon créé avec succès")
-                return redirect("pickup")
+    try: 
+        if request.method == "POST":
+            id_package = request.POST.getlist("pickup-check")
+            packages_picked_up = id_package
+            receiv.received_id = id_received.hex[0:10]
+            receiv.user = request.user
+            receiv.total_withdrawn = 0
+            receiv.total_amount = 0
+            receiv.date_received = timezone.now().strftime('%d-%m-%Y')
+            receiv.receive = False
+            while True:
+                picked_up = NewPackage.objects.get(id_package=id_package[count])
+                picked_up_form = AddNewPackage(request.POST, instance=picked_up)
+                picked_up.etat = "In progress..."
+                picked_up.picked_up = True
+                picked_up.date_picked_up = timezone.now().strftime('%d-%m-%Y')
+                picked_up.save()
+                receiv.save()
+                receiv.packages.add(picked_up)
+                count += 1
+                if count == len(id_package):
+                    objTracking = formAddTracking.save(commit=False)
+                    objTracking.id_received = receiv.received_id
+                    objTracking.tracking_number = uuid.uuid4()
+                    objTracking.date = receiv.date_received
+                    objTracking.received = receiv
+                    objTracking.user = request.user
+                    objTracking.save()
+                    messages.success(request, _("Nouveau coupon créé avec succès"))
+                    return redirect("pickup")
+    except :
+        messages.add_message(request, 50, _("Il n'y a pas d'élément à ajouter"))
 
     context = {
         "packagePickup": packagePickup,
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/pages/pick_up/new_pick_up.html", context)
+    return render(request, "dashboard/pages/pick_up/new_pick_up.html", context)
 
 
 @login_required(login_url="connexion")
@@ -86,7 +89,7 @@ def received(request):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/pages/pick_up/pick_up_voucher_received.html", context)
+    return render(request, "dashboard/pages/pick_up/pick_up_voucher_received.html", context)
 
 
 @login_required(login_url="connexion")
@@ -105,7 +108,7 @@ def no_received(request):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/pages/pick_up/pickup_voucher_not_received.html", context)
+    return render(request, "dashboard/pages/pick_up/pickup_voucher_not_received.html", context)
 
 
 @login_required(login_url="connexion")
@@ -115,7 +118,7 @@ def no_received_del(request, id):
     receivePackages = Received.objects.get(
         user=request.user, received_id=id).packages.all()
     for r in receivePackages:
-        r.etat = "EN ATTENTE DE RAMASSAGE"
+        r.etat = "WAITING FOR PICKUP"
         r.picked_up = False
         r.save()
     receiv.delete()
@@ -131,7 +134,7 @@ def savePdfLb(request, id):
         "dataPdf": dataPdf,
         "profile": profile,
     }
-    return render(request, "dashbord/pdf/labels.html", context)
+    return render(request, "dashboard/pdf/labels.html", context)
 
 
 @login_required(login_url="connexion")
@@ -149,4 +152,4 @@ def pdfPickeup(request, pk):
         "total": total,
         "profile": profile,
     }
-    return render(request, "dashbord/pdf/pickedup.html", context)
+    return render(request, "dashboard/pdf/pickedup.html", context)

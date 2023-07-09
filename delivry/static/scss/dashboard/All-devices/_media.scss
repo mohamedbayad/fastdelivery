@@ -26,6 +26,9 @@
                 position: fixed;
                 z-index: 9999;
             }
+            .nav-bar.ar {
+                transform: translateX(335px);
+            }
             .navbar {
                 .container-fluid {
                     .btn-nav {
@@ -68,10 +71,14 @@
                     }
                 }
             }
+            main {
+                width: 100% !important;
+            }
             .dashboard {
                 .content {
                     .cards {
                         .card {
+                            flex: none !important;
                             width: 45% !important;
                             .content {
                                 .pric {
@@ -174,8 +181,12 @@
                 }
             }
             .get-data {
-                .table {
-                    width: 1000px;
+                .table-content {
+                    width: 100%;
+                    overflow: auto;
+                    .table {
+                        width: 1000px;
+                    }
                 }
             }
             .tracking-content {
@@ -195,6 +206,7 @@
         }
     }
 }
+
 @media screen and (max-width:425px) {
     .webpage {
         > .container {
@@ -247,6 +259,12 @@
                         .setting {
                             > .ul-setting {
                                 right: -60px !important;
+                            }
+                            &.ar {
+                                .ul-setting {
+                                    right: inherit !important;
+                                    left: -60px !important;
+                                }
                             }
                         }
                     }
@@ -356,6 +374,7 @@
         }
     }
 }
+
 @media screen and  (max-width:375px) {
     .webpage {
         >.container {

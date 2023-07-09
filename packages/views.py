@@ -9,10 +9,10 @@ from .models import *
 from .filters import *
 from dashboard.models import *
 from account.decorators import *
+from django.utils.translation import gettext as _
 
 
 # Create your views here.
-
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def newPackage(request):
@@ -22,30 +22,43 @@ def newPackage(request):
     
     form = AddNewPackage()
     citys = City.objects.order_by("name")
+    boxs = NewBox.objects.filter(etat="Validate", user=request.user)
     city = request.POST.get("city")
     id_pack = uuid.uuid1()
     if request.method == 'POST':
+        
         City(name=city)
         form = AddNewPackage(request.POST)
+
+        if form["city"].value() == 'Choisissez la ville':
+            message = _("Veuillez sélectionner une ville")
+            messages.error(request, message)
+        elif not form["phone_number"].value().isnumeric():
+            message = _("Le numéro de téléphone ne peut pas contenir de lettres ou de symboles")
+            messages.error(request, message)
+        elif form["box"].value() == "Choisissez la Boite":
+            message = _("Avant de créer un package, vous devez d'abord créer la boîte de package")
+            messages.error(request, message)
+        
         if form.is_valid():
+            print("Valid")
             obj = form.save(commit=False)
             obj.user = request.user
             obj.id_package = id_pack.hex[0:11]
-            if obj.city == 'Choisissez la ville':
-                messages.error(request, 'Veuillez sélectionner une ville')
-            elif not obj.phone_number.isnumeric():
-                messages.error(request, 'Le numéro de téléphone ne peut pas contenir de lettres ou de symboles')
-            else:
-                obj.save()
-                messages.success(request, 'colis ajouté avec succès')
-                return redirect('new-packages')
+            obj.save()
+            message = _("colis ajouté avec succès")
+            messages.success(request, message)
+            return redirect('new-packages')
+        
+
     context = {
         "form": form,
         "citys": citys,
         "settings": settings,
         "profileImage": profileImage,
+        "boxs": boxs,
     }
-    return render(request, "dashbord/pages/package/add_new_package.html", context)
+    return render(request, "dashboard/pages/package/add_new_package.html", context)
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
@@ -62,7 +75,7 @@ def waitingPickup(request):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/pages/package/parcel_awaiting_pickup.html", context)
+    return render(request, "dashboard/pages/package/parcel_awaiting_pickup.html", context)
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
@@ -80,12 +93,12 @@ def updatePackage(request, id):
         form = AddNewPackage(request.POST, instance=order)
         if form.is_valid():
             if order.city == 'Choisissez la ville':
-                messages.error(request, 'Veuillez sélectionner une ville')
+                messages.error(request, _('Veuillez sélectionner une ville'))
             elif not order.phone_number.isnumeric():
-                messages.error(request, 'Le numéro de téléphone ne peut pas contenir de lettres ou de symboles')
+                messages.error(request, _('Le numéro de téléphone ne peut pas contenir de lettres ou de symboles'))
             else:
                 form.save()
-                messages.success(request, 'Paquet changé avec succès')
+                messages.success(request, _('Paquet changé avec succès'))
                 return redirect('packages-waiting-for-pickup')
     context = {
         'form': form,
@@ -94,14 +107,14 @@ def updatePackage(request, id):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/pages/package/add_new_package.html", context)
+    return render(request, "dashboard/pages/package/add_new_package.html", context)
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
 def deletPackage(request, id):
     order = NewPackage.objects.get(user=request.user, id_package=id)
     order.delete()
-    messages.error(request, "Le paquet a été supprimé")
+    messages.error(request, _("Le paquet a été supprimé"))
     return redirect("packages-waiting-for-pickup")
 
 @login_required(login_url="connexion")
@@ -113,10 +126,10 @@ def packagePickedUp(request):
 
     # ######### Get Data From DataBase ###########
     packageData = NewPackage.objects.filter(
-        user=request.user).exclude(etat="EN ATTENTE DE RAMASSAGE")
-    # packageData = NewPackages.objects.exclude(etat="EN ATTENTE DE RAMASSAGE")
+        user=request.user).exclude(etat="WAITING FOR PICKUP")
+    # packageData = NewPackages.objects.exclude(etat="WAITING FOR PICKUP")
     packageDataCount = NewPackage.objects.filter(user=request.user).exclude(
-        etat="EN ATTENTE DE RAMASSAGE").count()
+        etat="WAITING FOR PICKUP").count()
     # ######### form filter #########
     filterPackage = PackageFilter()
     if request.method == "GET":
@@ -130,7 +143,7 @@ def packagePickedUp(request):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/pages/package/parcel_picked_up.html", context)
+    return render(request, "dashboard/pages/package/parcel_picked_up.html", context)
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
@@ -153,7 +166,7 @@ def refundRequest(request, id):
             obj.user = request.user
             obj.refund_price = package.price
             obj.save()
-            messages.success(request, "Le retour a été demandé avec succès")
+            messages.success(request, _("Le retour a été demandé avec succès"))
             return redirect("packages-pickup")
     contextform = {
         "refund_count":refund_count,
@@ -162,11 +175,7 @@ def refundRequest(request, id):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/parts-tool/refund.html", contextform)
-
-
-
-
+    return render(request, "dashboard/parts-tool/refund.html", contextform)
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
@@ -189,7 +198,7 @@ def exchangeRequest(request, id):
             obj.user = request.user
             obj.exchange_price = package.price
             obj.save()
-            messages.success(request, "Le retour a été demandé avec succès")
+            messages.success(request, _("Le retour a été demandé avec succès"))
             return redirect("packages-pickup")
     contextform = {
         "exchange_count": exchange_count,
@@ -198,10 +207,7 @@ def exchangeRequest(request, id):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/parts-tool/exchange.html", contextform)
-
-
-
+    return render(request, "dashboard/parts-tool/exchange.html", contextform)
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
@@ -220,7 +226,7 @@ def change_address(request, id):
             obj = form.save(commit=False)
             obj.exchange = True
             obj.save()
-            messages.success(request, "Demande de décaissement complétée avec succès")
+            messages.success(request, _("Demande de décaissement complétée avec succès"))
             return redirect("packages-pickup")
     
     contextform = {
@@ -230,12 +236,7 @@ def change_address(request, id):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/parts-tool/change-address.html", contextform)
-
-@login_required(login_url="connexion")
-@allowedUsers(allowedGroups=["customer"])
-def parcelTracking(request):
-    return render(request, "dashbord/pages/package/parcel_tracking.html")
+    return render(request, "dashboard/parts-tool/change-address.html", contextform)
 
 @login_required(login_url="connexion")
 @allowedUsers(allowedGroups=["customer"])
@@ -246,15 +247,15 @@ def staticColis(request):
 
     # ############# data #############
     count_pick_up = NewPackage.objects.filter(
-        user=request.user, etat="Ramassée").count()
+        user=request.user, etat="Picked Up").count()
     count_cancelled = NewPackage.objects.filter(
-        user=request.user, etat="Annulée").count()
+        user=request.user, etat="Cancelled").count()
     count_livery = NewPackage.objects.filter(
-        user=request.user, etat="Livrée").count()
+        user=request.user, etat="Delivered").count()
     count_no_answer = NewPackage.objects.filter(
-        user=request.user, etat="Pas de réponse").count()
+        user=request.user, etat="No answer").count()
     count_returned_cancelled = NewPackage.objects.filter(
-        user=request.user, etat="Retournée/Annulée").count()
+        user=request.user, etat="Returned/Cancelled").count()
     context = {
         "data": {
             "count_pick_up": count_pick_up,
@@ -266,4 +267,4 @@ def staticColis(request):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/pages/package/parcel_statistics.html", context)
+    return render(request, "dashboard/pages/package/parcel_statistics.html", context)

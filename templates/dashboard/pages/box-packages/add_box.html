@@ -1,0 +1,62 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+
+<main>
+    {% block content %}
+    {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
+    <div class="form-package add-new-box">
+        {% comment %} error forms {% endcomment %}
+        {% if form.errors %}
+            {% for error in form.errors  %}
+                {% if error == "price" %}
+                    <div class="alert message alert-danger" role="alert">
+                        <div class="{{ error }}"> <span style="font-weight: 500;">{% trans "PRIX" %}</span> {% trans "Assurez-vous qu'il n'y a pas plus de 6 chiffres au total" %}.</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% comment %} message if create a new package {% endcomment %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "success" %}
+                    <div class="alert message  alert-success" role="alert">
+                        <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                    </div>
+                {% elif message.tags == "error" %}
+                    <div class="alert message alert-danger" role="alert">
+                        <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if "edite" in request.build_absolute_uri %}
+            <h4 class="title" >{% trans "Edite Colis" %}</h4>
+        {% else %}
+            <h4 class="title" >{% trans "Créer Un Nouveau Box" %}</h4>
+        {% endif %}
+
+        <form method="POST" actions="" class="row g-3">
+            {% csrf_token %}
+            <div class="col-md-6 package">
+                <label>{% trans "Nomber de Colis" %} : </label></br>
+                <input type="number" min="0" class="form-control" id="inputEmail4" name="number_packages">
+            </div>
+            <div class="col-md-6 package">
+                <label>{% trans "Type" %} : </label></br>
+                <select class="form-select" aria-label="" name="type_box">
+                    <option class="selected" selected >{% trans "Choisissez le type d'article" %} ...</option>
+                    <option value="Liquide">{% trans "Liquide" %}</option>
+                    <option value="Solide">{% trans "Solide" %}</option>
+                </select>
+            </div>
+            <div class="col-12 package">
+                <button type="submit" class="btn btn-primary w-100">{% trans "Ajouter" %}</button>
+            </div>
+        </form>
+    </div>
+    {% endblock content %}
+</main>

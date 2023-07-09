@@ -1,0 +1,138 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+<main>
+    {% block content %}
+    {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
+    <div class="content-package">
+        <div class="pack-filter">
+            <form method="GET" class="row g-3">
+                {% comment %} {{filterPackage.form}} {% endcomment %}
+                <div class="col-md-4">
+                    <label>ID {% trans "colis" %}:</label></br>
+                    {{filterPackage.form.id_package}}</br>
+                </div>
+                <div class="col-md-4">
+                    <label>{% trans "ville" %}:</label></br>
+                    {{filterPackage.form.city}}
+                </div>
+                <div class="col-md-4">
+                    <label>{% trans "prix" %}:</label></br>
+                    {{filterPackage.form.price}}
+                </div>
+                <div class="col-md-4">
+                    <label>{% trans "numéro de téléphone" %}:</label></br>
+                    {{filterPackage.form.phone_number}}
+                </div>
+                <div class="col-md-4">
+                    <label>{% trans "statut" %}:</label></br>
+                    {{filterPackage.form.etat}}
+                </div>
+                <div class="col-md-12 d-flex align-items-center">
+                    <button type="submit" class="btn btn-primary">{% trans "Chercher" %}</button>
+                </div>
+            </form>
+        </div>
+        <div class="get-data">
+            <div class="content">
+
+                {% comment %} message if create a new package {% endcomment %}
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.tags == "success" %}
+                <div class="alert alert-success" role="alert">
+                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                <h4>{% trans "Tous Les Colis Ramassés" %}</h4>
+                <p>{% trans "Total des résultats trouvés" %}: <span style="color:green">{{packageDataCount}}</span></p>
+                <div class="table-content">
+                    <table class="table table-bordered table-striped align-middle">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">{% trans "Article" %}</th>
+                            <th scope="col">{% trans "Ville" %}</th>
+                            <th scope="col">{% trans "CRBT" %}</th>
+                            <th scope="col">{% trans "Tél" %}</th>
+                            <th scope="col">{% trans "client" %}</th>
+                            <th scope="col">{% trans "Etat" %}</th>
+                            <th scope="col">{% trans "Actions" %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if packageDataCount > 0 %}
+                        {% for item in packageData %}
+                        <tr>
+                            <th scope="row" class="id"> {{item.id_package}} </th>
+                            <td> {{item.article_name}} </td>
+                            <td> {{item.city}} </td>
+                            <td> {{item.price}} DH </td>
+                            <td> {{item.phone_number}} </td>
+                            <td> {{item.client_name}} </td>
+                            {% if item.etat == "Picked Up" %}
+                                <td> <span class="badge text-bg-warning">{{item.etat}}</span> </td>
+                                {% elif item.etat == "Delivered"%}
+                                <td><span class="badge text-bg-success">{{item.etat}}</span></td>
+                                {% elif item.etat == "No answer"%}
+                                <td><span class="badge text-bg-info">{{item.etat}}</span></td>
+                                {% elif item.etat == "Refused"%}
+                                <td><span class="badge text-bg-light">{{item.etat}}</span></td>
+                                {% elif item.etat == "Exchange"%}
+                                <td><span class="badge text-bg-primary">{{item.etat}}</span></td>
+                                {% elif item.etat == "In progress..."%}
+                                <td><span class="badge text-bg-danger" style='background-color:#767676 !important'>{{item.etat}}</span></td>
+                                {% else %}
+                                <td><span class="badge text-bg-danger">{{item.etat}}</span></td>
+                            {% endif %}
+                            
+                            <td class="td-actions">
+                                {% if item.etat == "Picked Up" or item.etat == "In progress..."%}
+                                <a href="#" class="text-info actions actions-refuse" style="pointer-events: none; cursor: default; opacity:0.4;">{% trans "Demande de remboursement" %}</a>
+                                <a href="#" class="text-info actions actions-refuse" style="pointer-events: none; cursor: default; opacity:0.4;">{% trans "Demande d'échange" %}</a>
+                                <a href="#" class="text-info actions actions-refuse" style="pointer-events: none; cursor: default; opacity:0.4;">{% trans "Changement d'adresse" %}</a>
+                                {% comment %} <a href="#" class="text-secondary actions tracking" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Suivi</a> {% endcomment %}            
+                                {% else %}
+                                <a href="{% url 'refund' item.id_package %}" class="text-info actions">{% trans "Demande de remboursement" %}</a>
+                                <a href="{% url 'exchange' item.id_package %}" class="text-info actions">{% trans "Demande d'échange" %}</a>
+                                <a href="{% url 'exchange_address' item.id_package %}" class="text-info actions">{% trans "Changement d'adresse" %}</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <!-- Modal -->
+                        {% comment %} <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title id" id="staticBackdropLabel">ID Coli {{item.id_package}}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <div class="modal-body">
+                                            <textarea name="refund"></textarea>
+                                            {{form_refund.refund}}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">None</button>
+                                            <button type='submit' name="submit" class="btn btn-primary" href="">Oui</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+                        {% endfor %}
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</main>
+

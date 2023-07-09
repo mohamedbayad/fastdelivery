@@ -1,0 +1,41 @@
+{% extends 'base/home.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <header>
+        <div class="container" style="height: fit-content;">
+            {% include "base/parts-tool/navbar.html" %}
+        </div>
+    </header>
+    <main>
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <h1 class="title">{% trans "Tarification par ville" %}</h1>
+                <input type="text" name="" id="search" placeholder="{% trans "Trouvez votre ville" %}">
+                <div class="content">
+                    {% if citys.count > 0 %}
+                        {% for item in citys %}
+                        <div class="pricing-thumb">
+                            <div class="title">
+                                <!-- <h1 style="font-size: 20px;">{{item.name}}</h1> -->
+                                <p style="font-size: 20px; font-weight: bold;">{{item.name}}</p>
+                            </div>
+                            <div class="top-price">
+                                <p>{% trans "Livrée" %}: {{item.price_l}}DH </p>
+                            </div>
+                            <div class="center-price">
+                                <p>{% trans "Refusée" %}: {{item.price_r}}DH</p>
+                            </div>
+                            <div class="bottom-price">
+                                <p>{% trans "Annulée" %}: {{item.price_c}}DH</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}

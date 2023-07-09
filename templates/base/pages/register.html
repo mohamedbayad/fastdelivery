@@ -1,40 +1,46 @@
 {% extends "base/home.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block description %}{% endblock description %}
 {% block keywords %}{% endblock keywords %}
 
 {% block content %}
-<div class="form-register">
+<header>
+    <div class="container-x" style="height: 0;">
+        {% include "base/parts-tool/navbar.html" %}
+    </div>
+</header>
+<div class="form-login mt-5 pt-3">
     <div class="content">
         <div class="form-content">
             <form method="POST">
-                <h2>inscription</h2>
+                <h2>{% trans "inscription" %}</h2>
                 {% csrf_token %}
-                <span>Nom d'utilisateur</span><br>
+                <span>{% trans "Nom d'utilisateur" %}</span><br>
                 {{form.username}}<br>
                 {% if form.errors.username %}
-                <p class="error_user">Ce nom existe</p>
+                <p class="error_user">{% trans "Ce nom existe" %}</p>
                 {% endif %}
                 
-                <span>Adresse e-mail</span><br>
+                <span>{% trans "Adresse e-mail" %}</span><br>
                 {{form.email}}<br>
                 
-                <span>Mot de passe</span><br>
+                <span>{% trans "Mot de passe" %}</span><br>
                 {{form.password1}}<br>
                 {% if form.errors.password2 %}
-                <p class="error1">Le mot de passe est trop faible</p>
+                <p class="error1">{% trans "Le mot de passe est trop faible" %}</p>
                 {% endif %}
                 
-                <span>Confirmez le mot de passe</span><br>
+                <span>{% trans "Confirmez le mot de passe" %}</span><br>
                 {{form.password2}}<br>
                 {% if form.errors.password2 %}
-                <p class="error2">Incorrect, le mot de passe doit être confirmé</p><br>
+                <p class="error2">{% trans "Incorrect, le mot de passe doit être confirmé" %}</p><br>
                 {% endif %}
                 
-                <button type="submit" class="btn btn-primary mb-3">submit</button>
+                <input type="submit" id="button" value="{% trans "inscription" %}">
                 <div class="login">
-                    <p>Vous avez déjà un compte? <a style="color: #D1B3C4" id="login" href="{% url "connexion" %}"> S'identifier</a><p>
+                    <p>{% trans "Vous avez déjà un compte?" %} <a style="color: #D1B3C4" id="login" href="{% url "connexion" %}">{% trans "inscription" %}</a><p>
                 </div>
             </form>
         </div>

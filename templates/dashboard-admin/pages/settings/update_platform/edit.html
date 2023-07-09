@@ -1,0 +1,24 @@
+{% extends 'dashboard-admin/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <div class="block container mt-5 ">
+        <div class="row justify-content-center received">
+            <form class="row g-3" method="POST">
+                {% csrf_token %}
+                <div class="col-md-6 mt-3">
+                    <label for="inputTitle" class="form-label">Titre</label>
+                    <input type="text" name="title" value="{{update.title}}" class="form-control" id="inputTitle" placeholder="Titre">
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="inputSujet" class="form-label"> Sujet </label>
+                    <input type="text" name="topic" value="{{update.topic}}" class="form-control" id="inputSujet" placeholder="Sujet">
+                </div>
+                <div class="col-12 mt-5">
+                    <button type="submit" class="btn btn-outline-success col-12">Modifier</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

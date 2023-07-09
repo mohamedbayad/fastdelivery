@@ -14,5 +14,8 @@ class Tracking(models.Model):
     city = models.BooleanField(default=False, blank=True, null=True)
     livry = models.BooleanField(default=False, blank=True, null=True)
 
+    DisplayFields = ["id", "id_received", "user", "received", "tracking_number", "date"]
+    SearchbleFields = ["id_received", "tracking_number"]
+
     def __str__(self) -> str:
         return self.tracking_number

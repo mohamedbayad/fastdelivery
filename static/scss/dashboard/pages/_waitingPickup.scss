@@ -32,6 +32,23 @@
                             font-size: 14px;
                             min-height: 80px;
                         }
+                        .actions {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                            .btn {
+                                font-size: 13px;
+                            }
+                        }
+                        .actions-inv {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            .btn {
+                                font-size: 13px;
+                            }
+                        }
                         td:nth-child(10) {
                             display: flex;
                             align-items: center;

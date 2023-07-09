@@ -1,0 +1,77 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load mathfilters %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block content %}
+<div class="get-data tracking-packages repport">
+    <div class="content">
+        <div class="tracking-content">
+            <h4>{% trans "suivi" %}</h4>
+            <div class="filter sreach p-3">
+                <form class="row g-3 justify-content-center align-content-center flex-column mb-3" method="GET">
+                    <div class="col-6">
+                        <input type="text" name="id_received" class="form-control" id="inputEmail4" placeholder="{% trans "suivi par identifiant reçu" %}">
+                        {% comment %} {{formTrackingNumber.form}} {% endcomment %}
+                    </div>
+                    <div class="col-6 text-center">
+                      <button type="submit" class="btn btn-primary w-100">{% trans "suivi" %}</button>
+                    </div>
+                </form>
+            </div>
+            {% for tracking in trackingData %}
+            {% if request.GET.id_received == tracking.id_received %}
+            <div class="page-tracking">
+                <div class="tracking-content">
+                    <div class="top-tracking">
+                        <div class="info-tracking">
+                            <div class="date-tracking">
+                                <h5>{% trans "date" %}:</h5>
+                                <p>{{tracking.date}}</p>
+                            </div>
+                            <div class="order-number">
+                                <h5>{% trans "Colis N" %} :</h5>
+                                <p>{{tracking.id_received}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="price-tracking">
+                            <div class="price-package withdraw">
+                                <h5>{% trans "prix de colis" %}:</h5>
+                                {% if tracking.received.total_amount is None %}
+                                <p> 0 DH</p>
+                                {% else %}
+                                <p> {{tracking.received.total_amount}} DH</p>
+                                {% endif %}
+                            </div>
+                            <div class="fee-tracking withdraw">
+                                <h5>{% trans "coût de livraison" %}:</h5>
+                                {% if tracking.received.total_withdrawn is None %}
+                                <p> 0 DH</p>
+                                {% else %}
+                                <p> {{tracking.received.total_withdrawn}} DH</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bottom-tracking">
+                        {% if LANGUAGE_CODE == "ar" %}
+                            <div class="service1 ar track {{tracking.warehouse}}">{% trans "entrepôt" %}</div>
+                            <div class="service2 ar track {{tracking.city}}">{% trans "ville" %}</div>
+                            <div class="service3 ar track {{tracking.livry}}">{% trans "livrée" %}</div>
+                        {% else %}
+                            <div class="service1 track {{tracking.warehouse}}">{% trans "entrepôt" %}</div>
+                            <div class="service2 track {{tracking.city}}">{% trans "ville" %}</div>
+                            <div class="service3 track {{tracking.livry}}">{% trans "livrée" %}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

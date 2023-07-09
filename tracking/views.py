@@ -28,4 +28,4 @@ def tracking(request):
         "settings":settings,
         "profileImage":profileImage,
     }
-    return render(request, "dashbord/pages/tracking.html", context)
+    return render(request, "dashboard/pages/tracking.html", context)

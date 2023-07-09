@@ -6,105 +6,236 @@
           box-sizing: border-box;
 }
 
-/* line 7, style.scss */
+/* line 9, style.scss */
 body {
   background: #f5f5f5 !important;
 }
 
-/* line 11, style.scss */
+/* line 13, style.scss */
 a {
   text-decoration: none !important;
 }
 
-/* line 15, style.scss */
+/* line 17, style.scss */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
-/* line 19, style.scss */
+/* line 21, style.scss */
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
 /* Handle */
-/* line 23, style.scss */
+/* line 25, style.scss */
 ::-webkit-scrollbar-thumb {
   background: #735d78;
 }
 
 /* Handle on hover */
-/* line 27, style.scss */
+/* line 29, style.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #efcefa;
 }
 
-/* line 31, style.scss */
+/* line 33, style.scss */
+.btn {
+  text-transform: uppercase;
+  background: #735D78 !important;
+  border: 2px solid #D1B3C4 !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  -webkit-transition: all .3s ease-in-out !important;
+  transition: all .3s ease-in-out !important;
+  font-size: 14px !important;
+  padding: 5px;
+}
+/* line 42, style.scss */
+.btn:hover {
+  background: #fff !important;
+  color: #735D78 !important;
+}
+
+/* line 48, style.scss */
 .webpage {
   width: 100%;
   height: 100%;
 }
-/* line 34, style.scss */
-.webpage .container {
+/* line 51, style.scss */
+.webpage .container-page {
   max-width: 100% !important;
   padding: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
-/* line 37, style.scss */
-.webpage .container header {
-  background-color: #ffffff;
-  width: 100%;
-  height: 70px;
-  -webkit-box-shadow: 0 0 15px 0 #0000000d;
-          box-shadow: 0 0 15px 0 #0000000d;
+/* line 55, style.scss */
+.webpage .container-page .nav-bar {
+  height: 100vh;
+  width: 20%;
+  background-color: #735d78;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 9999999;
 }
-/* line 45, style.scss */
-.webpage .container header .nav-bar {
+/* line 61, style.scss */
+.webpage .container-page .nav-bar .content {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+/* line 65, style.scss */
+.webpage .container-page .nav-bar .content .nav-close {
+  display: none;
+}
+/* line 68, style.scss */
+.webpage .container-page .nav-bar .content i {
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+/* line 71, style.scss */
+.webpage .container-page .nav-bar .content .btn-nav {
+  padding: 10px;
+}
+/* line 73, style.scss */
+.webpage .container-page .nav-bar .content .btn-nav .icon-navbar {
+  width: 40px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  margin: 0 0 0 auto;
+}
+/* line 81, style.scss */
+.webpage .container-page .nav-bar .content .btn-nav .icon-navbar span {
+  border: 1px solid #fff;
+  margin: 3px;
+}
+/* line 87, style.scss */
+.webpage .container-page .nav-bar .content .logo {
+  padding: 20px;
+}
+/* line 89, style.scss */
+.webpage .container-page .nav-bar .content .logo .title {
+  font-size: 23px;
+  font-weight: 700;
+  color: #ffffff;
+  height: 50px;
+}
+/* line 94, style.scss */
+.webpage .container-page .nav-bar .content .logo .title small {
+  font-size: 15px;
+  top: -19px;
+  position: relative;
+  color: #D1B3C4;
+}
+/* line 102, style.scss */
+.webpage .container-page .nav-bar .content nav {
+  padding: 10px;
+}
+/* line 104, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul {
+  padding: 0;
+}
+/* line 106, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li {
+  list-style: none;
+  margin: 20px 0 !important;
+  padding: 5px;
+  text-transform: capitalize !important;
+}
+/* line 111, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li a {
+  color: #fff;
+  text-decoration: none !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  text-transform: capitalize;
+}
+/* line 118, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li a svg {
+  width: 30px;
+  height: 30px;
+}
+/* line 122, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li a span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 20px;
-  height: 100%;
   width: 100%;
 }
-/* line 53, style.scss */
-.webpage .container header .nav-bar .logo h1 {
-  text-transform: uppercase;
-  font-size: 25px;
-  color: #735d78;
+/* line 128, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li a span p {
+  margin: 0;
+  margin-left: 10px !important;
+  text-transform: capitalize;
 }
-/* line 60, style.scss */
-.webpage .container header .nav-bar ul li {
-  list-style: none;
+/* line 135, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li ul {
+  display: none;
+  padding: 0 6px;
+  font-size: 15px;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
 }
-/* line 62, style.scss */
-.webpage .container header .nav-bar ul li a {
-  text-decoration: none;
-  color: #735d78;
-  font-size: 18px;
+/* line 141, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li ul li a {
+  color: rgba(255, 255, 255, 0.59);
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
 }
-/* line 73, style.scss */
-.webpage .container main .dashboard .content {
+/* line 144, style.scss */
+.webpage .container-page .nav-bar .content nav .parent_ul li ul li a:hover {
+  color: rgba(255, 255, 255, 0.753);
+}
+/* line 155, style.scss */
+.webpage .container-page .navbar {
+  min-height: 55px;
+  background-color: white !important;
+}
+/* line 159, style.scss */
+.webpage .container-page main {
+  width: calc(100% - 20%);
+}
+/* line 162, style.scss */
+.webpage .container-page main .dashboard > .content {
   margin: 0 auto !important;
   padding: 10px;
-  width: 95%;
+  width: 98%;
   margin-bottom: 30px !important;
 }
-/* line 74, style.scss */
-.webpage .container main .dashboard .content i {
+/* line 163, style.scss */
+.webpage .container-page main .dashboard > .content i {
   font-size: 28px;
 }
-/* line 81, style.scss */
-.webpage .container main .dashboard .content .cards {
+/* line 170, style.scss */
+.webpage .container-page main .dashboard > .content .cards {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -118,8 +249,8 @@ a {
       flex-wrap: wrap;
   margin: 80px auto !important;
 }
-/* line 87, style.scss */
-.webpage .container main .dashboard .content .cards .card {
+/* line 176, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card {
   border: none !important;
   width: 250px;
   height: 150px;
@@ -128,10 +259,10 @@ a {
   transition: all .3s ease-out;
   -webkit-box-shadow: 0 0 15px #0000000d;
           box-shadow: 0 0 15px #0000000d;
-  margin: 5px;
+  margin: 5px !important;
 }
-/* line 95, style.scss */
-.webpage .container main .dashboard .content .cards .card .content {
+/* line 185, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card .content {
   margin: 10px !important;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -144,43 +275,43 @@ a {
   width: 100%;
   height: 100%;
 }
-/* line 103, style.scss */
-.webpage .container main .dashboard .content .cards .card .content .pric h3 {
+/* line 193, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card .content .pric h3 {
   font-size: 30px;
   margin: 10px 0;
   color: #735d78;
 }
-/* line 108, style.scss */
-.webpage .container main .dashboard .content .cards .card .content .pric p {
+/* line 198, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card .content .pric p {
   margin: 10px 0;
   font-size: 12px;
   width: 110px;
   text-transform: uppercase;
 }
-/* line 115, style.scss */
-.webpage .container main .dashboard .content .cards .card .content i {
+/* line 205, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card .content i {
   font-size: 50px;
   color: #735d78;
 }
-/* line 120, style.scss */
-.webpage .container main .dashboard .content .cards .card:hover {
+/* line 210, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card:hover {
   background-color: #735d78;
 }
-/* line 123, style.scss */
-.webpage .container main .dashboard .content .cards .card:hover .content .pric h3, .webpage .container main .dashboard .content .cards .card:hover .content .pric p {
+/* line 213, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card:hover .content .pric h3, .webpage .container-page main .dashboard > .content .cards .card:hover .content .pric p {
   color: #fff;
 }
-/* line 127, style.scss */
-.webpage .container main .dashboard .content .cards .card:hover .content i {
+/* line 217, style.scss */
+.webpage .container-page main .dashboard > .content .cards .card:hover .content i {
   color: #efcefa;
 }
-/* line 132, style.scss */
-.webpage .container main .dashboard .content .block {
+/* line 222, style.scss */
+.webpage .container-page main .dashboard > .content .block {
   width: 100%;
   height: auto;
 }
-/* line 136, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data {
+/* line 226, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data {
   -webkit-box-shadow: 0 0 18px 0 #0000000d;
           box-shadow: 0 0 18px 0 #0000000d;
   max-height: 500px;
@@ -190,8 +321,8 @@ a {
   overflow: auto;
   position: relative;
 }
-/* line 144, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .top {
+/* line 234, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .top {
   width: 100%;
   padding: 15px;
   height: 50px;
@@ -207,14 +338,14 @@ a {
           align-items: center;
   z-index: 55;
 }
-/* line 154, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .top h1 {
+/* line 244, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .top h1 {
   color: #fff;
   font-size: 20px;
   text-transform: uppercase;
 }
-/* line 161, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .filter {
+/* line 251, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .filter {
   padding: 10px;
   height: 80px;
   width: 100%;
@@ -226,8 +357,8 @@ a {
           box-shadow: 0 0 15px 0 #0000000d;
   z-index: 9;
 }
-/* line 170, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .filter form {
+/* line 260, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .filter form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -237,9 +368,9 @@ a {
   width: 100%;
   height: 100%;
 }
-/* line 175, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .filter form input {
-  width: 100%;
+/* line 265, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .filter form input {
+  width: 50%;
   margin: 0 10px !important;
   border: 0;
   padding: 10px;
@@ -248,8 +379,8 @@ a {
   outline: none;
   border: 1px solid #a88fac;
 }
-/* line 185, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .filter form .submit {
+/* line 275, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .filter form .submit {
   padding: 10px 15px;
   border: 0;
   outline: none;
@@ -258,21 +389,21 @@ a {
   color: #735d78;
   font-weight: 600;
 }
-/* line 196, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content {
+/* line 286, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content {
   margin: 10px auto !important;
   width: 95%;
   background: #f9f9f9;
 }
-/* line 200, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content a {
+/* line 290, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content a {
   height: 100%;
   width: 100%;
   text-decoration: none;
   color: #735d78;
 }
-/* line 206, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user {
+/* line 296, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -291,8 +422,8 @@ a {
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
-/* line 216, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info {
+/* line 306, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -300,66 +431,66 @@ a {
       -ms-flex-align: center;
           align-items: center;
 }
-/* line 219, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .logo {
+/* line 309, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .logo {
   border-radius: 50%;
   overflow: hidden;
   width: 40px;
   height: 40px;
   border: 2px solid #735d78;
 }
-/* line 225, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .logo img {
+/* line 315, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .logo img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-/* line 231, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .username {
+/* line 321, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .username {
   margin-left: 19px !important;
   text-align: left;
 }
-/* line 234, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .username .name {
+/* line 324, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .username .name {
   font-size: 18px;
   text-transform: uppercase;
 }
-/* line 238, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .info .username .company-name {
+/* line 328, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .info .username .company-name {
   text-transform: uppercase;
   font-size: 12px;
   color: #858585;
 }
-/* line 247, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user .actions i {
+/* line 337, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user .actions i {
   font-size: 25px;
   color: #735d78;
   -webkit-filter: drop-shadow(0px 0px 3px #b8b8b8);
           filter: drop-shadow(0px 0px 3px #b8b8b8);
 }
-/* line 253, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover {
+/* line 343, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover {
   background-color: #735d78;
 }
-/* line 256, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover .info .logo {
+/* line 346, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover .info .logo {
   border-color: #fff;
 }
-/* line 260, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover .info .username .name {
+/* line 350, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover .info .username .name {
   color: #ffffff;
 }
-/* line 263, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover .info .username .company-name {
+/* line 353, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover .info .username .company-name {
   color: #efcefa;
 }
-/* line 269, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .user:hover .actions i {
+/* line 359, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .user:hover .actions i {
   color: #fff;
 }
-/* line 275, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message {
+/* line 365, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message {
   padding: 5px;
   background: #fff;
   border-radius: 10px;
@@ -367,97 +498,202 @@ a {
           box-shadow: 0 0 15px 0 #0000000d;
   margin: 20px 0 !important;
 }
-/* line 281, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email {
+/* line 371, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email {
   padding: 5px;
-  border-bottom: 2px solid #dbdbdb;
   text-align: left;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
 }
-/* line 291, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .text-email, .webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .subject {
-  padding: 10px;
-  width: 500px;
-  background-color: #f7f7f7;
-  border-radius: 5px;
-  border: 1px solid #826c7f29;
-  overflow: hidden;
+/* line 377, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion {
+  --bs-accordion-btn-focus-box-shadow: none;
 }
-/* line 299, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .head-email .subject {
-  width: 200px;
+/* line 379, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button {
+  text-transform: uppercase;
 }
-/* line 303, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .text-message {
-  padding: 5px;
-  text-align: left;
-  -webkit-line-clamp: 2;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-top: 10px !important;
+/* line 381, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:not(.collapsed) {
+  background-color: #735d78;
 }
-/* line 311, style.scss */
-.webpage .container main .dashboard .content .block .row .show-data .body .content .message .text-message p {
-  padding: 10px;
-  background-color: #f7f7f7;
-  border-radius: 5px;
-  border: 1px solid #826c7f29;
-  overflow: hidden;
+/* line 382, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:not(.collapsed) .id {
+  color: #fff !important;
+}
+/* line 386, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:not(.collapsed) .date-message {
+  color: #a88fac !important;
+}
+/* line 390, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-button:focus {
+  border-color: #a88fac;
+}
+/* line 396, style.scss */
+.webpage .container-page main .dashboard > .content .block .row .show-data .body .content .message .head-email .accordion .accordion-collapse .subject p {
+  border-bottom: 1px solid #735d78;
+  text-transform: capitalize;
+  font-weight: 400;
 }
 
+@media screen and (max-width: 1024px) {
+  /* line 3, devices/_devices.scss */
+  .webpage .container-page {
+    display: block;
+  }
+
+  /* line 6, devices/_devices.scss */
+  .webpage .container-page main {
+    width: 100% !important;
+  }
+
+  /* line 9, devices/_devices.scss */
+  .nav-bar {
+    -webkit-transform: translateX(-335px);
+            transform: translateX(-335px);
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: -webkit-transform .5s ease;
+    transition: transform .5s ease;
+    transition: transform .5s ease, -webkit-transform .5s ease;
+    position: fixed !important;
+    z-index: 9999;
+    width: 330px !important;
+  }
+
+  /* line 18, devices/_devices.scss */
+  .navbar .container-fluid .btn-nav {
+    width: 50px !important;
+    height: 50px !important;
+    cursor: pointer;
+  }
+  /* line 22, devices/_devices.scss */
+  .navbar .container-fluid .btn-nav .icon-navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 100%;
+  }
+  /* line 27, devices/_devices.scss */
+  .navbar .container-fluid .btn-nav .icon-navbar span {
+    border: 1px solid #735d78;
+    margin: 3px !important;
+    border-radius: 5px;
+    width: 40px;
+  }
+  /* line 33, devices/_devices.scss */
+  .navbar .container-fluid .btn-nav .icon-navbar span.center {
+    width: 30px;
+  }
+
+  /* line 40, devices/_devices.scss */
+  .nav-bar.active {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  /* line 43, devices/_devices.scss */
+  .nav-bar.active .content .nav-close {
+    width: 100%;
+    position: relative;
+    display: block !important;
+  }
+  /* line 47, devices/_devices.scss */
+  .nav-bar.active .content .nav-close i {
+    position: absolute;
+    right: 0;
+    top: 20px;
+    font-size: 45px;
+    color: #ffff;
+    cursor: pointer;
+  }
+
+  /* line 59, devices/_devices.scss */
+  .cards .card {
+    width: 45% !important;
+  }
+  /* line 63, devices/_devices.scss */
+  .cards .card .content .pric h3 {
+    font-size: 40px !important;
+  }
+  /* line 66, devices/_devices.scss */
+  .cards .card .content .pric p {
+    font-size: 16px !important;
+    width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+  }
+  /* line 71, devices/_devices.scss */
+  .cards .card .content i {
+    font-size: 65px !important;
+  }
+}
 @media screen and (max-width: 768px) {
-  /* line 3, _devices.scss */
+  /* line 80, devices/_devices.scss */
+  .nav-bar {
+    width: 275px;
+  }
+
+  /* line 84, devices/_devices.scss */
   .cards .card {
     margin: 5px auto !important;
   }
 
-  /* line 7, _devices.scss */
+  /* line 88, devices/_devices.scss */
   .show-data {
     width: 100% !important;
   }
-  /* line 10, _devices.scss */
+  /* line 91, devices/_devices.scss */
   .show-data .body .content {
     overflow: auto;
   }
-  /* line 13, _devices.scss */
+  /* line 94, devices/_devices.scss */
   .show-data .body .content .package .table {
     width: 1000px !important;
   }
 }
 @media screen and (max-width: 425px) {
-  /* line 22, _devices.scss */
+  /* line 105, devices/_devices.scss */
   .cards {
     -webkit-box-pack: center !important;
         -ms-flex-pack: center !important;
             justify-content: center !important;
   }
-  /* line 24, _devices.scss */
+  /* line 107, devices/_devices.scss */
   .cards .card {
-    width: 90% !important;
-    margin: 5px auto !important;
+    width: 75% !important;
+  }
+  /* line 111, devices/_devices.scss */
+  .cards .card .content .pric h3 {
+    font-size: 30px !important;
+  }
+  /* line 114, devices/_devices.scss */
+  .cards .card .content .pric p {
+    font-size: 12px !important;
+    width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+  }
+  /* line 119, devices/_devices.scss */
+  .cards .card .content i {
+    font-size: 45px !important;
   }
 
-  /* line 29, _devices.scss */
+  /* line 125, devices/_devices.scss */
   .show-data {
     width: 100% !important;
   }
-  /* line 32, _devices.scss */
+  /* line 128, devices/_devices.scss */
   .show-data .body .content {
     overflow: auto;
   }
-  /* line 34, _devices.scss */
+  /* line 130, devices/_devices.scss */
   .show-data .body .content .table {
     width: 1000px !important;
   }

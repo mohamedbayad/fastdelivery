@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
 	<!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
@@ -27,7 +26,7 @@
 
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-	<title>{% block title %}Admin Brigad Style{% endblock title %}</title>
+	<title>{% block title %}Admin FastDelivery{% endblock title %}</title>
 </head>
 
 <body>
@@ -35,9 +34,20 @@
 		<div class="container-page">
 			{% include "dashboard-admin/parts-tool/navbar.html" %}
 			<main>
-				{% block content %}
 				<div class="dashboard">
+					{% include 'dashboard-admin/parts-tool/navtop.html' %}
 					<div class="content">
+						{% if messages %}
+							{% for message in messages %}
+								{% if message.tags == "success" %}
+									<div class="alert alert-success" role="alert">
+										<div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+									</div>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						{% block content %}
+
 						<div class="cards">
 							<div class="card">
 								<div class="content">
@@ -77,32 +87,24 @@
 							</div>
 						</div>
 
-
-
-
-						<div class="block container text-center ">
-							<!-- Packages Box -->
+						{% comment %} <div class="block container text-center mt-5 ">
+							<!-- Chart js -->
 							<div class="row justify-content-between mb-5">
-								<div class="users show-data packages-box col-12 p-2">
-									<canvas id="myChart" width="100%"></canvas>
+								<div class="charjs show-data col-7 p-3">
+									<canvas id="myChart"></canvas>
 								</div>
-								{% comment %} <div class="users show-data packages-box col-5">
-
-								</div> {% endcomment %}
+								<div class="charjs show-data col-4 p-3">
+									<canvas id="circle"></canvas>
+								</div>
 							</div>
-							<!-- end -->
-						</div>
+						</div> {% endcomment %}
 
-
-
-
-
-						<div class="block container text-center mt-5 ">
+						<div class="block container-fluid text-center mt-5 ">
 							<!-- Packages Box -->
 							<div class="row justify-content-between mb-5">
 								<div class="users show-data packages-box col-12">
 									<div class="top">
-										<h1>Box packages</h1>
+										<h1>Boîte à colis</h1>
 										<small class="ms-2 " style="color: #efcefa;">{{packages_box.count}}</small>
 									</div>
 									<div class="body">
@@ -141,15 +143,15 @@
 																<td>{{box.type_box}}</td>
 																<td>
 																	<select id="inputState" class="form-select" name="etat">
-																		{% if box.etat == "En coure ..."%}
-																		<option value="En coure ..." selected>En coure ...</option>
+																		{% if box.etat == "Running..."%}
+																		<option value="Running..." selected>Running...</option>
 																		{% else %}
-																		<option value='En coure ...' >En coure ...</option>
+																		<option value='Running...' >Running...</option>
 																		{% endif %}
-																		{% if box.etat == "Valider"%}
-																		<option value='Valider' selected>Valider</option>
+																		{% if box.etat == "Validate"%}
+																		<option value='Validate' selected>Validate</option>
 																		{% else %}
-																		<option value='Valider'>Valider</option>
+																		<option value='Validate'>Validate</option>
 																		{% endif %}
 																	</select>
 																</td>
@@ -171,9 +173,9 @@
 							<!-- end -->
 							<!-- custemers and admin-delivery -->
 							<div class="row justify-content-between mb-5">
-								<div class="users show-data custemers col-6">
+								<div class="users show-data custemers col-5">
 									<div class="top">
-										<h1>All users</h1>
+										<h1>TOUS LES UTILISATEURS</h1>
 										<small class="ms-2 " style="color: #efcefa;">{{users.count}}</small>
 									</div>
 									<div class="body">
@@ -208,7 +210,7 @@
 								</div>
 								<div class="users show-data admin-men-delivery col-5">
 									<div class="top">
-										<h1>admins-men-delivery</h1>
+										<h1>ADMIN HOMMES LIVRAISON</h1>
 										<small class="ms-2 " style="color: #efcefa;">{{admins_delivery.count}}</small>
 									</div>
 									<div class="body">
@@ -243,7 +245,7 @@
 							<div class="row justify-content-between mb-5">
 								<div class="tracking show-data tracking-orders col-12">
 									<div class="top">
-										<h1>Tracking Order</h1>
+										<h1>Suivi</h1>
 										<small class="ms-2 " style="color: #efcefa;">{{ordersTracking.count}}</small>
 									</div>
 									<div class="body">
@@ -329,11 +331,11 @@
 								</div>
 							</div>
 							<!-- end -->
-							<!-- custemers and admin-delivery  -->
+							<!-- packages  -->
 							<div class="row justify-content-between mb-5">
-								<div class="show-data packages col-12 mt-5">
+								<div class="show-data packages col-12">
 									<div class="top">
-										<h1>packages</h1>
+										<h1>colis</h1>
 										<small class="ms-2 " style="color: #efcefa;">{{packages.count}}</small>
 									</div>
 									<div class="body">
@@ -392,7 +394,7 @@
 							<div class="row justify-content-between mb-5">
 								<div class="show-data refund col-5 mb-3">
 									<div class="top">
-										<h1>refunds</h1>
+										<h1>remboursements</h1>
 										<small class="ms-2 " style="color: #efcefa;">{{refunds.count}}</small>
 									</div>
 									<div class="body">
@@ -429,7 +431,7 @@
 								</div>
 								<div class="show-data exchange col-5 m-1">
 									<div class="top">
-										<h1>exchanges</h1>
+										<h1>des échanges</h1>
 										<small class="ms-2 " style="color: #efcefa;">{{exchanges.count}}</small>
 									</div>
 									<div class="body">
@@ -471,28 +473,28 @@
 								<div class="show-data support col-12">
 									<div class="top">
 										<h1>support</h1>
-										<small class="ms-2 " style="color: #efcefa;">{{messages.count}}</small>
+										<small class="ms-2 " style="color: #efcefa;">{{support.count}}</small>
 									</div>
 									<div class="body">
 										<div class="content">
 											<div class="message">
 												<div class="head-email">
 													<div class="accordion" id="accordionExample">
-														{% for message in messages %}
+														{% for message in support %}
 														<div class="accordion-item">
-														  <h2 class="accordion-header" id="headingOne">
+														<h2 class="accordion-header" id="headingOne">
 															<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-															  <span class="id"> {{message.email}} </span> &nbsp | &nbsp <span class="date-message" style="color:#838383"> {{message.date}}</span>
+															<span class="id"> {{message.email}} </span> &nbsp | &nbsp <span class="date-message" style="color:#838383"> {{message.date}}</span>
 															</button>
-														  </h2>
-														  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+														</h2>
+														<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 															<div class="accordion-body">
-															  <div class='subject'>
+															<div class='subject'>
 																<p class="pt-2 pb-2 mb-3"></span> {{message.subject}}</p>
-															  </div>
-															  <p class="pt-2 pb-2"> {{message.message}} </p>
 															</div>
-														  </div>
+															<p class="pt-2 pb-2"> {{message.message}} </p>
+															</div>
+														</div>
 														</div>
 														{% endfor %}
 													</div>
@@ -504,194 +506,216 @@
 							</div>
 							<!-- end -->
 						</div>
+						{% endblock content %}
 					</div>
 				</div>
-				{% endblock content %}
 			</main>
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-    let idPackage = document.querySelectorAll(".id");
-    for (let i = 0; i<idPackage.length; i++){
-        let orId = idPackage[i].textContent
-        idPackage[i].onclick = () => {
-            orId.select;
-            navigator.clipboard.writeText(orId);
-            alert("Copiez ensuite le ID avec succès " + orId)
-        }
-        let newIdPackage = idPackage[i].textContent;
-        idPackage[i].textContent = newIdPackage + " ";
-        idPackage[i].innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2" viewBox="0 0 16 16"><path d="M3.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5H12a.5.5 0 0 1 0-1h.5A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1H4a.5.5 0 0 1 0 1h-.5Z"/><path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/></svg>';
-        idPackage[i].style.color = "#735d78";
-        idPackage[i].style.cursor = "pointer";
-    }
+	<script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
+	<script type="text/javascript">
+		let idPackage = document.querySelectorAll(".id");
+		for (let i = 0; i<idPackage.length; i++){
+			let orId = idPackage[i].textContent
+			idPackage[i].onclick = () => {
+				orId.select;
+				navigator.clipboard.writeText(orId);
+				alert("Copiez ensuite le ID avec succès " + orId)
+			}
+			let newIdPackage = idPackage[i].textContent;
+			idPackage[i].textContent = newIdPackage + " ";
+			idPackage[i].innerHTML += '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2" viewBox="0 0 16 16"><path d="M3.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5H12a.5.5 0 0 1 0-1h.5A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1H4a.5.5 0 0 1 0 1h-.5Z"/><path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/></svg>';
+			idPackage[i].style.color = "#735d78";
+			idPackage[i].style.cursor = "pointer";
+		}
 
-	// script seach 
-	
-	function searchId(idSearch, idClass) {
-		let idPachage = document.querySelectorAll(`.${idClass}`);
-		let search = document.getElementById(`${idSearch}`);
-		// search.oninput = function() {
-		idPachage.forEach(t => {
-			if (t.getAttribute("data") != "") {
-				if (search.value !== "") {
-					if (! t.getAttribute("data").includes(search.value)) {
-						t.parentElement.style.display = "none"
+		// script seach 
+		
+		function searchId(idSearch, idClass) {
+			let idPachage = document.querySelectorAll(`.${idClass}`);
+			let search = document.getElementById(`${idSearch}`);
+			// search.oninput = function() {
+			idPachage.forEach(t => {
+				let v = t.getAttribute("data").toLowerCase()
+				if (v != "") {
+					if (search.value.toLowerCase() !== "") {
+						if (! v.includes(search.value.toLowerCase())) {
+							t.parentElement.style.display = "none"
+						} else {
+							t.parentElement.style.display = "revert"
+						}
 					} else {
+						search.value = "";
 						t.parentElement.style.display = "revert"
 					}
-				} else {
-					search.value = "";
-					t.parentElement.style.display = "revert"
 				}
-			}
-		})
-		// }
-	}
+			})
+			// }
+		}
 
-	function searchUser(idSearch, idClass) {
-		let idPachage = document.querySelectorAll(`.${idClass}`);
-		let search = document.getElementById(`${idSearch}`);
-		// search.oninput = function() {
-		idPachage.forEach(t => {
-			if (t.getAttribute("data") != "") {
-				if (search.value !== "") {
-					if (! t.getAttribute("data").includes(search.value)) {
-						t.parentElement.style.display = "none"
+		function searchUser(idSearch, idClass) {
+			let idPachage = document.querySelectorAll(`.${idClass}`);
+			let search = document.getElementById(`${idSearch}`);
+			// search.oninput = function() {
+			idPachage.forEach(t => {
+				if (t.getAttribute("data") != "") {
+					if (search.value !== "") {
+						if (! t.getAttribute("data").includes(search.value)) {
+							t.parentElement.style.display = "none"
+						} else {
+							t.parentElement.style.display = "flex"
+						}
 					} else {
+						search.value = "";
 						t.parentElement.style.display = "flex"
 					}
-				} else {
-					search.value = "";
-					t.parentElement.style.display = "flex"
 				}
-			}
+			})
+			// }
+		}
+	</script>
+	<script type="text/javascript">
+		const inputs = document.querySelectorAll("input");
+		const selects = document.querySelectorAll("select")
+		inputs.forEach(e => {
+			e.classList.add("form-select")
 		})
-		// }
-	}
-</script>
-
-<script>
-    const inputs = document.querySelectorAll("input");
-    const selects = document.querySelectorAll("select")
-    inputs.forEach(e => {
-        e.classList.add("form-select")
-    })
-    selects.forEach(e => {
-        e.classList.add("form-select")
-    })
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-{% comment %} <script>
-	const labels = Utils.months({count: 7});
-	const ctx = document.getElementById('myChart');
-	const data = {
-	labels: labels,
-	datasets: [{
-		label: 'My First Dataset',
-		data: [65, 59, 80, 81, 56, 55, 40],
-		backgroundColor: [
-		'rgba(255, 99, 132, 0.2)',
-		'rgba(255, 159, 64, 0.2)',
-		'rgba(255, 205, 86, 0.2)',
-		'rgba(75, 192, 192, 0.2)',
-		'rgba(54, 162, 235, 0.2)',
-		'rgba(153, 102, 255, 0.2)',
-		'rgba(201, 203, 207, 0.2)'
-		],
-		borderColor: [
-		'rgb(255, 99, 132)',
-		'rgb(255, 159, 64)',
-		'rgb(255, 205, 86)',
-		'rgb(75, 192, 192)',
-		'rgb(54, 162, 235)',
-		'rgb(153, 102, 255)',
-		'rgb(201, 203, 207)'
-		],
-		borderWidth: 1
-	},
-	{
-		label: 'My First Dataset',
-		data: [65, 20, 80, 3, 56, 40, 15],
-		backgroundColor: [
-		'rgba(255, 99, 132, 0.2)',
-		'rgba(255, 159, 64, 0.2)',
-		'rgba(255, 205, 86, 0.2)',
-		'rgba(75, 192, 192, 0.2)',
-		'rgba(54, 162, 235, 0.2)',
-		'rgba(153, 102, 255, 0.2)',
-		'rgba(201, 203, 207, 0.2)'
-		],
-		borderColor: [
-		'rgb(255, 99, 132)',
-		],
-		type: 'line',
-		borderWidth: 1
-	}]
-	};
-</script> {% endcomment %}
-
-<script>
-	const ctx = document.getElementById('myChart');
-  
-	new Chart(ctx, {
-	  type: 'bar',
-	  data: {
-		labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-		datasets: [{
-			label: 'My First Dataset',
-			data: [65, 59, 80, 81, 56, 55, 40],
-			backgroundColor: [
-			'rgba(255, 99, 132, 0.2)',
-			'rgba(255, 159, 64, 0.2)',
-			'rgba(255, 205, 86, 0.2)',
-			'rgba(75, 192, 192, 0.2)',
-			'rgba(54, 162, 235, 0.2)',
-			'rgba(153, 102, 255, 0.2)',
-			'rgba(201, 203, 207, 0.2)'
-			],
-			borderColor: [
-			'rgb(255, 99, 132)',
-			'rgb(255, 159, 64)',
-			'rgb(255, 205, 86)',
-			'rgb(75, 192, 192)',
-			'rgb(54, 162, 235)',
-			'rgb(153, 102, 255)',
-			'rgb(201, 203, 207)'
-			],
-			borderWidth: 1
+		selects.forEach(e => {
+			e.classList.add("form-select")
+		})
+	</script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script type="text/javascript">
+		const ctx = document.getElementById('myChart');
+		const ctx2 = document.getElementById('circle');
+	
+		new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+			datasets: [{
+				label: 'My First Dataset',
+				data: [65, 59, 80, 81, 56, 55, 40],
+				backgroundColor: [
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(255, 159, 64, 0.2)',
+				'rgba(255, 205, 86, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(54, 162, 235, 0.2)',
+				'rgba(153, 102, 255, 0.2)',
+				'rgba(201, 203, 207, 0.2)'
+				],
+				borderColor: [
+				'rgb(255, 99, 132)',
+				'rgb(255, 159, 64)',
+				'rgb(255, 205, 86)',
+				'rgb(75, 192, 192)',
+				'rgb(54, 162, 235)',
+				'rgb(153, 102, 255)',
+				'rgb(201, 203, 207)'
+				],
+				borderWidth: 1
+			},
+			{
+				label: 'My First Dataset',
+				data: [65, 20, 80, 3, 56, 40, 15],
+				backgroundColor: [
+				'rgba(255, 99, 132, 0.2)',
+				'rgba(255, 159, 64, 0.2)',
+				'rgba(255, 205, 86, 0.2)',
+				'rgba(75, 192, 192, 0.2)',
+				'rgba(54, 162, 235, 0.2)',
+				'rgba(153, 102, 255, 0.2)',
+				'rgba(201, 203, 207, 0.2)'
+				],
+				borderColor: [
+				'rgb(255, 99, 132)',
+				],
+				type: 'line',
+				borderWidth: 1
+			}]
 		},
-		{
-			label: 'My First Dataset',
-			data: [65, 20, 80, 3, 56, 40, 15],
-			backgroundColor: [
-			'rgba(255, 99, 132, 0.2)',
-			'rgba(255, 159, 64, 0.2)',
-			'rgba(255, 205, 86, 0.2)',
-			'rgba(75, 192, 192, 0.2)',
-			'rgba(54, 162, 235, 0.2)',
-			'rgba(153, 102, 255, 0.2)',
-			'rgba(201, 203, 207, 0.2)'
-			],
-			borderColor: [
-			'rgb(255, 99, 132)',
-			],
-			type: 'line',
-			borderWidth: 1
-		}]
-	  },
-	  options: {
-		scales: {
-		  y: {
-			beginAtZero: true
+		options: {
+			scales: {
+			y: {
+				beginAtZero: true
+			}
+			}
+		}
+		});
+
+		new Chart(ctx2, {
+		type: 'polarArea',
+		data: {
+		  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+		  datasets: [{
+			  label: 'My First Dataset',
+			  data: [65, 59, 80, 81, 56, 55, 40],
+			  backgroundColor: [
+			  'rgba(255, 99, 132, 0.2)',
+			  'rgba(255, 159, 64, 0.2)',
+			  'rgba(255, 205, 86, 0.2)',
+			  'rgba(75, 192, 192, 0.2)',
+			  'rgba(54, 162, 235, 0.2)',
+			  'rgba(153, 102, 255, 0.2)',
+			  'rgba(201, 203, 207, 0.2)'
+			  ],
+			  borderColor: [
+			  'rgb(255, 99, 132)',
+			  'rgb(255, 159, 64)',
+			  'rgb(255, 205, 86)',
+			  'rgb(75, 192, 192)',
+			  'rgb(54, 162, 235)',
+			  'rgb(153, 102, 255)',
+			  'rgb(201, 203, 207)'
+			  ],
+			  borderWidth: 1
+		  },
+		  {
+			  label: 'My First Dataset',
+			  data: [65, 20, 80, 3, 56, 40, 15],
+			  backgroundColor: [
+			  'rgba(255, 99, 132, 0.2)',
+			  'rgba(255, 159, 64, 0.2)',
+			  'rgba(255, 205, 86, 0.2)',
+			  'rgba(75, 192, 192, 0.2)',
+			  'rgba(54, 162, 235, 0.2)',
+			  'rgba(153, 102, 255, 0.2)',
+			  'rgba(201, 203, 207, 0.2)'
+			  ],
+			  borderColor: [
+			  'rgb(255, 99, 132)',
+			  ],
+			  type: 'line',
+			  borderWidth: 1
+		  }]
+		},
+		options: {
+		  scales: {
+			y: {
+			  beginAtZero: true
+			}
 		  }
 		}
-	  }
-	});
-  </script>
+	  });
+
+
+  	</script>
+
+	{% comment %} scripts nav bar  {% endcomment %}
+	<script>
+		// actions nav bar 
+		let btnNav = document.querySelector(".btn-nav");
+		let navBar = document.querySelector(".nav-bar");
+		let btnCloseNavBar = document.querySelector(".nav-close .bx");
+		btnNav.addEventListener("click", _ => {
+			navBar.classList.add("active")
+		})
+		btnCloseNavBar.addEventListener("click", _ => {
+			navBar.classList.remove("active")
+		})
+	</script>
   
 	
 </html>

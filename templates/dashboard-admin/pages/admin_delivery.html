@@ -1,0 +1,40 @@
+{% extends 'dashboard-admin/dashboard.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="block container text-center mt-5 ">
+        <div class="row justify-content-between mb-5">
+            <div class="users show-data admin-men-delivery col-12">
+                <div class="top">
+                    <h1>ADMIN HOMMES LIVRAISON</h1>
+                    <small class="ms-2 " style="color: #efcefa;">{{admins_delivery.count}}</small>
+                </div>
+                <div class="body">
+                    <div class="filter">
+                        <form action="" method="GET">
+                            <input type="search" name="search" id="search" placeholder="Search with username or company name">
+                        </form>
+                    </div>
+                    <div class="content">
+                        {% for adminDelivery in admins_delivery %}
+                        <div class="user admin-delivery">
+                            <div class="info">
+                                <div class="logo">
+                                    <img src="{% static 'img/profile/default_profile.png' %}" alt="">
+                                </div>
+                                <div class="username">
+                                    <h4 class="name">{{adminDelivery.user}}</h4>
+                                    <p class="company-name">{{adminDelivery.city}}</p>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <a href="{% url 'view_admin' adminDelivery.user.id %}"><i class='bx bx-show'></i></a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

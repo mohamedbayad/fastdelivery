@@ -2,265 +2,259 @@
 {% load static %}
 
 {% block content %}
-<main>
-	<div class="dashboard">
-		<div class="content">
-			<div class="cards">
-				<div class="card">
-					<div class="content">
-						<div class="pric">
-							<h3>{{FIN_TOTAL}} DH</h3>
-							<p>REVENU NET TOTAL</p>
-						</div>
-						<i class="fa-solid fa-dollar-sign"></i>
-					</div>
+	<div class="cards">
+		<div class="card">
+			<div class="content">
+				<div class="pric">
+					<h3>{{FIN_TOTAL}} DH</h3>
+					<p>REVENU NET TOTAL</p>
 				</div>
-				<div class="card">
-					<div class="content">
-						<div class="pric">
-							<h3>{{TOTAL_FEE}} DH</h3>
-							<p>TOTAL LES FIES</p>
-						</div>
-						<i class='bx bxs-wallet'></i>
-					</div>
-				</div>
-				<div class="card">
-					<div class="content">
-						<div class="pric">
-							<h3>{{packages_count}}</h3>
-							<p>LES COLIES</p>
-						</div>
-						<i class="fa-solid fa-cube"></i>
-					</div>
-				</div>
-				<div class="card">
-					<div class="content">
-						<div class="pric">
-							<h3>{{total_packages_delivered}}</h3>
-							<p>colis livrés</p>
-						</div>
-						<i class="fa-solid fa-truck-ramp-box"></i>
-					</div>
-				</div>
+				<i class="fa-solid fa-dollar-sign"></i>
 			</div>
-			<div class="block container text-center mt-5 ">
-				<!-- invoices and receivesd -->
-				<div class="row justify-content-between">
-					<div class="show-data invoices col-6 mt-5">
-						<div class="top">
-							<h1>invoices</h1>
-						</div>
-						<div class="body">
-							<div class="filter">
-								<form action="" method="GET">
-									<input oninput="searchId(idSearch='search-invoices', idClass='id-invoices')" type="search" name="search-invoices" id="search-invoices" placeholder="search with id">
-								</form>
-							</div>
-							<div class="content">
-								<div class="invoices">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th scope="col">ID</th>
-												<th scope="col">P-N</th>
-												<th scope="col">M-T</th>
-												<th scope="col">M-R</th>
-												<th scope="col">Actions</th>
-											</tr>
-										</thead>
-										<tbody >
-											{% for invoice in pdf_invoices %}
-											<tr>
-												<th scope="row" data="{{invoice.received_id}}" class="id id-invoices" id="ind">{{invoice.received_id}}</th>
-												<td><span class="badge text-bg-secondary">{{invoice.packages.count}}</span></td>
-												<td><span class="badge text-bg-success">{{invoice.total_amount}}</span></td>
-												<td><span class="badge text-bg-danger">-{{invoice.total_withdrawn}}</span></td>
-												<td>
-													<a href="{% url 'pdf_invoices' invoice.received_id invoice.user.id %}"><i class='bx bx-cloud-download'></i></a>
-												</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="show-data received col-5 m-1 mt-5">
-						<div class="top">
-							<h1>received</h1>
-						</div>
-						<div class="body">
-							<div class="filter">
-								<form action="" method="GET">
-									<input oninput="searchId(idSearch='search-received', idClass='id-received')" type="search" name="search-received" id="search-received" placeholder="search with id">
-								</form>
-							</div>
-							<div class="content">
-								<div class="received">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th scope="col">ID</th>
-												<th scope="col">Received</th>
-												<th scope="col">Invoices</th>
-												<th scope="col">Actions</th>
-											</tr>
-										</thead>
-										<tbody >
-											{% for receive in data_invoices %}
-											<tr>
-												<th scope="row" data="{{receive.received_id}}" class="id id-received" id="ind">{{receive.received_id}}</th>
-												<td>{{receive.receive}}</td>
-												<td>{{receive.invoise}}</td>
-												<td>
-													<a href="{% url 'view_received' receive.user.id receive.received_id %}"><i class='bx bx-message-square-edit'></i></a>
-												</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
+		</div>
+		<div class="card">
+			<div class="content">
+				<div class="pric">
+					<h3>{{TOTAL_FEE}} DH</h3>
+					<p>TOTAL LES FIES</p>
 				</div>
-				<!-- end invoices and receivesd -->
-				<!-- packages -->
-				<div class="row justify-content-between">
-					<div class="show-data packages col-12 mt-5">
-						<div class="top">
-							<h1>packages</h1>
-						</div>
-						<div class="body">
-							<div class="filter">
-								<form action="" method="GET">
-									<input oninput="searchId(idSearch='search-package', idClass='id-package')" type="search" name="search-package" id="search-package" placeholder="search with id">
-								</form>
-							</div>
-							<div class="content">
-								<div class="package">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th scope="col">ID</th>
-												<th scope="col">Client</th>
-												<th scope="col">Etat</th>
-												<th scope="col">City</th>
-												<th scope="col">Date</th>
-												<th scope="col">Actions</th>
-											</tr>
-										</thead>
-										<tbody >
-											{% for package in packages %}
-											<tr>
-												<th scope="row" data="{{package.id_package}}" class="id id-package" id="ind">{{package.id_package}}</th>
-												<td>{{package.client_name}}</td>
-												{% if package.etat == "Ramassée"%}
-													<td><span class="badge text-bg-warning">{{package.etat}}</span></td>
-													{% elif package.etat == "Annulée"%}
-													<td><span class="badge text-bg-danger">{{package.etat}}</span></td>
-													{% elif package.etat == "Livrée"%}
-													<td><span class="badge text-bg-success">{{package.etat}}</span></td>
-													{% elif package.etat == "Pas de réponse"%}
-													<td><span class="badge text-bg-info">{{package.etat}}</span></td>
-													{% else %}
-													<td><span class="badge text-bg-dark">{{package.etat}}</span></td>
-												{% endif %}
-												{% comment %} <td>{{package.etat}}</td> {% endcomment %}
-												<td>{{package.city}}</td>
-												<td>{{package.date_created}}</td>
-												<td>
-													<a href="{% url 'view_package' package.user.id package.id_package %}"><i class='bx bx-message-square-edit'></i></a>
-												</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
+				<i class='bx bxs-wallet'></i>
+			</div>
+		</div>
+		<div class="card">
+			<div class="content">
+				<div class="pric">
+					<h3>{{packages_count}}</h3>
+					<p>LES COLIES</p>
 				</div>
-				<!-- end packages -->
-				<!-- redund and exchange  -->
-				<div class="row justify-content-between">
-					<div class="show-data refund col-5 mt-5">
-						<div class="top">
-							<h1>refunds</h1>
-						</div>
-						<div class="body">
-							<div class="filter">
-								<form action="" method="GET">
-									<input oninput="searchId(idSearch='search-refund', idClass='id-refund')" type="search" name="search-refund" id="search-refund" placeholder="search with id">
-								</form>
-							</div>
-							<div class="content">
-								<div class="refund">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th scope="col">ID</th>
-												<th scope="col">Price</th>
-												<th scope="col">Actions</th>
-											</tr>
-										</thead>
-										<tbody >
-											{% for refund in refunds %}
-											<tr>
-												<th scope="row" data="{{refund.refund_id}}" class="id id-refund" id="ind">{{refund.refund_id}}</th>
-												<td>{{refund.refund_price}}</td>
-												<td>
-													<a href="{% url 'view_refund' refund.user.id refund.refund_id %}"><i class='bx bx-show'></i></a>
-												</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="show-data exchange col-5 m-1 mt-5">
-						<div class="top">
-							<h1>exchanges</h1>
-						</div>
-						<div class="body">
-							<div class="filter">
-								<form action="" method="GET">
-									<input oninput="searchId(idSearch='search-exchange', idClass='id-exchange')" type="search" name="search-exchange" id="search-exchange" placeholder="search with id">
-								</form>
-							</div>
-							<div class="content">
-								<div class="exchange">
-									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th scope="col">ID</th>
-												<th scope="col">Price</th>
-												<th scope="col">Actions</th>
-											</tr>
-										</thead>
-										<tbody >
-											{% for exchange in exchanges %}
-											<tr>
-												<th scope="row" data="{{exchange.exchange_id}}" class="id id-exchange" id="ind">{{exchange.exchange_id}}</th>
-												<td>{{exchange.exchange_price}}</td>
-												<td>
-													<a href="{% url 'view_exchange' exchange.user.id exchange.exchange_id %}"><i class='bx bx-show'></i></a>
-												</td>
-												</tr>
-											{% endfor %}
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
+				<i class="fa-solid fa-cube"></i>
+			</div>
+		</div>
+		<div class="card">
+			<div class="content">
+				<div class="pric">
+					<h3>{{total_packages_delivered}}</h3>
+					<p>colis livrés</p>
 				</div>
-				<!-- end redund and exchange  -->
+				<i class="fa-solid fa-truck-ramp-box"></i>
 			</div>
 		</div>
 	</div>
-</main>
+	<div class="block container text-center mt-5 ">
+		<!-- invoices and receivesd -->
+		<div class="row justify-content-between">
+			<div class="show-data invoices col-6 mt-5">
+				<div class="top">
+					<h1>invoices</h1>
+				</div>
+				<div class="body">
+					<div class="filter">
+						<form action="" method="GET">
+							<input oninput="searchId(idSearch='search-invoices', idClass='id-invoices')" type="search" name="search-invoices" id="search-invoices" placeholder="search with id">
+						</form>
+					</div>
+					<div class="content">
+						<div class="invoices">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">P-N</th>
+										<th scope="col">M-T</th>
+										<th scope="col">M-R</th>
+										<th scope="col">Actions</th>
+									</tr>
+								</thead>
+								<tbody >
+									{% for invoice in pdf_invoices %}
+									<tr>
+										<th scope="row" data="{{invoice.received_id}}" class="id id-invoices" id="ind">{{invoice.received_id}}</th>
+										<td><span class="badge text-bg-secondary">{{invoice.packages.count}}</span></td>
+										<td><span class="badge text-bg-success">{{invoice.total_amount}}</span></td>
+										<td><span class="badge text-bg-danger">-{{invoice.total_withdrawn}}</span></td>
+										<td>
+											<a href="{% url 'pdf_invoices' invoice.received_id invoice.user.id %}"><i class='bx bx-cloud-download'></i></a>
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="show-data received col-5 m-1 mt-5">
+				<div class="top">
+					<h1>received</h1>
+				</div>
+				<div class="body">
+					<div class="filter">
+						<form action="" method="GET">
+							<input oninput="searchId(idSearch='search-received', idClass='id-received')" type="search" name="search-received" id="search-received" placeholder="search with id">
+						</form>
+					</div>
+					<div class="content">
+						<div class="received">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">Received</th>
+										<th scope="col">Invoices</th>
+										<th scope="col">Actions</th>
+									</tr>
+								</thead>
+								<tbody >
+									{% for receive in data_invoices %}
+									<tr>
+										<th scope="row" data="{{receive.received_id}}" class="id id-received" id="ind">{{receive.received_id}}</th>
+										<td>{{receive.receive}}</td>
+										<td>{{receive.invoise}}</td>
+										<td>
+											<a href="{% url 'view_received' receive.user.id receive.received_id %}"><i class='bx bx-message-square-edit'></i></a>
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end invoices and receivesd -->
+		<!-- packages -->
+		<div class="row justify-content-between">
+			<div class="show-data packages col-12 mt-5">
+				<div class="top">
+					<h1>packages</h1>
+				</div>
+				<div class="body">
+					<div class="filter">
+						<form action="" method="GET">
+							<input oninput="searchId(idSearch='search-package', idClass='id-package')" type="search" name="search-package" id="search-package" placeholder="search with id">
+						</form>
+					</div>
+					<div class="content">
+						<div class="package">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">Client</th>
+										<th scope="col">Etat</th>
+										<th scope="col">City</th>
+										<th scope="col">Date</th>
+										<th scope="col">Actions</th>
+									</tr>
+								</thead>
+								<tbody >
+									{% for package in packages %}
+									<tr>
+										<th scope="row" data="{{package.id_package}}" class="id id-package" id="ind">{{package.id_package}}</th>
+										<td>{{package.client_name}}</td>
+										{% if package.etat == "Ramassée"%}
+											<td><span class="badge text-bg-warning">{{package.etat}}</span></td>
+											{% elif package.etat == "Annulée"%}
+											<td><span class="badge text-bg-danger">{{package.etat}}</span></td>
+											{% elif package.etat == "Livrée"%}
+											<td><span class="badge text-bg-success">{{package.etat}}</span></td>
+											{% elif package.etat == "Pas de réponse"%}
+											<td><span class="badge text-bg-info">{{package.etat}}</span></td>
+											{% else %}
+											<td><span class="badge text-bg-dark">{{package.etat}}</span></td>
+										{% endif %}
+										{% comment %} <td>{{package.etat}}</td> {% endcomment %}
+										<td>{{package.city}}</td>
+										<td>{{package.date_created}}</td>
+										<td>
+											<a href="{% url 'view_package' package.user.id package.id_package %}"><i class='bx bx-message-square-edit'></i></a>
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end packages -->
+		<!-- redund and exchange  -->
+		<div class="row justify-content-between">
+			<div class="show-data refund col-5 mt-5">
+				<div class="top">
+					<h1>refunds</h1>
+				</div>
+				<div class="body">
+					<div class="filter">
+						<form action="" method="GET">
+							<input oninput="searchId(idSearch='search-refund', idClass='id-refund')" type="search" name="search-refund" id="search-refund" placeholder="search with id">
+						</form>
+					</div>
+					<div class="content">
+						<div class="refund">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">Price</th>
+										<th scope="col">Actions</th>
+									</tr>
+								</thead>
+								<tbody >
+									{% for refund in refunds %}
+									<tr>
+										<th scope="row" data="{{refund.refund_id}}" class="id id-refund" id="ind">{{refund.refund_id}}</th>
+										<td>{{refund.refund_price}}</td>
+										<td>
+											<a href="{% url 'view_refund' refund.user.id refund.refund_id %}"><i class='bx bx-show'></i></a>
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="show-data exchange col-5 m-1 mt-5">
+				<div class="top">
+					<h1>exchanges</h1>
+				</div>
+				<div class="body">
+					<div class="filter">
+						<form action="" method="GET">
+							<input oninput="searchId(idSearch='search-exchange', idClass='id-exchange')" type="search" name="search-exchange" id="search-exchange" placeholder="search with id">
+						</form>
+					</div>
+					<div class="content">
+						<div class="exchange">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">Price</th>
+										<th scope="col">Actions</th>
+									</tr>
+								</thead>
+								<tbody >
+									{% for exchange in exchanges %}
+									<tr>
+										<th scope="row" data="{{exchange.exchange_id}}" class="id id-exchange" id="ind">{{exchange.exchange_id}}</th>
+										<td>{{exchange.exchange_price}}</td>
+										<td>
+											<a href="{% url 'view_exchange' exchange.user.id exchange.exchange_id %}"><i class='bx bx-show'></i></a>
+										</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end redund and exchange  -->
+	</div>
 {% endblock content %}

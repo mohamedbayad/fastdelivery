@@ -1,58 +1,65 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
+/* line 9, main.scss */
 * {
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-  scroll-behavior: smooth;
+  font-family: 'Nunito', sans-serif;
 }
 
+/* line 16, main.scss */
 body {
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
+  -webkit-transition: all .7s ease;
+  transition: all .7s ease;
 }
 
+/* line 21, main.scss */
+.container {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+/* line 26, main.scss */
+h1 {
+  font-size: 2em !important;
+}
+
+/* line 30, main.scss */
+p {
+  margin-bottom: 0 !important;
+}
+
+/* line 1, parts/_navbar.scss */
+.navbar-toggler {
+  border: none !important;
+  outline: none !important;
+}
+/* line 4, parts/_navbar.scss */
+.navbar-toggler:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+/* line 9, parts/_navbar.scss */
 .top-header {
-  position: fixed;
   top: 0;
   width: 100%;
-  background: transparent;
+  background-color: #fff !important;
   padding: 20px 35px;
-  z-index: 10;
+  border-bottom: 1px solid #efefee;
 }
-.top-header .content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-.top-header .content .logo a {
-  text-decoration: none;
-  text-transform: uppercase;
-  color: #3f3d56;
-}
-.top-header .content .nav-top nav a {
-  text-decoration: none;
-  color: #3f3d56;
-  font-size: large;
+/* line 19, parts/_navbar.scss */
+.top-header .collapse .nav li a {
+  color: #000;
   text-transform: capitalize;
-  padding: 10px;
-  margin: 0 5px;
-  border-radius: 20px;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
 }
-.top-header .content .nav-top nav a:hover {
-  background: #f8a726;
-  color: #fff;
+/* line 22, parts/_navbar.scss */
+.top-header .collapse .nav li a:hover {
+  color: #735d78;
 }
-.top-header .content .register {
+/* line 28, parts/_navbar.scss */
+.top-header .collapse .register {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -63,91 +70,166 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.top-header .content .register .i-c {
+/* line 32, parts/_navbar.scss */
+.top-header .collapse .register .i-c {
   margin: 0 5px;
 }
-.top-header .content .register .i-c a {
+/* line 34, parts/_navbar.scss */
+.top-header .collapse .register .i-c a {
   padding: 10px;
   text-decoration: none;
   font-size: 17px;
-  color: #3f3d56;
+  color: #5a5a5a;
   text-transform: capitalize;
   border-radius: 20px;
 }
-.top-header .content .register .i-c a:hover:not(#insc) {
-  color: #f8a726;
+/* line 41, parts/_navbar.scss */
+.top-header .collapse .register .i-c a:hover:not(#insc) {
+  color: #735d78;
 }
-.top-header .content .register .i-c #insc {
-  border: 1.5px solid #f8a726;
+/* line 45, parts/_navbar.scss */
+.top-header .collapse .register .i-c #insc {
+  border: 2px solid #D1B3C4;
 }
-.top-header .content .nav-mobile {
+/* line 50, parts/_navbar.scss */
+.top-header .collapse .nav-mobile {
   display: none;
 }
-.top-header .content .close {
+/* line 53, parts/_navbar.scss */
+.top-header .collapse .close {
   display: none;
   position: absolute;
   top: 0;
   margin: 11px;
   padding: 5px 10px;
   font-size: 23px;
-  background: #f7ac4d;
+  background: #735d78;
   border-radius: 50%;
-  color: white;
+  color: #fff;
 }
 
-header .container {
-  background-color: #f7f7f7;
-  height: 100vh;
-  overflow: hidden;
+/* line 36, main.scss */
+.up {
+  color: #fff;
+  position: fixed;
+  right: 35px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  background-color: #3f3d56;
+  -webkit-box-shadow: -2px 2px 0px 0 #919191;
+          box-shadow: -2px 2px 0px 0 #919191;
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+  -webkit-transition: -webkit-transform .5s ease-in-out;
+  transition: -webkit-transform .5s ease-in-out;
+  transition: transform .5s ease-in-out;
+  transition: transform .5s ease-in-out, -webkit-transform .5s ease-in-out;
+  z-index: 999999999;
+  cursor: pointer;
 }
-header .container::before {
-  content: "";
-  position: absolute;
-  background-image: url("../img/deco.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  bottom: -195px;
-  left: 0;
+/* line 49, main.scss */
+.up .icone {
+  position: relative;
   width: 100%;
-  height: 200px;
-}
-header .container .main-header {
   height: 100%;
-}
-header .container .main-header .content {
+  text-align: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+/* line 58, main.scss */
+.up .icone i {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: -webkit-transform .2s ease-in;
+  transition: -webkit-transform .2s ease-in;
+  transition: transform .2s ease-in;
+  transition: transform .2s ease-in, -webkit-transform .2s ease-in;
+}
+/* line 62, main.scss */
+.up .icone::after {
+  content: "";
+  position: absolute;
+  height: 12px;
+  bottom: -18px;
+  background: #fff;
+  width: 2px;
+  border-radius: 2px;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+/* line 75, main.scss */
+.up:hover .icone i {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+}
+/* line 78, main.scss */
+.up:hover .icone::after {
+  -webkit-transform: translateY(-27px);
+          transform: translateY(-27px);
+}
+
+/* line 85, main.scss */
+header .container {
+  background-color: white;
+  height: 100vh;
+  overflow: hidden;
+}
+/* line 89, main.scss */
+header .container .main-header {
+  height: 100%;
+}
+/* line 91, main.scss */
+header .container .main-header .content {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 100%;
+  width: 100%;
 }
+/* line 97, main.scss */
 header .container .main-header .content .txt-main-header {
   line-height: 40px;
 }
-header .container .main-header .content .txt-main-header h5 {
-  color: #f8a726;
-  font-size: 18px;
+/* line 99, main.scss */
+header .container .main-header .content .txt-main-header .txt-header {
+  color: #d1b3c4;
+  font-size: 18px !important;
   font-weight: 700;
   text-transform: uppercase;
 }
-header .container .main-header .content .txt-main-header p {
+/* line 107, main.scss */
+header .container .main-header .content .txt-main-header .txt-paragraph {
   font-size: 35px;
   font-weight: bold;
-  color: #3f3d56;
+  color: #5a5a5a;
   margin-bottom: 35px;
+  width: 555px;
+  text-transform: uppercase;
 }
+/* line 117, main.scss */
 header .container .main-header .content .txt-main-header a {
   text-decoration: none;
   font-size: 20px;
-  color: #3f3d56;
+  color: #5a5a5a;
   position: relative;
   padding: 15px 20px;
   z-index: 8;
 }
+/* line 124, main.scss */
 header .container .main-header .content .txt-main-header a::before {
   content: '';
   position: absolute;
@@ -157,26 +239,55 @@ header .container .main-header .content .txt-main-header a::before {
   left: 0;
   top: 0;
   border-radius: 40px;
-  border: 1px solid #3f3d562c;
+  border: 1px solid #3f3d56;
   -webkit-transition: all .5s ease-in-out;
   transition: all .5s ease-in-out;
 }
+/* line 136, main.scss */
 header .container .main-header .content .txt-main-header a:hover::before {
   width: 25%;
 }
+/* line 142, main.scss */
 header .container .main-header .content .image-main {
   width: 45%;
-  position: relative;
 }
+/* line 144, main.scss */
 header .container .main-header .content .image-main img {
   width: 100%;
-  position: absolute;
-  top: -155px;
 }
 
+/* line 152, main.scss */
 .our-work {
+  margin: 35px auto;
+  padding: 40px 25px;
   position: relative;
 }
+/* line 158, main.scss */
+.our-work .waver-top {
+  position: absolute;
+  left: 0;
+  bottom: 305px;
+  width: 100%;
+}
+/* line 163, main.scss */
+.our-work .waver-top path {
+  fill: #e7d7e0;
+}
+/* line 167, main.scss */
+.our-work .waver-bottom {
+  position: absolute;
+  bottom: -300px;
+  left: 0;
+  width: 100%;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  z-index: -1;
+}
+/* line 174, main.scss */
+.our-work .waver-bottom path {
+  fill: #e7d7e0;
+}
+/* line 178, main.scss */
 .our-work .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -191,60 +302,71 @@ header .container .main-header .content .image-main img {
   width: 100%;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  padding: 20px 35px;
+  padding: 20px 35px !important;
   overflow: hidden;
 }
+/* line 187, main.scss */
 .our-work .container .box {
-  -webkit-box-shadow: 0 0 13px 0 #00000012;
-          box-shadow: 0 0 13px 0 #00000012;
+  -webkit-box-shadow: 0 0 15px 0 #00000029;
+          box-shadow: 0 0 15px 0 #00000029;
   background: white;
   padding: 10px 12px;
   margin: 0 10px;
   border-radius: 10px;
-  min-height: 180px;
+  min-height: 240px;
   width: 350px;
+  z-index: 2;
   -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
 }
+/* line 198, main.scss */
 .our-work .container .box:nth-child(1) {
   -webkit-transform: translateX(-500px);
           transform: translateX(-500px);
   opacity: 0;
 }
+/* line 202, main.scss */
 .our-work .container .box:nth-child(2) {
   opacity: 0;
 }
+/* line 205, main.scss */
 .our-work .container .box:nth-child(3) {
   -webkit-transform: translateX(500px);
           transform: translateX(500px);
   opacity: 0;
 }
+/* line 209, main.scss */
 .our-work .container .box:hover {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
+/* line 212, main.scss */
 .our-work .container .box h1, .our-work .container .box p {
   margin: 16px auto;
-  color: #3f3d56;
+  color: #5a5a5a;
 }
+/* line 216, main.scss */
 .our-work .container .box h1 {
-  border-bottom: 2px solid #f8a726;
+  border-bottom: 2px solid #D1B3C4;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   text-align: left;
+  text-transform: uppercase;
 }
+/* line 222, main.scss */
 .our-work .container .box p {
   line-height: 30px;
   text-align: center;
 }
 
+/* line 230, main.scss */
 .pricing {
   margin: 35px auto;
   padding: 40px 25px;
 }
+/* line 233, main.scss */
 .pricing .container {
-  margin: 30px 25px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -256,18 +378,20 @@ header .container .main-header .content .image-main img {
       -ms-flex-align: center;
           align-items: center;
 }
+/* line 237, main.scss */
 .pricing .container h1 {
-  color: #3f3d56;
+  color: #5a5a5a;
   font-size: 40px;
   text-transform: uppercase;
-  border-left: 2px solid #f8a726;
-  border-right: 2px solid #f8a726;
+  border-left: 2px solid #D1B3C4;
+  border-right: 2px solid #D1B3C4;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 0 20px;
   margin: 0 auto;
 }
+/* line 247, main.scss */
 .pricing .container input {
   padding: 15px 15px;
   width: 500px;
@@ -277,6 +401,7 @@ header .container .main-header .content .image-main img {
   margin: 46px auto;
   font-size: 17px;
 }
+/* line 256, main.scss */
 .pricing .container .content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -286,11 +411,12 @@ header .container .main-header .content .image-main img {
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: 70px auto;
 }
+/* line 262, main.scss */
 .pricing .container .content .pricing-thumb {
   width: 290px;
   background: white;
@@ -299,50 +425,76 @@ header .container .main-header .content .image-main img {
   border-radius: 5px;
   -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
-  border: 1px solid #3f3d5633;
+  border: 1px solid #9c9aad;
 }
+/* line 271, main.scss */
 .pricing .container .content .pricing-thumb:hover {
-  -webkit-box-shadow: 0 0 11px 0 #00000024;
-          box-shadow: 0 0 11px 0 #00000024;
+  -webkit-box-shadow: 0 0 12px 0 #f1f1f1;
+          box-shadow: 0 0 12px 0 #f1f1f1;
 }
+/* line 274, main.scss */
 .pricing .container .content .pricing-thumb .title {
   padding: 8px;
+  color: #5a5a5a;
 }
+/* line 278, main.scss */
 .pricing .container .content .pricing-thumb .top-price,
 .pricing .container .content .pricing-thumb .center-price,
 .pricing .container .content .pricing-thumb .bottom-price {
   margin: 25px auto;
   padding: 8px;
   border-bottom: 1px solid #bebebe;
-  border-left: 2px solid #f8a726;
+  border-left: 2px solid #D1B3C4;
 }
-
-footer .content {
-  width: 100%;
-  height: 40px;
+/* line 288, main.scss */
+.pricing .container .btn-primary {
+  padding: 13px 45px;
+  outline: none;
+  border: none;
+  border: 2px solid #3f3d56;
+  background: transparent;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #3f3d56;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+/* line 301, main.scss */
+.pricing .container .btn-primary::before {
+  content: '';
+  width: 0;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   background-color: #3f3d56;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  z-index: -1;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
 }
-footer .content span {
+/* line 314, main.scss */
+.pricing .container .btn-primary:hover {
   color: #fff;
 }
-footer .content span a {
-  color: #f8a726;
-  text-decoration: none;
+/* line 317, main.scss */
+.pricing .container .btn-primary:hover::before {
+  width: 100%;
 }
 
+/* line 325, main.scss */
+footer a {
+  color: #3f3d56;
+  font-size: 16px;
+}
+
+/* line 1, pages/_connexion.scss */
 .form-login {
   height: 100vh;
   width: 100%;
 }
+/* line 4, pages/_connexion.scss */
 .form-login .content {
   height: 100%;
   display: -webkit-box;
@@ -351,64 +503,17 @@ footer .content span a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
 }
-.form-login .content h2 {
-  margin: 50px auto;
-  text-transform: uppercase;
-  color: #3f3d56;
-  font-size: 35px;
-  border-bottom: 3px solid #f8a726;
-}
-.form-login .content .alert-success {
-  width: 40%;
-}
-.form-login .content form {
-  min-width: 40%;
-  padding: 27px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0 0 10px #e5e5e5;
-          box-shadow: 0 0 10px #e5e5e5;
-}
-.form-login .content form input {
-  width: 100%;
-  padding: 8px 15px;
-  border-radius: 6px;
-  outline: none;
-  border: 1px solid #b9b9b9;
-  margin-bottom: 25px;
-  margin-top: 5px;
-}
-.form-login .content form #button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 18px;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  color: #3f3d56;
-  font-weight: bold;
-  cursor: pointer;
-}
-.form-login .content form .mes-user-pasw {
-  text-align: center;
-  color: red;
-  margin: 10px 0;
-}
-.form-login .content form .register {
-  text-align: center;
-  margin-top: 25px;
-}
-
-.form-register {
-  height: 100vh;
-  width: 100%;
-}
-.form-register .content {
+/* line 10, pages/_connexion.scss */
+.form-login .content .form-content {
+  width: 70%;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -420,45 +525,48 @@ footer .content span a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
-.form-register .content h2 {
-  margin: 50px auto;
-  text-transform: uppercase;
-  color: #3f3d56;
-  font-size: 35px;
-  border-bottom: 3px solid #f8a726;
+/* line 17, pages/_connexion.scss */
+.form-login .content .form-content .alert-success {
+  width: 55%;
+  margin: 5px auto;
 }
-.form-register .content form {
-  min-width: 40%;
+/* line 21, pages/_connexion.scss */
+.form-login .content .form-content form {
+  width: 55%;
   padding: 27px;
   border-radius: 10px;
-  -webkit-box-shadow: 0 0 10px #e5e5e5;
-          box-shadow: 0 0 10px #e5e5e5;
+  -webkit-box-shadow: 0 0 12px 0 #f1f1f1;
+          box-shadow: 0 0 12px 0 #f1f1f1;
+  background-color: white;
+  margin: 0 auto;
 }
-.form-register .content form input {
+/* line 22, pages/_connexion.scss */
+.form-login .content .form-content form h2 {
+  margin: 0px auto 20px;
+  text-transform: uppercase;
+  color: #735d78;
+  font-size: 35px;
+  border-bottom: 1px solid #3f3d56;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+/* line 36, pages/_connexion.scss */
+.form-login .content .form-content form input {
   width: 100%;
   padding: 8px 15px;
   border-radius: 6px;
   outline: none;
-  border: 1px solid #b9b9b9;
+  border: 1px solid #bebebe;
   margin-bottom: 25px;
   margin-top: 5px;
 }
-.form-register .content form .error1,
-.form-register .content form .error2 {
-  margin-top: -23px;
-  margin-bottom: 18px;
-  color: red;
-  font-size: 14px;
-  display: none;
-}
-.form-register .content form .error_user {
-  margin-top: -23px;
-  margin-bottom: 18px;
-  color: red;
-  font-size: 14px;
-}
-.form-register .content form button {
+/* line 45, pages/_connexion.scss */
+.form-login .content .form-content form #button {
   width: 100%;
   padding: 10px;
   border: none;
@@ -466,37 +574,74 @@ footer .content span a {
   font-size: 18px;
   margin-bottom: 20px;
   text-transform: uppercase;
-  color: #3f3d56;
+  color: #fff;
   font-weight: bold;
   cursor: pointer;
-  background-color: #f0f0f0;
+  background-color: #735d78;
 }
-.form-register .content form .login {
+/* line 58, pages/_connexion.scss */
+.form-login .content .form-content form .mes-user-pasw {
   text-align: center;
+  color: red;
+  margin: 10px 0;
+}
+/* line 63, pages/_connexion.scss */
+.form-login .content .form-content form .register {
+  text-align: center;
+  margin-top: 25px;
+}
+/* line 66, pages/_connexion.scss */
+.form-login .content .form-content form .register #register {
+  color: #735d78;
+  text-decoration: none;
+}
+/* line 71, pages/_connexion.scss */
+.form-login .content .form-content form .forget-pass {
+  text-align: center;
+}
+/* line 73, pages/_connexion.scss */
+.form-login .content .form-content form .forget-pass #password_reset {
+  color: #735d78;
+  text-decoration: none;
+}
+/* line 80, pages/_connexion.scss */
+.form-login .content .pattern-deco {
+  width: 30%;
+  height: 100%;
 }
 
 @media only screen and (min-width: 1440px) {
+  /* line 6, layout/_allDevices.scss */
   .pricing .container .content .pricing-thumb {
     width: 420px !important;
   }
 }
 @media (max-width: 1024px) {
+  /* line 17, layout/_allDevices.scss */
   .main-header .content .txt-main-header p {
     font-size: 28px !important;
   }
+  /* line 20, layout/_allDevices.scss */
   .main-header .content .txt-main-header a {
     font-size: 15px !important;
   }
 
+  /* line 29, layout/_allDevices.scss */
   .pricing .container .content .pricing-thumb {
     width: 288px;
   }
 }
 @media (max-width: 768px) {
+  /* line 40, layout/_allDevices.scss */
+  header .container {
+    height: 120vh !important;
+  }
+  /* line 44, layout/_allDevices.scss */
   header .container .top-header .content .nav-top,
   header .container .top-header .content .register {
     display: none;
   }
+  /* line 48, layout/_allDevices.scss */
   header .container .top-header .content .nav-top.active {
     position: fixed !important;
     background: #efefef !important;
@@ -505,6 +650,7 @@ footer .content span a {
     width: 270px;
     height: 100%;
   }
+  /* line 55, layout/_allDevices.scss */
   header .container .top-header .content .nav-top.active nav {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
@@ -518,6 +664,7 @@ footer .content span a {
             align-items: center;
     margin-top: 45px;
   }
+  /* line 60, layout/_allDevices.scss */
   header .container .top-header .content .nav-top.active nav a {
     border-bottom: 1px solid #9b9b9b;
     margin: 0;
@@ -525,11 +672,13 @@ footer .content span a {
     text-align: center;
     border-radius: 0;
   }
+  /* line 69, layout/_allDevices.scss */
   header .container .top-header .content .register.active {
     position: absolute;
     right: 25px;
     bottom: -450px;
   }
+  /* line 74, layout/_allDevices.scss */
   header .container .top-header .content .nav-mobile {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -542,6 +691,7 @@ footer .content span a {
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  /* line 78, layout/_allDevices.scss */
   header .container .top-header .content .nav-mobile span {
     background: black;
     width: 45px;
@@ -549,9 +699,11 @@ footer .content span a {
     margin: 4px auto;
     border-radius: 20px;
   }
+  /* line 85, layout/_allDevices.scss */
   header .container .top-header .content .nav-mobile span.center {
     width: 30px;
   }
+  /* line 92, layout/_allDevices.scss */
   header .container .main-header .content {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -561,27 +713,97 @@ footer .content span a {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse;
   }
+  /* line 98, layout/_allDevices.scss */
   header .container .main-header .content .txt-main-header {
-    margin-top: 110px;
+    margin-top: 0;
+    text-align: center;
+    margin-top: 15px;
   }
+  /* line 103, layout/_allDevices.scss */
   header .container .main-header .content .image-main {
-    width: 65%;
-    margin-top: 230px;
+    width: 50% !important;
+    margin-top: 0;
   }
 
+  /* line 112, layout/_allDevices.scss */
+  .our-work .waver-top {
+    bottom: 406px !important;
+  }
+  /* line 115, layout/_allDevices.scss */
+  .our-work .waver-bottom {
+    bottom: -171px !important;
+  }
+  /* line 118, layout/_allDevices.scss */
+  .our-work .container {
+    padding: 40px 10px;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  /* line 121, layout/_allDevices.scss */
+  .our-work .container .box {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 45%;
+            flex: 1 45%;
+    margin: 10px;
+  }
+
+  /* line 128, layout/_allDevices.scss */
+  .pricing .container {
+    margin: 0 !important;
+  }
+  /* line 130, layout/_allDevices.scss */
+  .pricing .container .content {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  /* line 132, layout/_allDevices.scss */
   .pricing .container .content .pricing-thumb {
     width: 314px;
   }
+
+  /* line 140, layout/_allDevices.scss */
+  .form-login {
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+  }
+  /* line 144, layout/_allDevices.scss */
+  .form-login .content .form-content form {
+    width: 80% !important;
+  }
+  /* line 146, layout/_allDevices.scss */
+  .form-login .content .form-content form h2 {
+    font-size: 25px !important;
+  }
+
+  /* line 153, layout/_allDevices.scss */
+  .form-register {
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+  }
+  /* line 157, layout/_allDevices.scss */
+  .form-register .content .form-content form {
+    width: 80% !important;
+  }
+  /* line 159, layout/_allDevices.scss */
+  .form-register .content .form-content form h2 {
+    font-size: 25px !important;
+  }
 }
 @media (max-width: 425px) {
+  /* line 171, layout/_allDevices.scss */
+  header .container .main-header {
+    height: auto !important;
+  }
+  /* line 173, layout/_allDevices.scss */
   header .container .main-header .content {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -599,20 +821,45 @@ footer .content span a {
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse;
   }
+  /* line 179, layout/_allDevices.scss */
   header .container .main-header .content .txt-main-header {
-    margin-top: 55px;
+    margin-top: 7px;
+    padding: 0 15px;
+    width: 100%;
   }
-  header .container .main-header .content .txt-main-header h5 {
+  /* line 183, layout/_allDevices.scss */
+  header .container .main-header .content .txt-main-header h1 {
     font-size: 15px;
   }
-  header .container .main-header .content .txt-main-header p {
-    font-size: 23px !important;
+  /* line 186, layout/_allDevices.scss */
+  header .container .main-header .content .txt-main-header h2 {
+    font-size: 22px !important;
+    width: 100% !important;
   }
+  /* line 190, layout/_allDevices.scss */
+  header .container .main-header .content .txt-main-header a.ar {
+    padding: 15px 30px;
+  }
+  /* line 192, layout/_allDevices.scss */
+  header .container .main-header .content .txt-main-header a.ar::before {
+    left: inherit;
+    right: inherit;
+  }
+  /* line 198, layout/_allDevices.scss */
   header .container .main-header .content .image-main {
-    width: 80%;
-    margin-top: 230px;
+    width: 80% !important;
+    margin-top: 56px !important;
   }
 
+  /* line 207, layout/_allDevices.scss */
+  .our-work .waver-top {
+    top: -94px !important;
+  }
+  /* line 210, layout/_allDevices.scss */
+  .our-work .waver-bottom {
+    bottom: -94px !important;
+  }
+  /* line 213, layout/_allDevices.scss */
   .our-work .container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -626,82 +873,167 @@ footer .content span a {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    padding: 20px 0 !important;
   }
+  /* line 219, layout/_allDevices.scss */
   .our-work .container .box {
     margin: 5px auto !important;
   }
 
+  /* line 226, layout/_allDevices.scss */
   .pricing .container h1 {
     font-size: 25px;
     padding: 0 15px;
   }
+  /* line 230, layout/_allDevices.scss */
   .pricing .container #search {
     width: 325px;
   }
-  .pricing .container .content .pricing-thumb {
-    width: 100%;
+
+  /* line 243, layout/_allDevices.scss */
+  .form-login .content .form-content {
+    width: 100% !important;
+  }
+  /* line 245, layout/_allDevices.scss */
+  .form-login .content .form-content form {
+    width: 90% !important;
+    padding: 30px 10px 10px 10px !important;
+  }
+  /* line 250, layout/_allDevices.scss */
+  .form-login .content .pattern-deco {
+    position: fixed;
+    width: 100% !important;
+    height: 150px !important;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  /* line 262, layout/_allDevices.scss */
+  .form-register .content .form-content {
+    width: 100% !important;
+  }
+  /* line 264, layout/_allDevices.scss */
+  .form-register .content .form-content form {
+    width: 90% !important;
+    padding: 30px 10px 10px 10px !important;
+  }
+  /* line 269, layout/_allDevices.scss */
+  .form-register .content .pattern-deco {
+    position: fixed;
+    width: 100% !important;
+    height: 150px !important;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  /* line 279, layout/_allDevices.scss */
+  footer {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  /* line 283, layout/_allDevices.scss */
+  footer p {
+    font-size: 14px !important;
+    margin-bottom: 1rem !important;
+    text-align: center;
   }
 }
 @media (max-width: 375px) {
+  /* line 292, layout/_allDevices.scss */
   .top-header {
     padding: 15px 20px !important;
   }
 
+  /* line 297, layout/_allDevices.scss */
   .main-header .content .image-main {
     width: 99% !important;
   }
 
+  /* line 303, layout/_allDevices.scss */
   .nav-mobile span:not(:nth-child(2)) {
     width: 40px !important;
   }
 
+  /* line 308, layout/_allDevices.scss */
+  .our-work .waver-top {
+    top: -83px !important;
+  }
+  /* line 311, layout/_allDevices.scss */
+  .our-work .waver-bottom {
+    bottom: -83px !important;
+  }
+  /* line 315, layout/_allDevices.scss */
   .our-work .container .box {
-    width: 100%;
+    width: 90%;
   }
 
+  /* line 320, layout/_allDevices.scss */
   .pricing {
     margin: 30px auto;
     padding: 30px 20px;
   }
-  .pricing .container {
-    margin: 20px 15px;
-  }
+  /* line 324, layout/_allDevices.scss */
   .pricing .container h1 {
     font-size: 23px;
   }
+  /* line 327, layout/_allDevices.scss */
   .pricing .container #search {
     width: 100%;
   }
 }
 @media (max-width: 320px) {
+  /* line 335, layout/_allDevices.scss */
   #logo {
     font-size: 19px;
   }
 
+  /* line 338, layout/_allDevices.scss */
   .top-header {
     padding: 15px 20px !important;
   }
 
+  /* line 343, layout/_allDevices.scss */
   .main-header .content .txt-main-header {
     padding: 0 20px;
   }
+  /* line 345, layout/_allDevices.scss */
   .main-header .content .txt-main-header a {
     font-size: 13px !important;
   }
+  /* line 349, layout/_allDevices.scss */
   .main-header .content .image-main {
     width: 99% !important;
   }
 
+  /* line 355, layout/_allDevices.scss */
   .nav-mobile span:not(:nth-child(2)) {
     width: 35px !important;
   }
 
+  /* line 360, layout/_allDevices.scss */
+  .our-work .waver-top {
+    top: -71px !important;
+  }
+  /* line 363, layout/_allDevices.scss */
+  .our-work .waver-bottom {
+    bottom: -71px !important;
+  }
+
+  /* line 367, layout/_allDevices.scss */
   .pricing {
     padding: 15px 10px;
   }
+  /* line 369, layout/_allDevices.scss */
   .pricing .container {
     margin: 10px 5px;
   }
+  /* line 371, layout/_allDevices.scss */
   .pricing .container h1 {
     font-size: 22px !important;
   }

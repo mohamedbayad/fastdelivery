@@ -4,6 +4,8 @@ from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from boxPackages.models import NewBox
+from main.models import City
+from dashboard.models import Setting
 
 
 class CreateNewUserDelivery(UserCreationForm):
@@ -37,3 +39,15 @@ class CreateNewProfileDelivery(ModelForm):
         model = ProfileManDelivery
         fields = "__all__"
         exclude = ["user"]
+
+
+class AddCity(ModelForm):
+    class Meta:
+        model = City
+        fields = "__all__"
+
+
+class AddUpdate(ModelForm):
+    class Meta:
+        model = Setting
+        fields = "__all__"

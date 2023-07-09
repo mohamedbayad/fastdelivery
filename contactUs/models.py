@@ -13,5 +13,8 @@ class Contact(models.Model):
     message = models.TextField(max_length=2000, blank=True, null=True)
     date = models.CharField(max_length=100, blank=True, null=True, default=timezone.now().strftime('%d-%m-%Y'))
 
+    DisplayFields = ["id", "email", "subject", "message", "date"]
+    SearchbleFields = ["email", "subject", "message", "date"]
+
     def __str__(self) -> str:
         return f"{self.user} | {self.email}"

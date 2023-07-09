@@ -1,0 +1,139 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% get_current_language as LANGUAGE_CODE %}
+
+<main>
+    {% block content %}
+    <div class="form-package">
+        {% comment %} error forms {% endcomment %}
+        {% if form.errors %}
+            {% for error in form.errors  %}
+                {% if error == "price" %}
+                    <div class="alert message alert-danger" role="alert">
+                        <div class="{{ error }}"> <span style="font-weight: 500;">{% trans "PRIX" %}</span> {% trans "Assurez-vous qu'il n'y a pas plus de 6 chiffres au total" %}.</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% comment %} message if create a new package or Not {% endcomment %}
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "success" %}
+                    <div style='width: 80%' class="alert message mx-auto alert-success" role="alert">
+                        <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                    </div>
+                {% elif message.tags == "error" %}
+                    <div style='width: 80%' class="alert message mx-auto alert-danger" role="alert">
+                        <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% if "edite" in request.build_absolute_uri %}
+            <h4 class="title" >{% trans "Edite Colis" %}</h4>
+            {% else %}
+            <h4 class="title" >{% trans "Créer Un Nouveau Colis" %}</h4>
+        {% endif %}
+
+        <form method="POST" class="row g-3">
+            {% csrf_token %}
+            <div class="col-md-6 package">
+                <label for="article_name">{% trans "Nom d'article" %} : </label></br>
+                <input type="text" class="form-control" id="article_name" name="article_name">
+            </div>
+            {% if "edite" in request.build_absolute_uri %}
+                <div class="col-md-6 package">
+                    <label>{% trans "Ville" %} : </label></br>
+                    <select class="form-select" aria-label="{{order.city}}" name="city">
+                        <option class="selected" selected value="{{order.city}}">{{order.city}}</option>
+                        {% for city in citys %}
+                            <option value="{{city}}">{{city}}</option>
+                        {% endfor %}
+                    </select>   
+                </div>
+                <div class="col-md-6 package">
+                    <label for="box">{% trans "Boîte à colis" %} : </label></br>
+                    <select class="form-select" id="box" name="box">
+                        <option class="selected" selected value="{{order.box}}">{{order.box}}</option>
+                        {% for box in boxs %}
+                            <option value="{{box.id}}">{{box}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% else %}
+                <div class="col-md-6 package">
+                    <label>{% trans "Ville" %} : </label></br>
+                    <select class="form-select" aria-label="Default select example" name="city">
+                        <option selected >{% trans "Choisissez la ville" %}</option>
+                        {% for city in citys %}
+                        <option value="{{city}}">{{city}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 package">
+                    <label for="box">{% trans "Boîte à colis" %} : </label></br>
+                    <select class="form-select" name="box">
+                        <option selected >{% trans "Choisissez la Boite" %}</option>
+                        {% for box in boxs %}
+                            <option value="{{box.id}}">{{box}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {{form.errors}}
+            <div class="col-md-6 package">
+                <label>{% trans "Adresse" %} : </label></br>
+                {{form.address}}
+            </div>
+            {% if LANGUAGE_CODE == "ar" %}
+                <div class="col-md-6 package ar dh">
+                    <label>{% trans "Prix" %} : </label></br>
+                    {{form.price}}
+                </div>
+            {% else %}
+                <div class="col-md-6 package dh">
+                    <label>{% trans "Prix" %} : </label></br>
+                    {{form.price}}
+                </div>
+            {% endif %}
+            <div class="col-md-6 package">
+                <label>{% trans "Télephone" %} : </label></br>
+                {{form.phone_number}}
+            </div>
+            <div class="col-md-6 package">
+                <label>{% trans "Nom du client" %} : </label></br>
+                {{form.client_name}}
+            </div>
+            <div class="col-md-6 package">
+                <label>{% trans "Remarque" %} : </label></br>
+                {{form.remark}}
+            </div>
+
+            {% if "edite" in request.build_absolute_uri %}
+            <div class="col-12 package">
+                <button type="submit" class="btn btn-primary">{% trans "Modifier" %}</button>
+            </div>
+            {% else %}
+            <div class="col-12 package">
+                <button type="submit" class="btn btn-primary">{% trans "Ajouter" %}</button>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+    {% comment %} <script type="text/javascript">
+        let inputs = document.querySelectorAll("input");
+        let selects = document.querySelectorAll("select");
+        inputs.forEach((e) => {
+            e.setAttribute("required", "required");
+        })
+        selects.forEach((e) => {
+            e.setAttribute("required", "required");
+        })
+    </script> {% endcomment %}
+    {% endblock content %}
+</main>

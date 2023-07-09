@@ -15,5 +15,8 @@ class Received(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     invoise = models.BooleanField(null=True, blank=True, default=False)
 
+    DisplayFields = ["id", "received_id", "total_amount", "total_withdrawn", "receive", "user", "invoise", "date_received"]
+    SearchbleFields = ["received_id"]
+
     def __str__(self):
         return self.received_id

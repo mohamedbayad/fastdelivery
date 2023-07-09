@@ -1,6 +1,16 @@
 {% load static %}
-<footer>
-    <div class="content">
-        <span>COPYRIGHT &copy; 2022 <a href="{% url "home" %}">BRIGAD STYLE</a></span>
-    </div>
+{% load i18n %}
+
+<footer class="d-flex flex-wrap justify-content-center align-items-center py-3 px-5 border-top">
+    <p class="col-md-4 text-body-secondary">&copy; 2023 FASTDELIVERY, {% trans "créé par" %} ❤️  <a href="https://clickboost.ma/" target="_blanck" class="text-capitalize">clickboost</a></p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <img src="{% static 'img/logo/logo.png' %}" width="100px"/>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-center">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">{% trans "FAQ" %}</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">{% trans "Politique de Confidentialité" %}</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">{% trans "À propos de nous" %}</a></li>
+    </ul>
 </footer>

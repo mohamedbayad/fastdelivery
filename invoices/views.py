@@ -18,7 +18,7 @@ def calc(parcel_inv):
     for parcel in parcel_inv:
         packages = parcel.packages.all()
         for pack in packages:
-            if "Annulée" in pack.etat:
+            if "Cancelled" in pack.etat:
                 for city in citys:
                     if city.name == pack.city:
                         withdraw = city.price_c
@@ -26,7 +26,7 @@ def calc(parcel_inv):
                 pack.withdrawn_canceled = withdraw
                 pack.withdrawn_refused = 0
                 pack.withdrawn_livery = 0
-            if "Refusée" in pack.etat:
+            if "Refused" in pack.etat:
                 for city in citys:
                     if city.name == pack.city:
                         withdraw = city.price_r
@@ -34,7 +34,7 @@ def calc(parcel_inv):
                 pack.withdrawn_refused = withdraw
                 pack.withdrawn_canceled = 0
                 pack.withdrawn_livery = 0
-            if "Livrée" in pack.etat:
+            if "Delivered" in pack.etat:
                 price += pack.price
                 for city in citys:
                     if city.name == pack.city:
@@ -73,7 +73,7 @@ def parcel_not_inv(request):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/pages/invoices/parcel_not_invoiced.html", context)
+    return render(request, "dashboard/pages/invoices/parcel_not_invoiced.html", context)
 
 
 @login_required(login_url="connexion")
@@ -95,7 +95,7 @@ def parcel_inv(request):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, "dashbord/pages/invoices/parcel_invoiced.html", context)
+    return render(request, "dashboard/pages/invoices/parcel_invoiced.html", context)
 
 
 @login_required(login_url="connexion")
@@ -116,7 +116,7 @@ def parcel_inv_packages(request, id):
         "settings": settings,
         "profileImage": profileImage,
     }
-    return render(request, 'dashbord/pages/invoices/parts-inv/packages.html', context)
+    return render(request, 'dashboard/pages/invoices/parts-inv/packages.html', context)
 
 
 @login_required(login_url="connexion")
@@ -133,7 +133,7 @@ def pdfInvoices(request, pk):
     
     for package in dataPackages:
         for t in package.packages.all():
-            if t.etat == "Livrée":
+            if t.etat == "Delivered":
                 total_price += t.price
         total_withdraw += package.total_withdrawn
 
@@ -143,7 +143,7 @@ def pdfInvoices(request, pk):
         "total_withdraw": total_withdraw,
         "profile": profile,
     }
-    return render(request, "dashbord/pdf/invoices.html", context)
+    return render(request, "dashboard/pdf/invoices.html", context)
 
 
 

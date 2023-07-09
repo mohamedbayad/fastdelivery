@@ -3,4 +3,7 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(Tracking)
+@admin.register(Tracking)
+class TrackingAdmin(admin.ModelAdmin):
+    list_display = Tracking.DisplayFields
+    search_fields = Tracking.SearchbleFields

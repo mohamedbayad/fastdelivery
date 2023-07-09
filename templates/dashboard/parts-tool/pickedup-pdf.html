@@ -1,0 +1,33 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+
+<main>
+{% block content %}
+    {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
+    <div class = "refund-content">
+        <h4 class="title">{% trans "Demande de remboursement" %}</h4>
+        <div class="content">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.exchange_price.label}}</br>
+                {{form.exchange_price}}</br>
+                {{form.exchange.label}}</br>
+                {{form.exchange}}</br>
+                {% if exchange_count == 0 %}
+                <button type='submit' name="submit" class="btn btn-primary btn-etat" href="">{% trans "Oui" %}</button>
+                {% else %}
+                <button type='submit' name="submit" class="btn btn-primary btn-etat" href="" disabled="disabled">{% trans "Oui" %}</button>
+                <p style="color:red; text-align:center">{% trans "Un retour a déjà été demandé" %}</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+    <script>
+        let inputPrice = document.getElementById("id_exchange_price");
+        inputPrice.setAttribute("value", "{{price}}")
+        inputPrice.setAttribute("disabled", "disabled")
+    </script>
+    {% endblock %}
+</main>

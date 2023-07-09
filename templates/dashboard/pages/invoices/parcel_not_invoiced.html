@@ -1,0 +1,47 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="get-data invoices">
+    <div class="content">
+        <h4>{% trans "Tous Les Colis Non Facturées" %}</h4>
+        <p>{% trans "Total des résultats trouvés" %}: <span style="color:green">{{parcel_invCount}}</span></p>
+        <div class="table-content">
+            <table class="table table-bordered table-striped table-hover  align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">{% trans "Nombre total d'articles" %}</th>
+                        <th scope="col">{% trans "Montant total" %}</th>
+                        <th scope="col">{% trans "Montant retiré" %}</th>
+                        <th scope="col">{% trans "Date" %}</th>
+                        <th scope="col">{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in parcel_inv %}
+                        {% if item.receive == True %}
+                        <tr class="invoice" id="{{item.received_id}}">
+                            <td class="id">{{item.received_id}}</td>
+                            <td>{{item.packages.count}}</td>
+                            <td> <span class="badge text-bg-success"> {{item.total_amount}} DH </span> </td>
+                            <td><span class="badge text-bg-danger">- {{item.total_withdrawn}} DH </span></td>
+                            <td>{{item.date_received}}</td>
+                            <td class="actions" id="actions">
+                                {% comment %} <a class="download" href="#" ><button type="button" class="btn btn-success" disabled>Télécharger</button></a> {% endcomment %}
+                                <a class="packages" href="{% url 'invoices_packages' item.received_id %}"><button type="button" class="btn btn-success">{% trans "Colis" %}</button></a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/invoiced.js' %}"></script>
+
+{% endblock content %}

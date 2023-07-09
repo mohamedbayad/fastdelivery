@@ -1,0 +1,77 @@
+{% extends 'dashboard/dashboard.html' %}
+{% load static %}
+{% load i18n %}
+
+
+<main>
+{% block content %}
+    {% comment %} {% include 'dashbord/parts/navtop.html' %} {% endcomment %}
+    <div class="get-data">
+        <div class="content">
+
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message.tags == "success" %}
+                        <div class="alert message alert-success" role="alert" style="text-align: center;">
+                            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                        </div>
+                    {% elif message.level == 50 %}
+                        <div class="alert message alert-warning" role="alert" style="text-align: center;">
+                            <div {% if message.tags %} class="{{ message.tags }}"{% endif %}> {{ message }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            <form method = "POST">
+                {% csrf_token %}
+                <div class="submit">
+                    <button type="submit" name="submit" alert="New picked_up_">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                          </svg>
+                    </button>
+                </div>
+                <div class="table-content">
+                    <table class="table table-bordered  align-middle">
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                <input type="checkbox" name="pickup-check-all"/>
+                            </th>
+                            <th scope="col">ID</th>
+                            <th scope="col">{% trans "Article" %}</th>
+                            <th scope="col">{% trans "État" %}</th>
+                            <th scope="col">{% trans "Prix" %}(DH)</th>
+                            <th scope="col">{% trans "Tél" %}</th>
+                            <th scope="col">{% trans "Ville" %}</th>
+                            <th scope="col">{% trans "Nom du client" %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+                        {% for item in packagePickup %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="pickup-check" value="{{item.id_package}}"/>
+                            </td>
+                            <td class="id"> {{item.id_package}} </td>
+                            <td>{{item.article_name}}</td>
+                            <td>{{item.etat}}</td>
+                            <td>{{item.price}}</td>
+                            <td>{{item.phone_number}}</td>
+                            <td>{{item.city}}</td>
+                            <td>{{item.client_name}}</td>
+                        </tr>
+                        {% endfor %}
+                        {{picked_up_form}}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{% static "js/pickup.js" %}"></script>
+{% endblock content %}
+</main>
