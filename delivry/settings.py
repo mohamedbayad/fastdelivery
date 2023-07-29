@@ -22,8 +22,7 @@ SECRET_KEY = env('SECRET_KEY')
 # DEBUG = False
 DEBUG = env('DEBUG')
 
-# ALLOWED_HOSTS = ["https://delivery-app.herokuapp.com"]
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -41,7 +40,6 @@ INSTALLED_APPS = [
     "tracking",
     "contactUs",
     'adminManager',
-    'delivery_men',
     'invoices',
     'pickup',
     'packages',

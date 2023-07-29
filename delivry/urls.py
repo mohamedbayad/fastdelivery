@@ -34,7 +34,6 @@ urlpatterns += i18n_patterns(
     path("colis/", include("packages.urls")),
     path("ramassage/", include("pickup.urls")),
     path("factures/", include("invoices.urls")),
-    path("livreurs/", include("delivery_men.urls")),
     path("suivi-colis/", include("tracking.urls")),
     path("les-bons-de-commandes/", include("boxPackages.urls")),
     path("dashboard/nous-contacter/", include("contactUs.urls")),
