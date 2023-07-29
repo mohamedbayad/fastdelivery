@@ -925,3 +925,12 @@ body.jazzmin-login-page {
     float: left;
     width: 100%;
 }
+
+
+img.img-circle.brand-image.elevation-3 {
+    display: none !important;
+}
+
+span.brand-text {
+    margin-left: 20px !important;
+}
